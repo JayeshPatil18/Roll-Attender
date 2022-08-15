@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    String str_emailId, str_password;
 
     EditText emailId, password;
     TextView invalidDisplay;
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 emailLayout.setErrorEnabled(false);
                 passwordLayout.setErrorEnabled(false);
 
-                String str_name, str_emailId, str_phoneNo, str_password;
                 str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
                 str_password = password.getText().toString().trim();
 
@@ -90,14 +90,14 @@ public class MainActivity extends AppCompatActivity {
                                     emailId.setText("");
                                     password.setText("");
 
-                                    Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-
-                                    Intent intent = new Intent(MainActivity.this, UsertypeActivity.class);
+                                    Intent intent = new Intent(MainActivity.this, VerifyingEmail.class);
+                                    intent.putExtra("email_str",str_emailId);
+                                    intent.putExtra("password_str",str_password);
                                     startActivity(intent);
                                     finish();
                                 }else{
                                     int index = task.getException().toString().indexOf(":");
-                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).trim().substring(index + 1).replace(" ","");
+                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).replace(" ","").trim().substring(index + 1);
                                     if (exception.contains("passwordisinvalid")){
                                         invalidDisplay.setText("Invalid password!");
                                     }else if (exception.contains("nouserrecord")){
