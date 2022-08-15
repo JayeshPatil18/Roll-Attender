@@ -102,7 +102,7 @@ public class SignupActivity extends AppCompatActivity{
                     boolean validName = validation.validatedName(str_name, nameLayout);
                     boolean validUsername = validation.validatedEmailId(str_emailId, emailIdLayout);
                     boolean validPhoneNo = validation.validatedPhoneNo(str_phoneNo, phoneNoLayout);
-                    boolean validPassword = validation.validatedPassword(str_password, passwordLayout);
+                    boolean validPassword = validation.isValidCreation(str_password, passwordLayout);
 
                     if (validName && validUsername && validPhoneNo && validPassword){
 
@@ -123,7 +123,9 @@ public class SignupActivity extends AppCompatActivity{
                                     startActivity(intent);
                                     finish();
                                 }else{
-                                    invalidDisplay.setText("Something went wrong!");
+                                    int index = task.getException().toString().indexOf(":");
+                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).trim().substring(index + 1).replace(" ","");
+                                    invalidDisplay.setText(task.getException().toString().trim().substring(index + 1));
                                 }
                             }
                         });

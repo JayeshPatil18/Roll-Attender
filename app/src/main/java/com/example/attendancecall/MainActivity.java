@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
                     ValidationOfInput validation = new ValidationOfInput();
                     boolean validUsername = validation.validatedEmailId(str_emailId, emailLayout);
-//                    boolean validPassword = validation.validatedPassword(str_password, passwordLayout);
+                    boolean validPassword = validation.isValidPasswordForLogin(str_password, passwordLayout);
 
-                    if (validUsername){
+                    if (validUsername && validPassword){
 
                         mAuth.signInWithEmailAndPassword(str_emailId,str_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

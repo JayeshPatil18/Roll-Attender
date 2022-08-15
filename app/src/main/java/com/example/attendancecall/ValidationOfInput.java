@@ -62,18 +62,155 @@ public class ValidationOfInput {
 
     }
 
-    public boolean validatedPassword(String str_password, TextInputLayout invalidDisplay) {
-        if (str_password.length()<8){
+
+    public boolean isValidPasswordForLogin(String password, TextInputLayout invalidDisplay){
+        // to check emoji
+        if (containsEmoji(password)){
             invalidDisplay.setErrorEnabled(true);
-            invalidDisplay.setError("* Password must be at least 8 characters");
+            invalidDisplay.setError("* Password should not contain any emoji");
             return false;
-        }else if(containsEmoji(str_password)){
+        }
+
+        // to check space
+        if (password.contains(" ")) {
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password should not contain any space");
+            return false;
+        }
+
+        // for checking if password length
+        // is between 8 and 15
+        if (!((password.length() >= 8)
+                && (password.length() <= 15))) {
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password length should be between 8 to 15 characters");
+            return false;
+        }
+        return true;
+    }
+
+    // whether a password is valid or not
+    public boolean isValidCreation(String password, TextInputLayout invalidDisplay)
+    {
+        // to check emoji  // code by me
+        if (containsEmoji(password)){
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password should not contain any emoji");
+            return false;
+        }
+        // to check space
+        if (password.contains(" ")) {
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password should not contain any space");
+            return false;
+        }
+
+        // for checking if password length
+        // is between 8 and 15
+        if (!((password.length() >= 8)
+                && (password.length() <= 15))) {
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password length should be between 8 to 15 characters");
+            return false;
+        }
+
+        if (true) {
+            int count = 0;
+
+            // check digits from 0 to 9
+            for (int i = 0; i <= 9; i++) {
+
+                // to convert int to string
+                String str1 = Integer.toString(i);
+
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                invalidDisplay.setErrorEnabled(true);
+                invalidDisplay.setError("* Password should contain at least one digit(0-9)");
+                return false;
+            }
+        }
+
+        // for special characters
+        if (!(password.contains("@") || password.contains("#")
+                || password.contains("!") || password.contains("~")
+                || password.contains("$") || password.contains("%")
+                || password.contains("^") || password.contains("&")
+                || password.contains("*") || password.contains("(")
+                || password.contains(")") || password.contains("-")
+                || password.contains("+") || password.contains("/")
+                || password.contains(":") || password.contains(".")
+                || password.contains(", ") || password.contains("<")
+                || password.contains(">") || password.contains("?")
+                || password.contains("|"))) {
+
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password should contain at least one special character ( @, #, %, &, !, $, etc…)");
+            return false;
+        }
+
+        if (true) {
+            int count = 0;
+
+            // checking capital letters
+            for (int i = 65; i <= 90; i++) {
+
+                // type casting
+                char c = (char)i;
+
+                String str1 = Character.toString(c);
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                invalidDisplay.setErrorEnabled(true);
+                invalidDisplay.setError("* Password should contain at least one uppercase letter(A-Z)");
+                return false;
+            }
+        }
+
+        if (true) {
+            int count = 0;
+
+            // checking small letters
+            for (int i = 97; i <= 122; i++) {
+
+                // type casting
+                char c = (char)i;
+                String str1 = Character.toString(c);
+
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                invalidDisplay.setErrorEnabled(true);
+                invalidDisplay.setError("* Password should contain at least one lowercase letter(a-z)");
+                return false;
+            }
+        }
+
+        // if all conditions fails
+        return true;
+    }
+
+    public boolean validatedPassword(String str_password, TextInputLayout invalidDisplay) {
+        if(containsEmoji(str_password)){
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password should not contain emoji");
+            return false;
+        }else if (str_password.contains(" ")){
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password should not contain space");
             return false;
         }else if(!isValidPassword(str_password)){
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Try another password");
+//            invalidDisplay.setError("* Try another password\n* Password should contain at least one digit(0-9).\n* Password must be at least 8 characters.\n* Password should contain at least one lowercase letter(a-z).\n* Password should contain at least one uppercase letter(A-Z).\n* Password should contain at least one special character ( @, #, %, &, !, $, etc…).");
             return false;
         }
         return true;
