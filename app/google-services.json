@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "68374275587",
+    "firebase_url": "https://attendance-call-b0f4c-default-rtdb.firebaseio.com",
+    "project_id": "attendance-call-b0f4c",
+    "storage_bucket": "attendance-call-b0f4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68374275587:android:8a3a9fd55a09812f78d036",
+        "android_client_info": {
+          "package_name": "com.example.attendancecall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68374275587-7e6oiqvkrb2g61k12o5kj2o7719k0j8j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.attendancecall",
+            "certificate_hash": "75bcdff4f09e0e2e11fee496971ab3a677978fda"
+          }
+        },
+        {
+          "client_id": "68374275587-6ljssjf5ov2dv4acal18vp3lkkb3cpep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZaAHaOkZhJX32WsVoAqOSpFo_i8fj8O8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68374275587-6ljssjf5ov2dv4acal18vp3lkkb3cpep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
