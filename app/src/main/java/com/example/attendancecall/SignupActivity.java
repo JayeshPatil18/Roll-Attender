@@ -123,6 +123,12 @@ public class SignupActivity extends AppCompatActivity{
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
 
+                                    AdminInfo adminInfo = new AdminInfo();
+//                                    adminInfo.setAdminName(str_name);
+//                                    adminInfo.setAdminEmailId(str_emailId);
+//                                    adminInfo.setAdminPhoneNo(str_phoneNo);
+//                                    adminInfo.setAdminPassword(str_password);
+
                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

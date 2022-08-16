@@ -11,6 +11,8 @@
     android:background="@drawable/login_form"
     app:cardElevation="5dp">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,16 +20,17 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <ImageView
-            android:layout_width="81dp"
-            android:layout_height="81dp"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
             android:layout_gravity="center"
-            android:padding="10dp"
             app:srcCompat="@drawable/student_icon"
             app:tint="@color/app_default" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,16 +38,54 @@
             android:orientation="vertical"
             android:gravity="left">
 
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+
+
             <TextView
                 android:id="@+id/tv_stud_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="10dp"
                 android:text="Jayesh Patil"
                 android:textColor="@color/app_default"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Email id :" />
+
+                <TextView
+                    android:id="@+id/tv_stud_emailId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text="343434343" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,7 +101,7 @@
                     android:paddingRight="10dp"
                     android:paddingTop="3dp"
                     android:paddingBottom="3dp"
-                    android:text="Endrollment No :" />
+                    android:text="Enrollment No :" />
 
                 <TextView
                     android:id="@+id/tv_stud_endrollment"

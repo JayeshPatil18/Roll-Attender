@@ -34,6 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User model = mList.get(position);
         holder.name_tv.setText(model.getName().substring(0, 1).toUpperCase() + (model.getName().substring(1)));
+        holder.emailId_tv.setText(model.getEmail().substring(0, 1).toUpperCase() + (model.getName().substring(1)));
         holder.endrollment_tv.setText(model.getEnrollment_no());
         holder.branch_tv.setText(model.getBranch().substring(0, 1).toUpperCase() + (model.getBranch().substring(1)));
         holder.phone_tv.setText(model.getPhone_no());
@@ -46,12 +47,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static  class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name_tv , endrollment_tv , branch_tv, phone_tv;
+        TextView emailId_tv, name_tv , endrollment_tv , branch_tv, phone_tv;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name_tv = itemView.findViewById(R.id.tv_stud_name);
+            emailId_tv = itemView.findViewById(R.id.tv_stud_emailId);
             endrollment_tv = itemView.findViewById(R.id.tv_stud_endrollment);
             branch_tv = itemView.findViewById(R.id.tv_stud_branch);
             phone_tv = itemView.findViewById(R.id.tv_stud_phone);

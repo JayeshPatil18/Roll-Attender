@@ -139,7 +139,11 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
 
                     if (validName && validEnrollmentNo && validBranch && validPhoneNo) {
 
+//                        AdminInfo info = new AdminInfo();
+//                        String student_emailId = info.getAdminEmailId();
+
                         HashMap<String, String> userMap = new HashMap<>();
+                        userMap.put("email", "student_emailId");
                         userMap.put("name", student_name);
                         userMap.put("enrollment_no", student_enrollment_no);
                         userMap.put("branch", student_branch);
@@ -156,7 +160,7 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     String model = dataSnapshot.getKey();
 
-                                    if (model.equals(student_name)) {
+                                    if (model.equals("student_emailId")) {
                                         isDateExist = true;
                                     }
                                 }
@@ -166,10 +170,10 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                                     stud_endrollment_no.setText("");
                                     stud_branch.setText("");
                                     stud_phone.setText("");
-                                    root.child(student_name).setValue(userMap); // student details in student_name child
+                                    root.child("student_emailId").setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Attendance is Submitted", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    root.child(student_name).setValue(userMap); // student details in student_name child
+                                    root.child("student_emailId").setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Details are Updated", Toast.LENGTH_SHORT).show();
                                 }
                             }

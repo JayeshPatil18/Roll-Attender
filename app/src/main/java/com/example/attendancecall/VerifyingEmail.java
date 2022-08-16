@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class VerifyingEmail extends AppCompatActivity {
+
+    public static String PREFS_NAME = "MyPrefsFile";
 
     Button resendBtn, verifyBtn;
     FirebaseAuth fAuth;
@@ -77,10 +80,17 @@ public class VerifyingEmail extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             if (fuser.isEmailVerified()){
+                                SharedPreferences sharedPreferences = getSharedPreferences(VerifyingEmail.PREFS_NAME,0);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putBoolean("hasLoggedIn",true);
+                                editor.commit();
+
                                 Toast.makeText(VerifyingEmail.this, "Email is verified successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(VerifyingEmail.this, UsertypeActivity.class);
                                 startActivity(intent);
                                 finish();
+
                             }else{
                                 Toast.makeText(VerifyingEmail.this, "Not Verified", Toast.LENGTH_SHORT).show();
                                 invalidDisplay.setText("* Please check email box then click verify email");

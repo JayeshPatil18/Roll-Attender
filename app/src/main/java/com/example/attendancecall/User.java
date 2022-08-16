@@ -1,8 +1,12 @@
 package com.example.attendancecall;
 
 public class User {
-    String name, enrollment_no, branch, phone_no;
 
+    String email, name, enrollment_no, branch, phone_no;
+
+    public String getEmail() {
+        return email;
+    }
     public String getName() {
         return name;
     }

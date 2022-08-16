@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
     String str_emailId, str_password;
 
     EditText emailId, password;
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     emailId.setText("");
                                     password.setText("");
+
+                                    AdminInfo adminInfo = new AdminInfo();
+                                    adminInfo.setAdminEmailId(str_emailId);
+                                    adminInfo.setAdminPassword(str_password);
 
                                     Intent intent = new Intent(MainActivity.this, VerifyingEmail.class);
                                     intent.putExtra("email_str",str_emailId);
