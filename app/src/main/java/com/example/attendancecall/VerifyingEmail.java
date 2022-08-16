@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class VerifyingEmail extends AppCompatActivity {
 
-    public static String PREFS_NAME = "MyPrefsFile";
+    public static String PREFS_NAME = "MyPrefsLogin";
 
     Button resendBtn, verifyBtn;
     FirebaseAuth fAuth;
@@ -49,7 +49,7 @@ public class VerifyingEmail extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(VerifyingEmail.this, "Email id is verified successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerifyingEmail.this, "Verification Email has been sent successfully", Toast.LENGTH_SHORT).show();
                 }else {
                     invalidDisplay.setText("Email not sent: " + task.getException().getMessage());
                 }
@@ -63,7 +63,7 @@ public class VerifyingEmail extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(VerifyingEmail.this, "Email id is verified successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyingEmail.this, "Verification Email has been sent successfully", Toast.LENGTH_SHORT).show();
                         }else {
                             invalidDisplay.setText("Email not sent: " + task.getException().getMessage());
                         }
@@ -80,11 +80,17 @@ public class VerifyingEmail extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             if (fuser.isEmailVerified()){
-                                SharedPreferences sharedPreferences = getSharedPreferences(VerifyingEmail.PREFS_NAME,0);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+                                SharedPreferences.Editor editor_isLogin = sharedPreferences_isLogin.edit();
 
-                                editor.putBoolean("hasLoggedIn",true);
-                                editor.commit();
+                                SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
+                                SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+                                editor_isLogin.putBoolean("hasLoggedIn",true);
+                                editor_loginDetails.putString("email_id",emailStr);
+                                editor_loginDetails.putString("password",passwordStr);
+                                editor_isLogin.commit();
+                                editor_loginDetails.commit();
 
                                 Toast.makeText(VerifyingEmail.this, "Email is verified successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(VerifyingEmail.this, UsertypeActivity.class);
@@ -92,7 +98,7 @@ public class VerifyingEmail extends AppCompatActivity {
                                 finish();
 
                             }else{
-                                Toast.makeText(VerifyingEmail.this, "Not Verified", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(VerifyingEmail.this, "Please verify your email from link send to your email " + emailStr, Toast.LENGTH_SHORT).show();
                                 invalidDisplay.setText("* Please check email box then click verify email");
                             }
                         }

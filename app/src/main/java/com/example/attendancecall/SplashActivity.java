@@ -23,13 +23,25 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                SharedPreferences sharedPreferences = getSharedPreferences(VerifyingEmail.PREFS_NAME,0);
-                boolean hasLoggedIn = sharedPreferences.getBoolean("hasLoggedIn",false);
+                SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+                boolean hasLoggedIn = sharedPreferences_isLogin.getBoolean("hasLoggedIn",false);
 
                 if (hasLoggedIn){
-                    Intent intent = new Intent(SplashActivity.this, UsertypeActivity.class);
-                    startActivity(intent);
-                    finish();
+                    SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
+
+                    if (sharedPreferences_loginDetails.getString("role","null").equals("teacher")){
+                        Intent intent = new Intent(SplashActivity.this, TeacherActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else if (sharedPreferences_loginDetails.getString("role","null").equals("student")){
+                        Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent = new Intent(SplashActivity.this, UsertypeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }else {
                     /* Create an Intent that will start the Menu-Activity. */
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);

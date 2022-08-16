@@ -24,7 +24,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 public class SignupActivity extends AppCompatActivity{
@@ -36,6 +39,10 @@ public class SignupActivity extends AppCompatActivity{
 
     // For firebase authentication
     FirebaseAuth mAuth;
+
+    // For saving details to firebase database
+    private FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private DatabaseReference root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,12 +129,22 @@ public class SignupActivity extends AppCompatActivity{
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
+                                    EncoderDecoder encoder = new EncoderDecoder();
 
-                                    AdminInfo adminInfo = new AdminInfo();
-//                                    adminInfo.setAdminName(str_name);
-//                                    adminInfo.setAdminEmailId(str_emailId);
-//                                    adminInfo.setAdminPhoneNo(str_phoneNo);
-//                                    adminInfo.setAdminPassword(str_password);
+                                    HashMap<String, String> userMap = new HashMap<>();
+                                    userMap.put("email", str_emailId);
+                                    userMap.put("name", str_name);
+                                    userMap.put("phone_no", str_phoneNo);
+                                    userMap.put("password", str_password);
+
+                                    root = db.getReference().child("admin_users");
+
+                                    root.child(encoder.encodeUserEmail(str_emailId)).child("details").setValue(userMap);
+
+                                    name.setText("");
+                                    emailId.setText("");
+                                    phoneNo.setText("");
+                                    password.setText("");
 
                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(intent);

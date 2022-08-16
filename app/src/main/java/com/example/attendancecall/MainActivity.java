@@ -91,10 +91,6 @@ public class MainActivity extends AppCompatActivity {
                                     emailId.setText("");
                                     password.setText("");
 
-                                    AdminInfo adminInfo = new AdminInfo();
-                                    adminInfo.setAdminEmailId(str_emailId);
-                                    adminInfo.setAdminPassword(str_password);
-
                                     Intent intent = new Intent(MainActivity.this, VerifyingEmail.class);
                                     intent.putExtra("email_str",str_emailId);
                                     intent.putExtra("password_str",str_password);

@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +34,24 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        // For if device user don't logged in
+        SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+        if (!sharedPreferences_isLogin.getBoolean("hasLoggedIn",false)){
+            Toast.makeText(this, "Please login account", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(StudentActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        // For starting student activity after exiting app
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
+        SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+        editor_loginDetails.putString("role","student");
+        editor_loginDetails.commit();
 
         root = db.getReference().child("subjects");
 

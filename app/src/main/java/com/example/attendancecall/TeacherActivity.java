@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,10 +51,51 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
+    TextView adminName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
+
+        adminName = findViewById(R.id.admin_name);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        // For if device user don't logged in
+        SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+        if (!sharedPreferences_isLogin.getBoolean("hasLoggedIn",false)){
+            Toast.makeText(this, "Please login account", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TeacherActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        // For starting teacher activity after exiting app
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
+        SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+        editor_loginDetails.putString("role","teacher");
+        editor_loginDetails.commit();
+
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
+        EncoderDecoder decoder = new EncoderDecoder();
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
+
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                AdminDetails str = snapshot.getValue(AdminDetails.class);
+                adminName.setText(decoder.getFirstCharCapital(str.getName()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // For manually adding date with fab button
         subAddFab = findViewById(R.id.add_sub_fab);

@@ -2,7 +2,11 @@ package com.example.attendancecall;
 
 public class User {
 
-    String email, name, enrollment_no, branch, phone_no;
+    String email = "null";
+    String name = "null";
+    String enrollment_no = "null";
+    String branch = "null";
+    String phone_no = "null";
 
     public String getEmail() {
         return email;

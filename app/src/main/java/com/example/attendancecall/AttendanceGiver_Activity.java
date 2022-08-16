@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +73,8 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
 
         // For going back if any dates data changed
         root = database.getReference();
+
+        // For getting email address
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,12 +141,11 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                     boolean validPhoneNo = validation.validatedPhoneNo(student_phone_no, phoneNoLayout);
 
                     if (validName && validEnrollmentNo && validBranch && validPhoneNo) {
-
-//                        AdminInfo info = new AdminInfo();
-//                        String student_emailId = info.getAdminEmailId();
+                        SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
+                        String student_emailId = sharedPreferences_emailId.getString("email_id","null");
 
                         HashMap<String, String> userMap = new HashMap<>();
-                        userMap.put("email", "student_emailId");
+                        userMap.put("email", student_emailId);
                         userMap.put("name", student_name);
                         userMap.put("enrollment_no", student_enrollment_no);
                         userMap.put("branch", student_branch);
@@ -160,7 +162,7 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                     String model = dataSnapshot.getKey();
 
-                                    if (model.equals("student_emailId")) {
+                                    if (model.equals(student_emailId)) {
                                         isDateExist = true;
                                     }
                                 }
@@ -170,10 +172,10 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                                     stud_endrollment_no.setText("");
                                     stud_branch.setText("");
                                     stud_phone.setText("");
-                                    root.child("student_emailId").setValue(userMap); // student details in student_name child
+                                    root.child(student_emailId).setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Attendance is Submitted", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    root.child("student_emailId").setValue(userMap); // student details in student_name child
+                                    root.child(student_emailId).setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Details are Updated", Toast.LENGTH_SHORT).show();
                                 }
                             }

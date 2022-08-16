@@ -42,7 +42,6 @@
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Prince Sir"
             android:textColor="@color/white"
             android:textSize="30dp" />
 
