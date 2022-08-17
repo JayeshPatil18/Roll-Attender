@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".AttendanceDate"
+    android:layout_gravity="center"
+    android:background="@drawable/dilogbox_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ic_baseline_verified_user_24"
+                    tools:ignore="ContentDescription"></ImageView>
+
+                <TextView
+                    android:id="@+id/dialog_box_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:text="* Please check email box then click verify email"
+                    android:textColor="@color/input_text_error"
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage"></TextView>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="80dp"
+                    android:paddingTop="40dp"
+                    android:paddingRight="80dp"
+                    android:paddingBottom="30dp">
+
+                    <Button
+                        android:id="@+id/dialog_box_verifyBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/dialogbox_btn"
+                        android:padding="15dp"
+                        android:text="Verify Email"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <Button
+                        android:id="@+id/dialog_box_cancelBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/dialogbox_btn"
+                        android:padding="15dp"
+                        android:text="Cancel"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+</RelativeLayout>

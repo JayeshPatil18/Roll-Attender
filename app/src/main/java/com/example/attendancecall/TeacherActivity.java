@@ -63,7 +63,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         // For if device user don't logged in
-        SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
         if (!sharedPreferences_isLogin.getBoolean("hasLoggedIn",false)){
             Toast.makeText(this, "Please login account", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(TeacherActivity.this, MainActivity.class);

@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
                                     emailId.setText("");
                                     password.setText("");
 
-                                    Intent intent = new Intent(MainActivity.this, VerifyingEmail.class);
-                                    intent.putExtra("email_str",str_emailId);
-                                    intent.putExtra("password_str",str_password);
-                                    startActivity(intent);
-                                    finish();
+                                    verifyingDialogBox dialogBox = new verifyingDialogBox();
+                                    dialogBox.showDialog(MainActivity.this, "Link has been sent to your mail, please click on that link and then click verify email button",str_emailId,str_password);
+
+                                    // If user click cancel in dialog box
+                                    invalidDisplay.setText("* Please try again!");
                                 }else{
                                     int index = task.getException().toString().indexOf(":");
                                     String exception = task.getException().toString().toLowerCase(Locale.ROOT).replace(" ","").trim().substring(index + 1);

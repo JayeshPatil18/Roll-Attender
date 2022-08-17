@@ -20,7 +20,7 @@ public class UsertypeActivity extends AppCompatActivity {
         student = findViewById(R.id.student);
         teacher = findViewById(R.id.teacher);
 
-        SharedPreferences sharedPreferences_isLogin = getSharedPreferences(VerifyingEmail.PREFS_NAME,MODE_PRIVATE);
+        SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
         SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
 
