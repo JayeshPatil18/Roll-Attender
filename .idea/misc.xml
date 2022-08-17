@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/drawable-v21/animated_check.xml" value="0.193" />
+        <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/drawable/check_mark.xml" value="0.193" />
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/drawable/dilogbox_bg.xml" value="0.193" />
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_giver.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_viewer.xml" value="0.23229166666666667" />
@@ -11,7 +13,7 @@
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/manually_adddate_dilogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/manually_addsub_dilogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/student_item.xml" value="0.2" />
-        <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/verifying_dialogbox.xml" value="0.2" />
+        <entry key="..\:/Users/nikhi/Downloads/Attendance-Call-Android-App-master/Attendance-Call-Android-App-master/app/src/main/res/layout/verifying_dialogbox.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -7,76 +7,104 @@
     android:layout_height="wrap_content"
     tools:context=".AttendanceDate"
     android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:background="@drawable/dilogbox_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+
+        <RelativeLayout
+            android:id="@+id/sendRelativeLayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#00FFFFFF">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/verifier_image_send"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/email_send_blue" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/validRelativeLayout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#00FFFFFF">
+
+            <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/verifier_image_valid"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/green_check" />
+        </RelativeLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/dialog_box_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="* Please check email box then click verify email"
+            android:textColor="@color/input_text_error"
+            android:textSize="15dp"
+            tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:paddingLeft="80dp"
+            android:paddingTop="40dp"
+            android:paddingRight="80dp"
+            android:paddingBottom="40dp">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/dialog_box_verifyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@drawable/dialogbox_btn"
+                android:padding="15dp"
+                android:text="Verify Email"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/ic_baseline_verified_user_24"
-                    tools:ignore="ContentDescription"></ImageView>
+            <Button
+                android:id="@+id/dialog_box_cancelBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/dialogbox_btn"
+                android:padding="15dp"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/dialog_box_msg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center"
-                    android:text="* Please check email box then click verify email"
-                    android:textColor="@color/input_text_error"
-                    android:textSize="15dp"
-                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage"></TextView>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingLeft="80dp"
-                    android:paddingTop="40dp"
-                    android:paddingRight="80dp"
-                    android:paddingBottom="30dp">
-
-                    <Button
-                        android:id="@+id/dialog_box_verifyBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/dialogbox_btn"
-                        android:padding="15dp"
-                        android:text="Verify Email"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-
-                    <Button
-                        android:id="@+id/dialog_box_cancelBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/dialogbox_btn"
-                        android:padding="15dp"
-                        android:text="Cancel"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
