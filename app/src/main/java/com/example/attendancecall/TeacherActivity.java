@@ -60,8 +60,6 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
 
         adminName = findViewById(R.id.admin_name);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         // For if device user don't logged in
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
         if (!sharedPreferences_isLogin.getBoolean("hasLoggedIn",false)){

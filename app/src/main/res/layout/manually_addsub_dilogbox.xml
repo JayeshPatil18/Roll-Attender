@@ -21,11 +21,12 @@
 
         <TextView
             android:id="@+id/subAdder_error"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:textColor="@color/input_text_error"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -46,7 +47,6 @@
             android:gravity="left"
             android:hint="Enter subject"
             android:padding="15dp"
-            android:textColor="@color/app_default"
             android:inputType="text"
             android:textSize="20dp" />
 

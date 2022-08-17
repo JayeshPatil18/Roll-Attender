@@ -8,84 +8,85 @@
     android:layout_gravity="center"
     android:background="@drawable/dilogbox_bg">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dateAdder_error"
+            android:id="@+id/requestAdder_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/input_text_error"/>
+            android:layout_marginBottom="20dp"
+            android:text="* Please enter email and request to teacher classroom"
+            android:textColor="@color/input_text_error" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:startIconDrawable="@drawable/ic_baseline_date_range_24"
             app:endIconMode="clear_text"
-            app:startIconTint="#878787"
             app:endIconTint="#878787"
-            app:hintEnabled="false">
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_baseline_admin_panel_settings_24"
+            app:startIconTint="#878787">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/date_name_dlbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/login_input"
-            android:gravity="left"
-            android:hint="Enter date : YYYY/MM/DD"
-            android:padding="15dp"
-            android:inputType="date"
-            android:textSize="20dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/request_email_dlbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/login_input"
+                android:gravity="left"
+                android:hint="Enter user email"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textSize="20dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:paddingTop="15dp">
 
             <Button
-                android:id="@+id/date_add_btn_dlbox"
+                android:id="@+id/request_dlbox_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginRight="7dp"
+                android:layout_weight="1"
                 android:background="@drawable/dialogbox_btn"
                 android:padding="15dp"
-                android:text="Add"
+                android:text="Request"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_weight="1"/>
+                android:textSize="20dp" />
 
             <Button
-                android:id="@+id/date_cancel_btn_dlbox"
+                android:id="@+id/reqCancel_dlbox_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
                 android:background="@drawable/dialogbox_btn"
                 android:padding="15dp"
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginLeft="7dp"
-                android:layout_weight="1"/>
+                android:textSize="20dp" />
 
         </LinearLayout>
     </LinearLayout>

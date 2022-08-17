@@ -463,4 +463,32 @@ public class ValidationOfInput {
 
         return arrayList;
     }
+
+    public boolean validatedEmailIdForRequest(String str_emailId, TextView invalidDisplay) {
+        boolean specificChar = false;
+        for (int i = 0; i < str_emailId.length(); i++) {
+            char ch = str_emailId.charAt(i);
+            for (int j = 0; j < specificChar_forEmailId.length; j++) {
+                if (specificChar_forEmailId[j] == ch) {
+                    specificChar = true;
+                    break;
+                }
+            }
+        }
+
+        if(specificChar){
+            invalidDisplay.setText("* Email id should not contain symbols except '@' , '.'");
+            return false;
+        }else if(containsEmoji(str_emailId)){
+            invalidDisplay.setText("* Email id should not contain emoji");
+            return false;
+        }else if (str_emailId.contains(" ")){
+            invalidDisplay.setText("* Remove all space from email id");
+            return false;
+        }else if(str_emailId.length() < 3){
+            invalidDisplay.setText("* Email id must be at least 3 characters");
+            return false;
+        }
+        return true;
+    }
 }

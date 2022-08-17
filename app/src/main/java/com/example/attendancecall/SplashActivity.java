@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }else if (sharedPreferences_loginDetails.getString("role","null").equals("student")){
-                        Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
+                        Intent intent = new Intent(SplashActivity.this, Request_User.class);
                         startActivity(intent);
                         finish();
                     }else{
