@@ -62,8 +62,8 @@
                             android:id="@+id/dialogBox_menuCancel"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="20dp"
                             android:layout_gravity="top"
                             android:src="@drawable/ic_baseline_cancel_24" />
 
@@ -341,9 +341,8 @@
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_weight="1"
                                         android:background="@drawable/dashboard_card_bg"
                                         app:cardCornerRadius="30dp"
@@ -368,6 +367,7 @@
                                         </LinearLayout>
 
                                     </androidx.cardview.widget.CardView>
+
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
@@ -421,9 +421,8 @@
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_margin="10dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_weight="1"
                                         android:background="@drawable/dashboard_card_bg"
                                         app:cardCornerRadius="30dp"
@@ -448,6 +447,7 @@
                                         </LinearLayout>
 
                                     </androidx.cardview.widget.CardView>
+
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
