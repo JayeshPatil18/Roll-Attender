@@ -7,8 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 public class SplashActivity extends AppCompatActivity {
 
     private final int SPLASH_DISPLAY_LENGTH = 500;
@@ -34,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }else if (sharedPreferences_loginDetails.getString("role","null").equals("student")){
-                        Intent intent = new Intent(SplashActivity.this, Request_User.class);
+                        Intent intent = new Intent(SplashActivity.this, StudentActivity.class);
                         startActivity(intent);
                         finish();
                     }else{

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,12 +54,24 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
 
     TextView adminName;
 
+    ImageView menu_icon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
 //        adminName = findViewById(R.id.admin_name);
+
+        menu_icon = findViewById(R.id.teacher_menu_img);
+
+        menu_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashBoardDialogBox dialogBox = new DashBoardDialogBox();
+                dialogBox.showDialog(TeacherActivity.this);
+            }
+        });
 
         // For if device user don't logged in
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
@@ -73,8 +86,8 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
         SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
 
-        editor_loginDetails.putString("role","teacher");
-        editor_loginDetails.commit();
+//        editor_loginDetails.putString("role","teacher");
+//        editor_loginDetails.commit();
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);

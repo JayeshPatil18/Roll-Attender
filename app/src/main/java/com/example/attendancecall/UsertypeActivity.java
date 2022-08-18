@@ -38,7 +38,7 @@ public class UsertypeActivity extends AppCompatActivity {
                 editor_loginDetails.putString("role","student");
                 editor_loginDetails.commit();
 
-                Intent intent = new Intent(UsertypeActivity.this, Request_User.class);
+                Intent intent = new Intent(UsertypeActivity.this, StudentActivity.class);
                 startActivity(intent);
 //                finish();
             }
