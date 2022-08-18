@@ -52,7 +52,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
-    TextView adminName;
+    TextView sectionName;
 
     ImageView menu_icon;
 
@@ -61,7 +61,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
-//        adminName = findViewById(R.id.admin_name);
+        sectionName = findViewById(R.id.sectionTeacher);
 
         menu_icon = findViewById(R.id.teacher_menu_img);
 
@@ -69,7 +69,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
             @Override
             public void onClick(View view) {
                 DashBoardDialogBox dialogBox = new DashBoardDialogBox();
-                dialogBox.showDialog(TeacherActivity.this);
+                dialogBox.showDialog(TeacherActivity.this, sectionName);
             }
         });
 
@@ -86,8 +86,8 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
         SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
 
-//        editor_loginDetails.putString("role","teacher");
-//        editor_loginDetails.commit();
+        editor_loginDetails.putString("role","teacher");
+        editor_loginDetails.commit();
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
@@ -170,6 +170,8 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
                 alertDialog.setCanceledOnTouchOutside(true); // For dismiss if user click outside dialog box
 
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
                 btn_add.setOnClickListener(new View.OnClickListener() {
                     @Override

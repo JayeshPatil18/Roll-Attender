@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 
+import java.util.Locale;
+
 public class DashBoardDialogBox {
 
-    public void showDialog(Activity activity){
+    public void showDialog(Activity activity, TextView sectionName){
 
 
         final Dialog dialog = new Dialog(activity);
@@ -25,6 +27,8 @@ public class DashBoardDialogBox {
 
         Window window = dialog.getWindow();
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
         TextView textMsg = (TextView) dialog.findViewById(R.id.dialog_box_msg);
 
@@ -40,18 +44,28 @@ public class DashBoardDialogBox {
         teacherSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, TeacherActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
+                if (sectionName.getText().toString().trim().toLowerCase(Locale.ROOT).equals("teacher")){
+                    dialog.dismiss();
+                }else {
+                    Intent intent = new Intent(activity, TeacherActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
+                }
+
             }
         });
 
         studentSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, StudentActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
+                if (sectionName.getText().toString().trim().toLowerCase(Locale.ROOT).equals("student")){
+                    dialog.dismiss();
+                }else {
+                    Intent intent = new Intent(activity, StudentActivity.class);
+                    activity.startActivity(intent);
+                    activity.finish();
+                }
+
             }
         });
 

@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AvailableTeachers_Activity extends AppCompatActivity implements RecyclerViewInterface{
+public class AvailableSubjects_Activity extends AppCompatActivity implements RecyclerViewInterface{
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
@@ -31,7 +31,7 @@ public class AvailableTeachers_Activity extends AppCompatActivity implements Rec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_available_teachers);
+        setContentView(R.layout.activity_available_subjects);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -39,7 +39,7 @@ public class AvailableTeachers_Activity extends AppCompatActivity implements Rec
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
         if (!sharedPreferences_isLogin.getBoolean("hasLoggedIn",false)){
             Toast.makeText(this, "Please login account", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(AvailableTeachers_Activity.this, MainActivity.class);
+            Intent intent = new Intent(AvailableSubjects_Activity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -81,7 +81,7 @@ public class AvailableTeachers_Activity extends AppCompatActivity implements Rec
     }
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(AvailableTeachers_Activity.this, AvailableDate_Activity.class);
+        Intent intent = new Intent(AvailableSubjects_Activity.this, AvailableDate_Activity.class);
         intent.putExtra("available_subject",list.get(position).toString());
         startActivity(intent);
     }

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class StudentActivity extends AppCompatActivity {
+    TextView sectionName;
+
+    ImageView menu_icon;
 
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
     private DatabaseReference root_isUserExist;
-
-    TextView request_adminName;
 
     // For requesting with fab button
     FloatingActionButton AddRequestFab;
@@ -37,6 +39,18 @@ public class StudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        sectionName = findViewById(R.id.sectionStudent);
+
+        menu_icon = findViewById(R.id.student_menu_img);
+
+        menu_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DashBoardDialogBox dialogBox = new DashBoardDialogBox();
+                dialogBox.showDialog(StudentActivity.this, sectionName);
+            }
+        });
 
         // For if device user don't logged in
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
@@ -48,6 +62,13 @@ public class StudentActivity extends AppCompatActivity {
         }
 
 //        request_adminName = findViewById(R.id.admin_name_request);
+
+        // For starting teacher activity after exiting app
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
+        SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+        editor_loginDetails.putString("role","student");
+        editor_loginDetails.commit();
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
@@ -91,6 +112,8 @@ public class StudentActivity extends AppCompatActivity {
                 alertDialog.setCanceledOnTouchOutside(true); // For dismiss if user click outside dialog box
 
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
                 btn_add.setOnClickListener(new View.OnClickListener() {
                     @Override

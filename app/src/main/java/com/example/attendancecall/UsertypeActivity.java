@@ -40,7 +40,7 @@ public class UsertypeActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(UsertypeActivity.this, StudentActivity.class);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         });
 
@@ -52,7 +52,7 @@ public class UsertypeActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(UsertypeActivity.this, TeacherActivity.class);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         });
 

@@ -133,6 +133,8 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+                alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDateTime localDate = LocalDateTime.now();
                 String defaultegDate = dtf.format(localDate);

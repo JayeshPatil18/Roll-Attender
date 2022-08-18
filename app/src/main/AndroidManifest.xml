@@ -40,7 +40,7 @@
             android:name=".TeacherActivity"
             android:exported="false" />
         <activity
-            android:name=".AvailableTeachers_Activity"
+            android:name=".AvailableSubjects_Activity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

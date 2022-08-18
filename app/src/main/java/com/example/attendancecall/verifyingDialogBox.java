@@ -1,10 +1,8 @@
 package com.example.attendancecall;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -18,9 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -43,11 +39,13 @@ public class verifyingDialogBox extends Activity{
         Window window = dialog.getWindow();
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
         TextView textMsg = (TextView) dialog.findViewById(R.id.dialog_box_msg);
         textMsg.setText(msg);
 
         Button dialogBtn_verify = (Button) dialog.findViewById(R.id.dialog_box_verifyBtn);
-        Button dialogBtn_cancel = (Button) dialog.findViewById(R.id.dialog_box_cancelBtn);
+        ImageView dialogIcon_cancel = (ImageView) dialog.findViewById(R.id.dialog_box_cancelIcon);
 
         RelativeLayout send_RelativeLayout = (RelativeLayout) dialog.findViewById(R.id.sendRelativeLayout);
         RelativeLayout valid_RelativeLayout = (RelativeLayout) dialog.findViewById(R.id.validRelativeLayout);
@@ -121,7 +119,7 @@ public class verifyingDialogBox extends Activity{
                 });
             }
         });
-        dialogBtn_cancel.setOnClickListener(new View.OnClickListener() {
+        dialogIcon_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
