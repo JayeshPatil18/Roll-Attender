@@ -138,8 +138,10 @@ public class SignupActivity extends AppCompatActivity{
                                     userMap.put("password", str_password);
 
                                     root = db.getReference().child("admin_users");
-
                                     root.child(encoder.encodeUserEmail(str_emailId)).child("details").setValue(userMap);
+
+                                    root = db.getReference().child("admin_users").child(encoder.encodeUserEmail(str_emailId));
+                                    root.child("request_to").setValue("users");
 
                                     name.setText("");
                                     emailId.setText("");
