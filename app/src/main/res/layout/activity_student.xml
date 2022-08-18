@@ -19,15 +19,6 @@
         android:paddingTop="50dp"
         android:paddingBottom="120dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/teacher_icon"
-            app:civ_border_color="@color/app_background"
-            app:civ_border_width="3dp" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +26,7 @@
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Jayesh Patil"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="30dp" />
 

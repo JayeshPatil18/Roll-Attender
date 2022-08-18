@@ -58,7 +58,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
-        adminName = findViewById(R.id.admin_name);
+//        adminName = findViewById(R.id.admin_name);
 
         // For if device user don't logged in
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
@@ -80,20 +80,20 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
         EncoderDecoder decoder = new EncoderDecoder();
 
-        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
-
-        root.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                AdminDetails str = snapshot.getValue(AdminDetails.class);
-                adminName.setText(decoder.getFirstCharCapital(str.getName()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
+//
+//        root.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                AdminDetails str = snapshot.getValue(AdminDetails.class);
+//                adminName.setText(decoder.getFirstCharCapital(str.getName()));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         // For manually adding date with fab button
         subAddFab = findViewById(R.id.add_sub_fab);

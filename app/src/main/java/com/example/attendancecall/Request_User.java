@@ -49,26 +49,26 @@ public class Request_User extends AppCompatActivity {
             finish();
         }
 
-        request_adminName = findViewById(R.id.admin_name_request);
+//        request_adminName = findViewById(R.id.admin_name_request);
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
         EncoderDecoder decoder = new EncoderDecoder();
 
-        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
-
-        root.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                AdminDetails str = snapshot.getValue(AdminDetails.class);
-                request_adminName.setText(decoder.getFirstCharCapital(str.getName()));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
+//
+//        root.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                AdminDetails str = snapshot.getValue(AdminDetails.class);
+//                request_adminName.setText(decoder.getFirstCharCapital(str.getName()));
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         // For requesting with fab button
         AddRequestFab = findViewById(R.id.request_fab);
