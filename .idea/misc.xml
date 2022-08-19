@@ -14,7 +14,9 @@
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_subject_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/login_bg.xml" value="0.1" />
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/login_form.xml" value="0.215" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/request_dialogbox.xml" value="0.2385" />
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/round_bg.xml" value="0.215" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_date.xml" value="0.2" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_giver.xml" value="0.264" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_viewer.xml" value="0.264" />
@@ -38,6 +40,7 @@
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/content_main.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/content_tacher_drawer.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/dash_board_dialogbox.xml" value="0.2" />
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/dialogbox_of_logout.xml" value="0.4" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/header_lay.xml" value="0.264" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/main_toolbar.xml" value="0.2" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/layout/manually_adddate_dilogbox.xml" value="0.23229166666666667" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".AttendanceDate"
+    tools:context=".TeacherActivity"
     android:layout_gravity="center"
     android:background="@drawable/dilogbox_bg">
 
