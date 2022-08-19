@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -97,20 +99,33 @@ public class ValidationOfEditProfile {
                 if (validName && validPassword && validRePassword) {
 
                     EncoderDecoder encoderDecoder = new EncoderDecoder();
-                    str_emailId = encoderDecoder.encodeUserEmail(str_emailId);
 
-                    root.child(str_emailId).child("details").child("name").setValue(str_name);
-                    root.child(str_emailId).child("details").child("password").setValue(str_password);
-
-                    Toast.makeText(activity, "Profile updated successfully", Toast.LENGTH_SHORT).show();
-
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
+                    firebaseUser.updatePassword(str_password).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void run() {
-                            activity.finish();
+                        public void onSuccess(Void unused) {
+                            String strEmailId = encoderDecoder.encodeUserEmail(str_emailId);
+
+                            root.child(strEmailId).child("details").child("name").setValue(str_name);
+                            root.child(strEmailId).child("details").child("password").setValue(str_password);
+
+                            Toast.makeText(activity, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    activity.finish();
+                                }
+                            }, 1000);
                         }
-                    }, 1000);
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(activity, "Something went wrong! Try again", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
                 }
             }
         }

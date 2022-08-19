@@ -84,7 +84,7 @@ public class EditProfile extends AppCompatActivity {
 
                 if ((!str_name.isEmpty()) && (!str_password.isEmpty())){
                     validationOfEditProfile.updateName_Password(str_name, str_password, str_rEnterPassword, nameLayout, passwordLayout, rEnterPasswordLayout, str_emailId, fAuth, firebaseUser, root, EditProfile.this);
-                }else if ((!str_name.isEmpty())){
+                }else if ((!str_name.isEmpty()) && str_rEnterPassword.isEmpty()){
                     validationOfEditProfile.updateName(str_name, nameLayout, str_emailId, fAuth, firebaseUser, root, EditProfile.this);
                 }else if ((!str_password.isEmpty())){
                     validationOfEditProfile.updatePassword(str_password, str_rEnterPassword, passwordLayout, rEnterPasswordLayout, str_emailId, fAuth, firebaseUser, root, EditProfile.this);
