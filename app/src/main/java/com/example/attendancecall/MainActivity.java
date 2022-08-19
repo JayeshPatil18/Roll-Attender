@@ -142,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    // fail code and do not used any where in project
     private void isOldDeviceLoggedInFinder() {
         final boolean[] isUserExist = {false};
 

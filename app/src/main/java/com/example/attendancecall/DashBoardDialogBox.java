@@ -157,17 +157,8 @@ public class DashBoardDialogBox {
             @Override
             public void onClick(View view) {
 
-                EncoderDecoder decoder = new EncoderDecoder();
-
-                FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference root;
-
                 SharedPreferences preferences = dialog.getContext().getSharedPreferences("login_details", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-
-                root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(preferences.getString("email_id","null")));
-                root.child("status").setValue("inactive");
-
 
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
 //                FirebaseUser firebaseUser = fAuth.getCurrentUser();
@@ -218,16 +209,8 @@ public class DashBoardDialogBox {
             @Override
             public void onClick(View view) {
 
-                EncoderDecoder decoder = new EncoderDecoder();
-
-                FirebaseDatabase db = FirebaseDatabase.getInstance();
-                DatabaseReference root;
-
                 SharedPreferences preferences = dialog.getContext().getSharedPreferences("login_details", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-
-                root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(preferences.getString("email_id","null")));
-                root.child("status").setValue("inactive");
 
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
 //                FirebaseUser firebaseUser = fAuth.getCurrentUser();
