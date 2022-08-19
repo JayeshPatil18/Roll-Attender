@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,21 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@color/app_background">
+
+    <ImageView
+        android:id="@+id/signup_back_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        android:elevation="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/back_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -125,32 +140,6 @@
                     android:textColorHint="#878787" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup_phonenoLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                app:boxBackgroundMode="outline"
-                app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
-                app:endIconMode="clear_text"
-                app:startIconTint="#878787"
-                app:endIconTint="#878787"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signup_phoneno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/login_input"
-                    android:ems="10"
-                    android:hint="Phone Number"
-                    android:inputType="phone"
-                    android:padding="20dp"
-                    android:textColorHint="#878787" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/signup_passwordLayout"
                 android:layout_width="match_parent"
@@ -176,6 +165,30 @@
                     android:textColorHint="#878787" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/signup_RepasswordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:boxBackgroundMode="outline"
+                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+                app:endIconMode="password_toggle"
+                app:startIconTint="#878787"
+                app:endIconTint="#878787"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signup_Repassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_input"
+                    android:ems="10"
+                    android:hint="Renter password"
+                    android:inputType="textPassword"
+                    android:password="true"
+                    android:padding="20dp"
+                    android:textColorHint="#878787" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -229,4 +242,5 @@
     </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

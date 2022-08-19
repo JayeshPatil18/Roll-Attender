@@ -1,29 +1,22 @@
 package com.example.attendancecall;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,10 +24,13 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class SignupActivity extends AppCompatActivity{
+
+    ImageView backIcon;
+
     LinearLayout AlreadyAccount;
     Button signup_btn;
 
-    EditText name, emailId, phoneNo, password;
+    EditText name, emailId, password, rEnterdPassword;
     TextView invalidDisplay;
 
     // For firebase authentication
@@ -49,10 +45,12 @@ public class SignupActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        backIcon = findViewById(R.id.signup_back_img);
+
         name = findViewById(R.id.signup_fullname);
         emailId = findViewById(R.id.signup_email_id);
-        phoneNo = findViewById(R.id.signup_phoneno);
         password = findViewById(R.id.signup_password);
+        rEnterdPassword = findViewById(R.id.signup_Repassword);
         invalidDisplay = findViewById(R.id.signup_error);
 
         AlreadyAccount = findViewById(R.id.login);
@@ -68,8 +66,8 @@ public class SignupActivity extends AppCompatActivity{
 //            finish();
 //        }
 
-        String intentMsg = getIntent().getStringExtra("str_of_resignUp");
-        invalidDisplay.setText(intentMsg);
+//        String intentMsg = getIntent().getStringExtra("str_of_resignUp");
+//        invalidDisplay.setText(intentMsg);
 
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,19 +76,19 @@ public class SignupActivity extends AppCompatActivity{
 
                 TextInputLayout nameLayout = (TextInputLayout)findViewById(R.id.signup_fullnameLayout);
                 TextInputLayout emailIdLayout = (TextInputLayout)findViewById(R.id.signup_email_idLayout);
-                TextInputLayout phoneNoLayout = (TextInputLayout)findViewById(R.id.signup_phonenoLayout);
                 TextInputLayout passwordLayout = (TextInputLayout)findViewById(R.id.signup_passwordLayout);
+                TextInputLayout rEnterPasswordLayout = (TextInputLayout)findViewById(R.id.signup_RepasswordLayout);
 
                 nameLayout.setErrorEnabled(false);
                 emailIdLayout.setErrorEnabled(false);
-                phoneNoLayout.setErrorEnabled(false);
                 passwordLayout.setErrorEnabled(false);
+                rEnterPasswordLayout.setErrorEnabled(false);
 
-                String str_name, str_emailId, str_phoneNo, str_password;
+                String str_name, str_emailId, str_rEnterPassword, str_password;
                 str_name = name.getText().toString().toLowerCase(Locale.ROOT).trim();
                 str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
-                str_phoneNo = phoneNo.getText().toString().trim();
                 str_password = password.getText().toString().trim();
+                str_rEnterPassword = rEnterdPassword.getText().toString().trim();
 
                 boolean allFieldFilled = true;
 
@@ -104,24 +102,24 @@ public class SignupActivity extends AppCompatActivity{
                     emailIdLayout.setError("* Email id field is empty");
                     allFieldFilled = false;
                 }
-                if (str_phoneNo.isEmpty()){
-                    phoneNoLayout.setErrorEnabled(true);
-                    phoneNoLayout.setError("* Phone no field is empty");
-                    allFieldFilled = false;
-                }
                 if (str_password.isEmpty()){
                     passwordLayout.setErrorEnabled(true);
                     passwordLayout.setError("* Password field is empty");
                     allFieldFilled = false;
                 }
+                if (str_rEnterPassword.isEmpty()){
+                    rEnterPasswordLayout.setErrorEnabled(true);
+                    rEnterPasswordLayout.setError("* Field is empty");
+                    allFieldFilled = false;
+                }
                 if (allFieldFilled){
                     ValidationOfInput validation = new ValidationOfInput();
                     boolean validName = validation.validatedName(str_name, nameLayout);
-                    boolean validUsername = validation.validatedEmailId(str_emailId, emailIdLayout);
-                    boolean validPhoneNo = validation.validatedPhoneNo(str_phoneNo, phoneNoLayout);
+                    boolean validEmailId = validation.validatedEmailId(str_emailId, emailIdLayout);
                     boolean validPassword = validation.isValidCreation(str_password, passwordLayout);
+                    boolean validRePassword = validation.isPasswordMatched(str_password, str_rEnterPassword, rEnterPasswordLayout);
 
-                    if (validName && validUsername && validPhoneNo && validPassword){
+                    if (validName && validEmailId && validPassword && validRePassword){
 
 
                         // For authentication with email and password
@@ -134,7 +132,6 @@ public class SignupActivity extends AppCompatActivity{
                                     HashMap<String, String> userMap = new HashMap<>();
                                     userMap.put("email", str_emailId);
                                     userMap.put("name", str_name);
-                                    userMap.put("phone_no", str_phoneNo);
                                     userMap.put("password", str_password);
 
                                     root = db.getReference().child("admin_users");
@@ -145,7 +142,7 @@ public class SignupActivity extends AppCompatActivity{
 
                                     name.setText("");
                                     emailId.setText("");
-                                    phoneNo.setText("");
+                                    rEnterdPassword.setText("");
                                     password.setText("");
 
                                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
@@ -154,7 +151,7 @@ public class SignupActivity extends AppCompatActivity{
 
                                 }else{
                                     int index = task.getException().toString().indexOf(":");
-                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).trim().replace(" ","").substring(index + 1);
+//                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).trim().replace(" ","").substring(index + 1);
                                     invalidDisplay.setText(task.getException().toString().trim().substring(index + 1));
                                 }
                             }
@@ -168,8 +165,13 @@ public class SignupActivity extends AppCompatActivity{
         AlreadyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+            }
+        });
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });

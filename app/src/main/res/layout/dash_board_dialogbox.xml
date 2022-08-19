@@ -107,7 +107,8 @@
                             android:paddingRight="10dp"
                             android:text="Jayesh Patil"
                             android:textSize="20dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/app_default"/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -339,6 +340,7 @@
                                     android:paddingRight="10dp">
 
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/dashBoard_editProfile"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_margin="10dp"
@@ -370,6 +372,7 @@
 
 
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/dashBoard_addNewUser"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_margin="10dp"
@@ -419,6 +422,7 @@
                                     android:paddingRight="10dp">
 
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/dashBoard_switchAccount"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_margin="10dp"
@@ -450,6 +454,7 @@
 
 
                                     <androidx.cardview.widget.CardView
+                                        android:id="@+id/dashBoard_logOut"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_margin="10dp"

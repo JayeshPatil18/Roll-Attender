@@ -491,4 +491,13 @@ public class ValidationOfInput {
         }
         return true;
     }
+
+    public boolean isPasswordMatched(String str_password, String str_rEnterPassword, TextInputLayout invalidDisplay) {
+        if (!str_password.equals(str_rEnterPassword)){
+            invalidDisplay.setErrorEnabled(true);
+            invalidDisplay.setError("* Password do not match with above password");
+            return false;
+        }
+        return true;
+    }
 }

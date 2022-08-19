@@ -21,7 +21,7 @@ public class DashBoardDialogBox {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.dash_board_dialogbox);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
@@ -36,6 +36,11 @@ public class DashBoardDialogBox {
         CardView studentSection = (CardView) dialog.findViewById(R.id.section_student);
         CardView requestSendSection = (CardView) dialog.findViewById(R.id.section_requestSent);
         CardView requestReceivedSection = (CardView) dialog.findViewById(R.id.section_requestReceived);
+
+        CardView editProfile = (CardView) dialog.findViewById(R.id.dashBoard_editProfile);
+        CardView addNewUser = (CardView) dialog.findViewById(R.id.dashBoard_addNewUser);
+        CardView switchAccount = (CardView) dialog.findViewById(R.id.dashBoard_switchAccount);
+        CardView logOut = (CardView) dialog.findViewById(R.id.dashBoard_logOut);
 
         ImageView menuCancel = (ImageView) dialog.findViewById(R.id.dialogBox_menuCancel);
 
@@ -89,6 +94,14 @@ public class DashBoardDialogBox {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+            }
+        });
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, EditProfile.class);
+                activity.startActivity(intent);
             }
         });
     }
