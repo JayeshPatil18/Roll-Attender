@@ -1,21 +1,21 @@
 package com.example.attendancecall;
 
 public class AdminInfo {
-    public String getAdminEmailId() {
-        return AdminEmailId;
+
+    String email;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setAdminEmailId(String adminEmailId) {
-        AdminEmailId = adminEmailId;
+    public String getName() {
+        return name;
     }
 
-    public String getAdminPassword() {
-        return AdminPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAdminPassword(String adminPassword) {
-        AdminPassword = adminPassword;
-    }
-
-    String AdminEmailId,AdminPassword;
+    String name;
+    String password;
 }

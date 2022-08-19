@@ -33,7 +33,7 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_subjects);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         // For if device user don't logged in
         SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin",MODE_PRIVATE);
@@ -43,10 +43,6 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
             startActivity(intent);
             finish();
         }
-
-        // For starting student activity after exiting app
-        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details",MODE_PRIVATE);
-        SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
 
         root = db.getReference().child("subjects");
 

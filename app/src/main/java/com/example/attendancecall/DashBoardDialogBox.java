@@ -9,18 +9,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
@@ -55,6 +60,36 @@ public class DashBoardDialogBox {
         ImageView menuCancel = (ImageView) dialog.findViewById(R.id.dialogBox_menuCancel);
 
         dialog.show();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        TextView AdminName = (TextView) dialog.findViewById(R.id.dashBoard_Name);
+        TextView AdminEmailId = (TextView) dialog.findViewById(R.id.dashBoard_EmailId);
+
+        SharedPreferences preferences = dialog.getContext().getSharedPreferences("login_details", Context.MODE_PRIVATE);
+        String strAdminEmail = preferences.getString("email_id","null");
+        AdminEmailId.setText(strAdminEmail);
+        final String[] strAdminName = new String[1];
+
+        EncoderDecoder decoder = new EncoderDecoder();
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference root;
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(strAdminEmail)).child("details");
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                AdminInfo adminInfo = snapshot.getValue(AdminInfo.class);
+                strAdminName[0] = adminInfo.getName();
+                AdminName.setText(strAdminName[0].substring(0, 1).toUpperCase() + (strAdminName[0].substring(1)));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         teacherSection.setOnClickListener(new View.OnClickListener() {
             @Override
