@@ -64,6 +64,31 @@ public class ValidationOfEditProfile {
                 if (validPassword && validRePassword) {
 
                     EncoderDecoder encoderDecoder = new EncoderDecoder();
+                    String strEmailId = encoderDecoder.encodeUserEmail(str_emailId);
+
+                    firebaseUser.updatePassword(str_password).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                            root.child(strEmailId).child("details").child("password").setValue(str_password);
+
+                            Toast.makeText(activity, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    activity.finish();
+                                }
+                            }, 1000);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(activity, "Something went wrong! Try again", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                     str_emailId = encoderDecoder.encodeUserEmail(str_emailId);
 
                     root.child(str_emailId).child("details").child("password").setValue(str_password);
@@ -124,8 +149,6 @@ public class ValidationOfEditProfile {
                             Toast.makeText(activity, "Something went wrong! Try again", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
                 }
             }
         }
