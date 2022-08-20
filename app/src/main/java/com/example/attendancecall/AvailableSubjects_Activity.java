@@ -28,10 +28,18 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
+    EncoderDecoder decoder = new EncoderDecoder();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_subjects);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
 //        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -44,7 +52,7 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
             finish();
         }
 
-        root = db.getReference().child("subjects");
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects");
 
         recyclerView = findViewById(R.id.available_sub_list);
         recyclerView.setHasFixedSize(true);

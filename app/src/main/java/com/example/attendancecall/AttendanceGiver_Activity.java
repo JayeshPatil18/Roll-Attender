@@ -43,10 +43,18 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
 
     String availableSubject, availableDate;
 
+    EncoderDecoder decoder = new EncoderDecoder();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_giver);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         // For validation error
         invalidDisplay = findViewById(R.id.attendance_error);
@@ -69,7 +77,6 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
         avai_subject.setText(availableSubject.substring(0, 1).toUpperCase() + availableSubject.substring(1));
         avai_date.setText(availableDate.replace("-"," / "));
 
-        root = database.getReference();
 
         // For going back if any dates data changed
         root = database.getReference();
@@ -151,7 +158,7 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                         userMap.put("branch", student_branch);
                         userMap.put("phone_no", student_phone_no);
 
-                        root = database.getReference("subjects").child(availableSubject).child(availableDate);
+                        root = database.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(availableSubject).child(availableDate);
 
                         root.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override

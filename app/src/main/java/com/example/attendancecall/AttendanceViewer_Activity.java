@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,10 +36,18 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
 
     TextView subject_title, date_title;
 
+    EncoderDecoder decoder = new EncoderDecoder();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_viewer);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         // For back button
         back_img = findViewById(R.id.viewer_back_img);
@@ -55,7 +64,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
         subject_title.setText(subject_name.substring(0, 1).toUpperCase() + subject_name.substring(1));
         date_title.setText(subject_date.replace("-"," / "));
 
-        root = db.getReference().child("subjects").child(subject_name).child(subject_date);
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_name).child(subject_date);
 
         recyclerView = findViewById(R.id.student_list);
         recyclerView.setHasFixedSize(true);

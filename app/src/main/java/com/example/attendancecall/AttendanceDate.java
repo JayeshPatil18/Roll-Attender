@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -55,11 +56,19 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
     TextView subject_name;
     String subject_for_date;
 
+    EncoderDecoder decoder = new EncoderDecoder();
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_date);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         // For manually adding date with fab button
         dateAddFab = findViewById(R.id.add_date_fab);
@@ -77,7 +86,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
         subject_name.setText(subject_for_date.substring(0, 1).toUpperCase() + subject_for_date.substring(1));
 
-        root = db.getReference().child("subjects").child(subject_for_date);
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
 
 
         recyclerView = findViewById(R.id.date_list);
@@ -175,7 +184,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
                                         if(!isDateExist){
                                             date.setText("");
-                    //                        root = db.getReference().child("subjects").child(subject_for_date);
+//                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
                                             root.child(dateToAdd[0].toString()).setValue("date");
                                             Toast.makeText(AttendanceDate.this, "Date Added Successfully", Toast.LENGTH_SHORT).show();
 

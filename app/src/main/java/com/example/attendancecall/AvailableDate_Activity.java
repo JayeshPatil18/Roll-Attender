@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,10 +37,18 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
     TextView subject_title;
     String available_subject;
 
+    EncoderDecoder decoder = new EncoderDecoder();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_date);
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         // For back button
         back_img = findViewById(R.id.available_date_back_img);
@@ -48,7 +57,7 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
         available_subject = getIntent().getStringExtra("available_subject").toLowerCase(Locale.ROOT);
         subject_title.setText(available_subject.substring(0, 1).toUpperCase() + available_subject.substring(1));
 
-        root = db.getReference().child("subjects").child(available_subject);
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(available_subject);
 
         recyclerView = findViewById(R.id.available_date_list);
         recyclerView.setHasFixedSize(true);

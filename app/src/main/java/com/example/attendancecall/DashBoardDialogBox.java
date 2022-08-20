@@ -172,7 +172,7 @@ public class DashBoardDialogBox {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupLogout(activity, "Are you sure want to logout?");
+                showPopupLogoutPlain(activity, "Are you sure want to logout?");
             }
         });
     }
@@ -284,4 +284,60 @@ public class DashBoardDialogBox {
         });
     }
 
+
+
+    private void showPopupLogoutPlain(Activity activity, String s) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.plain_logout_dilogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.plainLogoutErrorText);
+        textView.setText(s);
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.plainLogout_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.plainLogout_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences preferences = dialog.getContext().getSharedPreferences("login_details", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+//                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+
+                SharedPreferences sharedPreferences_isLogin = dialog.getContext().getSharedPreferences("MyPrefsLogin", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor_isLogin = sharedPreferences_isLogin.edit();
+
+                editor_isLogin.putBoolean("hasLoggedIn", false);
+                editor_isLogin.commit();
+
+                editor.clear();
+                editor.apply();
+
+                fAuth.signOut();
+                Intent intent = new Intent(activity, MainActivity.class);
+                activity.startActivity(intent);
+                activity.finish();
+
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
 }

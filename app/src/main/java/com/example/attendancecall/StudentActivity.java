@@ -3,13 +3,19 @@ package com.example.attendancecall;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,14 +29,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class StudentActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class StudentActivity extends AppCompatActivity implements RecyclerViewInterface{
+    private RecyclerView recyclerView;
+    ArrayList<String> list;
+    StudentAdapter adapter;
+    private FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private DatabaseReference root;
+
+    private DatabaseReference root_isUserExist;
+
+    EncoderDecoder decoder;
+
     TextView sectionName;
 
     ImageView menu_icon;
 
-    private FirebaseDatabase db = FirebaseDatabase.getInstance();
-    private DatabaseReference root;
-    private DatabaseReference root_isUserExist;
 
     // For requesting with fab button
     FloatingActionButton AddRequestFab;
@@ -71,28 +86,50 @@ public class StudentActivity extends AppCompatActivity {
         editor_loginDetails.commit();
 
         // For retrieving admin user name
-        SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details",MODE_PRIVATE);
-        EncoderDecoder decoder = new EncoderDecoder();
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
 
-//        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
-//
-//        root.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                AdminDetails str = snapshot.getValue(AdminDetails.class);
-//                request_adminName.setText(decoder.getFirstCharCapital(str.getName()));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        decoder = new EncoderDecoder();
+
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("request_to");
+
+        recyclerView = findViewById(R.id.teacher_list);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new StudentAdapter(this, list, this);
+
+        recyclerView.setAdapter(adapter);
+
+        // For item divider
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+
+        root.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear(); // this work to clear old item
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String model = dataSnapshot.getKey();
+                    String modelStatus = dataSnapshot.getValue(String.class);
+                    if (modelStatus.equals("true")){
+                        list.add(decoder.decodeUserEmail(model));
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         // For requesting with fab button
         AddRequestFab = findViewById(R.id.request_fab);
 
-        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("request_to");
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_loginDetails.getString("email_id","null"))).child("request_to");
 
         AddRequestFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,8 +203,8 @@ public class StudentActivity extends AppCompatActivity {
                                                             }
 
                                                             if(!isRequestSent){
-                                                                if (decoder.decodeUserEmail(finalEmailRequest).equals(sharedPreferences_emailId.getString("email_id","null"))){
-                                                                    invalidDisplay.setText("You should not send request to your self!");
+                                                                if (decoder.decodeUserEmail(finalEmailRequest).equals(sharedPreferences_loginDetails.getString("email_id","null"))){
+                                                                    invalidDisplay.setText("* You should not send request to your self!");
                                                                 }else {
                                                                     email.setText("");
                                                                     root.child(finalEmailRequest.toString()).setValue("null");
@@ -208,6 +245,61 @@ public class StudentActivity extends AppCompatActivity {
                 });
                 alertDialog.show();
 
+            }
+        });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        String itemText = decoder.encodeUserEmail(list.get(position).toString());
+        String userEmail = decoder.encodeUserEmail(emailId);
+
+        removeTeacherPopUpDialogBox(StudentActivity.this, database, itemText, userEmail, "Are you sure want to remove Teacher?");
+
+    }
+
+    private void removeTeacherPopUpDialogBox(StudentActivity activity, FirebaseDatabase database, String itemText, String userEmail, String s) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.remove_node_dialogobox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.removeErrorText);
+        textView.setText(s);
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.remove_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.remove_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                database.getReference("admin_users").child(userEmail).child("request_to").child(itemText).removeValue();
+
+                Toast.makeText(activity, "Teacher removed successfully", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
     }

@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActionBar;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -130,11 +127,11 @@ public class YourStudents extends AppCompatActivity implements RecyclerViewInter
         String itemText = decoder.encodeUserEmail(list.get(position).toString());
         String userEmail = decoder.encodeUserEmail(emailId);
 
-        removePopUpDialogBox(YourStudents.this, database, itemText, userEmail, "Are you sure want to remove student?");
+        removeStudentPopUpDialogBox(YourStudents.this, database, itemText, userEmail, "Are you sure want to remove student?");
 
     }
 
-    private void removePopUpDialogBox(YourStudents activity,FirebaseDatabase database, String itemText, String userEmail, String s) {
+    private void removeStudentPopUpDialogBox(YourStudents activity, FirebaseDatabase database, String itemText, String userEmail, String s) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
