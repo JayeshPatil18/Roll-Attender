@@ -36,6 +36,7 @@
         android:paddingBottom="120dp">
 
         <TextView
+            android:id="@+id/availableTeacherName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,6 +46,20 @@
             android:text=""
             android:textColor="@color/white"
             android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/availableTeacherId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/app_default"
+            android:background="@color/app_background"
+            android:text=""
+            android:textSize="16dp" />
 
     </LinearLayout>
 

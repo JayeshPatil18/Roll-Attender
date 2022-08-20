@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
-    private final RecyclerViewInterface recyclerViewInterface;
+    private final RecyclerViewInterfaceTeacher recyclerViewInterface;
 
     ArrayList<String> mList;
     Context context;
 
-    public StudentAdapter(Context context , ArrayList<String> mList, RecyclerViewInterface recyclerViewInterface) {
+    public StudentAdapter(Context context , ArrayList<String> mList, RecyclerViewInterfaceTeacher recyclerViewInterface) {
         this.mList = mList;
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
@@ -46,10 +46,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         TextView Sub;
         ImageView removeIcon;
 
-        public StudentViewHolder(View itemView, RecyclerViewInterface recyclerViewInterface) {
+        public StudentViewHolder(View itemView, RecyclerViewInterfaceTeacher recyclerViewInterface) {
             super(itemView);
             Sub = itemView.findViewById(R.id.teacherList_text);
             removeIcon = itemView.findViewById(R.id.teacherListRemoveIcon);
+
+            Sub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClickTeacher(pos);
+                        }
+                    }
+                }
+            });
 
             removeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override

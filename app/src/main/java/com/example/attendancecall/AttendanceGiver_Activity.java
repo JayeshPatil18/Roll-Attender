@@ -41,7 +41,7 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference root;
 
-    String availableSubject, availableDate;
+    String emailId, availableSubject, availableDate;
 
     EncoderDecoder decoder = new EncoderDecoder();
 
@@ -52,8 +52,9 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
-        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
-        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        emailId = getIntent().getStringExtra("available_emailId");
+        availableSubject = getIntent().getStringExtra("available_subject_for_date").toLowerCase(Locale.ROOT);
+        availableDate = getIntent().getStringExtra("available_date_of_subject").replace(" / ","-");
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         // For validation error
@@ -71,21 +72,18 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
         avai_subject = findViewById(R.id.available_sub_name);
         avai_date = findViewById(R.id.available_date_title);
 
-        availableSubject = getIntent().getStringExtra("available_subject_for_date").toLowerCase(Locale.ROOT);
-        availableDate = getIntent().getStringExtra("available_date_of_subject").replace(" / ","-");
-
         avai_subject.setText(availableSubject.substring(0, 1).toUpperCase() + availableSubject.substring(1));
         avai_date.setText(availableDate.replace("-"," / "));
 
 
         // For going back if any dates data changed
-        root = database.getReference();
+        root = database.getReference().child("admin_users").child(emailId).child("subjects");
 
         // For getting email address
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.hasChild("subjects/"+availableSubject+"/"+availableDate)) {
+                if(!snapshot.hasChild(availableSubject+"/"+availableDate)) {
                     Toast.makeText(AttendanceGiver_Activity.this, "Something went wrong Please try again", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -158,7 +156,7 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                         userMap.put("branch", student_branch);
                         userMap.put("phone_no", student_phone_no);
 
-                        root = database.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(availableSubject).child(availableDate);
+                        root = database.getReference().child("admin_users").child(emailId).child("subjects").child(availableSubject).child(availableDate);
 
                         root.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override

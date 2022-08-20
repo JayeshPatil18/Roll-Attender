@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class StudentActivity extends AppCompatActivity implements RecyclerViewInterface{
+public class StudentActivity extends AppCompatActivity implements RecyclerViewInterface, RecyclerViewInterfaceTeacher{
     private RecyclerView recyclerView;
     ArrayList<String> list;
     StudentAdapter adapter;
@@ -263,6 +263,13 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
 
         removeTeacherPopUpDialogBox(StudentActivity.this, database, itemText, userEmail, "Are you sure want to remove Teacher?");
 
+    }
+
+    @Override
+    public void onItemClickTeacher(int position) {
+        Intent intent = new Intent(StudentActivity.this, AvailableSubjects_Activity.class);
+        intent.putExtra("available_teacher",decoder.encodeUserEmail(list.get(position).toString()));
+        startActivity(intent);
     }
 
     private void removeTeacherPopUpDialogBox(StudentActivity activity, FirebaseDatabase database, String itemText, String userEmail, String s) {
