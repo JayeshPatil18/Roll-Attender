@@ -257,7 +257,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/dashboard_card_bg"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp">
 
                                             <com.airbnb.lottie.LottieAnimationView
                                                 android:layout_width="100dp"
@@ -266,7 +267,7 @@
                                                 android:scaleType="fitXY"
                                                 app:lottie_autoPlay="true"
                                                 app:lottie_loop="true"
-                                                app:lottie_rawRes="@raw/received_img" />
+                                                app:lottie_rawRes="@raw/yourstudent_img" />
 
                                             <TextView
                                                 android:layout_width="match_parent"
@@ -297,7 +298,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/dashboard_card_bg"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp">
 
                                             <com.airbnb.lottie.LottieAnimationView
                                                 android:layout_width="100dp"
@@ -337,7 +339,8 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:background="@drawable/dashboard_card_bg"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            android:paddingTop="10dp">
 
                                             <com.airbnb.lottie.LottieAnimationView
                                                 android:layout_width="80dp"
