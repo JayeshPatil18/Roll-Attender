@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AttendanceCall"
         tools:targetApi="31">
         <activity
+            android:name=".YourStudents"
+            android:exported="false" />
+        <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity

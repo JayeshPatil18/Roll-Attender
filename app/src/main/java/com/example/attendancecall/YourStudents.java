@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -21,11 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RequestSent extends AppCompatActivity implements RecyclerViewInterface {
-
+public class YourStudents extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     ArrayList<String> list;
-    RequestSentAdapter adapter;
+    YourStudentAdapter adapter;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
@@ -36,9 +34,9 @@ public class RequestSent extends AppCompatActivity implements RecyclerViewInterf
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_request_sent);
+        setContentView(R.layout.activity_your_students);
 
-        backImg = findViewById(R.id.requestSent_back_img);
+        backImg = findViewById(R.id.yourStudent_back_img);
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
@@ -46,14 +44,14 @@ public class RequestSent extends AppCompatActivity implements RecyclerViewInterf
 
         decoder = new EncoderDecoder();
 
-        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("request_to");
+        root = db.getReference().child("admin_users");
 
-        recyclerView = findViewById(R.id.request_sent_list);
+        recyclerView = findViewById(R.id.yourStudent_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new RequestSentAdapter(this, list, this);
+        adapter = new YourStudentAdapter(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -66,11 +64,31 @@ public class RequestSent extends AppCompatActivity implements RecyclerViewInterf
                 list.clear(); // this work to clear old item
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String model = dataSnapshot.getKey();
-                    String modelStatus = dataSnapshot.getValue(String.class);
-                    if (!modelStatus.equals("true")){
-                        list.add(decoder.decodeUserEmail(model));
 
-                    }
+                    root = db.getReference().child("admin_users").child(model).child("request_to");
+                    root.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            for (DataSnapshot dataSnapshot1: snapshot.getChildren()){
+                                String strRequest = dataSnapshot1.getKey();
+                                String strRequestStatus = dataSnapshot1.getValue(String.class);
+
+                                if (strRequest.equals(decoder.encodeUserEmail(emailId))){
+
+                                    if (strRequestStatus.equals("true")){
+                                        list.add(decoder.decodeUserEmail(model));
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -87,6 +105,7 @@ public class RequestSent extends AppCompatActivity implements RecyclerViewInterf
                 finish();
             }
         });
+
     }
 
     @Override
@@ -97,8 +116,8 @@ public class RequestSent extends AppCompatActivity implements RecyclerViewInterf
         String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("admin_users").child(decoder.encodeUserEmail(emailId)).child("request_to").child(decoder.encodeUserEmail(list.get(position).toString())).removeValue();
+        database.getReference("admin_users").child(decoder.encodeUserEmail(list.get(position).toString())).child("request_to").child(decoder.encodeUserEmail(emailId)).removeValue();
 
-        Toast.makeText(this, "Request is removed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Student removed successfully", Toast.LENGTH_SHORT).show();
     }
 }

@@ -51,6 +51,7 @@ public class DashBoardDialogBox {
         CardView studentSection = (CardView) dialog.findViewById(R.id.section_student);
         CardView requestSendSection = (CardView) dialog.findViewById(R.id.section_requestSent);
         CardView requestReceivedSection = (CardView) dialog.findViewById(R.id.section_requestReceived);
+        CardView yourStudentSection = (CardView) dialog.findViewById(R.id.section_YourStudents);
 
         CardView editProfile = (CardView) dialog.findViewById(R.id.dashBoard_editProfile);
         CardView addNewUser = (CardView) dialog.findViewById(R.id.dashBoard_addNewUser);
@@ -131,6 +132,14 @@ public class DashBoardDialogBox {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, RequestReceived.class);
+                activity.startActivity(intent);
+            }
+        });
+
+        yourStudentSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, YourStudents.class);
                 activity.startActivity(intent);
             }
         });
