@@ -166,11 +166,15 @@ public class StudentActivity extends AppCompatActivity {
                                                             }
 
                                                             if(!isRequestSent){
-                                                                email.setText("");
-                                                                root.child(finalEmailRequest.toString()).setValue("null");
-                                                                Toast.makeText(StudentActivity.this, "Request sent Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
+                                                                if (decoder.decodeUserEmail(finalEmailRequest).equals(sharedPreferences_emailId.getString("email_id","null"))){
+                                                                    invalidDisplay.setText("You should not send request to your self!");
+                                                                }else {
+                                                                    email.setText("");
+                                                                    root.child(finalEmailRequest.toString()).setValue("null");
+                                                                    Toast.makeText(StudentActivity.this, "Request sent Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
 
-                                                                alertDialog.dismiss();
+                                                                    alertDialog.dismiss();
+                                                                }
                                                             }else{
                                                                 invalidDisplay.setText("* Request already sent");
                                                             }

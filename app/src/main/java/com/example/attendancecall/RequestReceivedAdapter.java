@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RequestSentAdapter  extends RecyclerView.Adapter<RequestSentAdapter.RequestSentViewHolder>{
+public class RequestReceivedAdapter extends RecyclerView.Adapter<RequestReceivedAdapter.RequestReceivedViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
 
     ArrayList<String> mList;
     Context context;
 
-    public RequestSentAdapter(Context context , ArrayList<String> mList, RecyclerViewInterface recyclerViewInterface) {
+    public RequestReceivedAdapter(Context context , ArrayList<String> mList, RecyclerViewInterface recyclerViewInterface) {
         this.mList = mList;
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
@@ -27,13 +27,13 @@ public class RequestSentAdapter  extends RecyclerView.Adapter<RequestSentAdapter
 
     @NonNull
     @Override
-    public RequestSentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.request_sent_list, parent ,false);
-        return new RequestSentViewHolder(v, recyclerViewInterface);
+    public RequestReceivedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.request_received_list, parent, false);
+        return new RequestReceivedViewHolder(v, recyclerViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RequestSentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RequestReceivedViewHolder holder, int position) {
         String model = mList.get(position);
         holder.Sub.setText(model);
     }
@@ -43,18 +43,17 @@ public class RequestSentAdapter  extends RecyclerView.Adapter<RequestSentAdapter
         return mList.size();
     }
 
-    public class RequestSentViewHolder extends RecyclerView.ViewHolder {
-
+    public class RequestReceivedViewHolder extends RecyclerView.ViewHolder {
         TextView Sub;
-        ImageView removeIcon;
+        ImageView statusIcon;
 
-        public RequestSentViewHolder(View itemView, RecyclerViewInterface recyclerViewInterface) {
+        public RequestReceivedViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
-            Sub = itemView.findViewById(R.id.requestSentList_text);
-            removeIcon = itemView.findViewById(R.id.requestRemoveIcon);
+            Sub = itemView.findViewById(R.id.requestReceivedList_text);
+            statusIcon = itemView.findViewById(R.id.requestStatusIcon);
 
-            removeIcon.setOnClickListener(new View.OnClickListener() {
+            statusIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(recyclerViewInterface != null){

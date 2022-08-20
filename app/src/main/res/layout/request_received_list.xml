@@ -6,13 +6,13 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/requestSentList_text"
+        android:id="@+id/requestReceivedList_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_send_24"
+        android:drawableLeft="@drawable/ic_baseline_call_received_24"
+        android:drawableTint="@color/app_default"
         android:drawablePadding="15dp"
         android:gravity="center_vertical"
-        android:drawableTint="@color/app_default"
         android:paddingLeft="20dp"
         android:paddingRight="10dp"
         android:paddingTop="20dp"
@@ -24,11 +24,11 @@
         />
 
     <ImageView
-        android:id="@+id/requestRemoveIcon"
+        android:id="@+id/requestStatusIcon"
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_baseline_remove_circle_outline_24"
+        android:src="@drawable/ic_baseline_add_circle_outline_24"
         app:tint="@color/app_default"
         android:paddingRight="20dp"/>
 
