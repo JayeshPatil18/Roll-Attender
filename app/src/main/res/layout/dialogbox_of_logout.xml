@@ -31,13 +31,14 @@
             android:layout_gravity="center"
             android:background="@color/app_default"
             android:orientation="vertical"
-            android:padding="30dp">
+            android:padding="20dp">
 
             <TextView
+                android:id="@+id/logoutErrorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="You will logout from this account!"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="18dp" />
 

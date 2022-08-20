@@ -24,9 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="* Please enter email and request to teacher classroom"
+            android:gravity="center"
+            android:text="* Please enter email and request to teacher"
             android:textColor="@color/input_text_error" />
 
         <com.google.android.material.textfield.TextInputLayout

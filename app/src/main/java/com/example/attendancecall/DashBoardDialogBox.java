@@ -2,14 +2,11 @@ package com.example.attendancecall;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
-import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -20,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -162,26 +158,26 @@ public class DashBoardDialogBox {
         addNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupLogoutForNewUser(activity);
+                showPopupLogoutForNewUser(activity,"You will logout from this account!");
             }
         });
 
         switchAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupLogout(activity);
+                showPopupLogout(activity, "You will logout from this account!");
             }
         });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopupLogout(activity);
+                showPopupLogout(activity, "Are you sure want to logout?");
             }
         });
     }
 
-    private void showPopupLogout(Activity activity) {
+    private void showPopupLogout(Activity activity, String s) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -191,6 +187,9 @@ public class DashBoardDialogBox {
 
         Window window = dialog.getWindow();
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.logoutErrorText);
+        textView.setText(s);
 
         Button btn_ok = (Button) dialog.findViewById(R.id.logout_ok);
         Button btn_cancel = (Button) dialog.findViewById(R.id.logout_cancel);
@@ -233,7 +232,7 @@ public class DashBoardDialogBox {
         });
     }
 
-    private void showPopupLogoutForNewUser(Activity activity) {
+    private void showPopupLogoutForNewUser(Activity activity, String s) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -244,6 +243,8 @@ public class DashBoardDialogBox {
         Window window = dialog.getWindow();
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
+        TextView textView = (TextView) dialog.findViewById(R.id.logoutErrorText);
+        textView.setText(s);
         Button btn_ok = (Button) dialog.findViewById(R.id.logout_ok);
         Button btn_cancel = (Button) dialog.findViewById(R.id.logout_cancel);
 
