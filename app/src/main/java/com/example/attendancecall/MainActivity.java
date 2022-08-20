@@ -3,20 +3,32 @@ package com.example.attendancecall;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     EditText emailId, password;
     TextView invalidDisplay;
 
+    TextView forgotPassword;
+
     LinearLayout DoNotAccount;
     Button login_btn;
 
@@ -51,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         emailId = findViewById(R.id.login_email_id);
         password = findViewById(R.id.login_password);
         invalidDisplay = findViewById(R.id.login_error);
+
+        forgotPassword = findViewById(R.id.forgotPasswordLogin);
 
         DoNotAccount = findViewById(R.id.signup);
         login_btn = findViewById(R.id.login_btn);
@@ -94,11 +110,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (allFieldFilled) {
 
-                    ValidationOfInput validation = new ValidationOfInput();
-                    boolean validUsername = validation.validatedEmailId(str_emailId, emailLayout);
-                    boolean validPassword = validation.isValidPasswordForLogin(str_password, passwordLayout);
+//                    ValidationOfInput validation = new ValidationOfInput();
+//                    boolean validUsername = validation.validatedEmailId(str_emailId, emailLayout);
+//                    boolean validPassword = validation.isValidPasswordForLogin(str_password, passwordLayout);
 
-                    if (validUsername && validPassword) {
+//                    if (validUsername && validPassword) {
 
                         mAuth.signInWithEmailAndPassword(str_emailId, str_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -128,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-                    }
+//                    }
                 }
             }
         });
@@ -140,50 +156,119 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogBoxResetPassword(MainActivity.this);
+            }
+        });
+    }
+
+    public void showDialogBoxResetPassword(Activity activity){
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.forgot_password_dialogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        TextView textMsg = (TextView) dialog.findViewById(R.id.resetErrorMsg);
+        EditText emailToResetPassword = (EditText) dialog.findViewById(R.id.resetEmail);
+
+        Button submit_btn = (Button) dialog.findViewById(R.id.resetSubmitBtn);
+        Button cancel_btn = (Button) dialog.findViewById(R.id.resetCancelBtn);
+
+        dialog.show();
+
+        submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                textMsg.setText("");
+
+                String strEmailId = emailToResetPassword.getText().toString().trim();
+
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = fAuth.getCurrentUser();
+
+                if (strEmailId.isEmpty()){
+                    textMsg.setText("* Please fill email address");
+                }else {
+                    fAuth.sendPasswordResetEmail(strEmailId).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            invalidDisplay.setText("* Check your email box to reset password");
+                            Toast.makeText(activity, "Reset email is sent to " + strEmailId, Toast.LENGTH_SHORT).show();
+
+                            dialog.dismiss();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            textMsg.setText(e.getMessage());
+                        }
+                    });
+
+                }
+            }
+        });
+
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
 
     // fail code and do not used any where in project
-    private void isOldDeviceLoggedInFinder() {
-        final boolean[] isUserExist = {false};
-
-        root = db.getReference().child("admin_users");
-        root.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                EncoderDecoder encoderDecoder = new EncoderDecoder();
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String model = dataSnapshot.getKey();
-
-                    if (model.equals(encoderDecoder.encodeUserEmail(str_emailId))) {
-                        checkStatusRoot = db.getReference().child("admin_users").child(encoderDecoder.encodeUserEmail(str_emailId)).child("status");
-                        checkStatusRoot.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                String strStatus = snapshot.getValue(String.class);
-                                if (strStatus.equals("active")) {
-                                    isOldDeviceLoggedIn = true;
-                                    invalidDisplay.setText("* You already logged in, you need to logout from old device");
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
+//    private void isOldDeviceLoggedInFinder() {
+//        final boolean[] isUserExist = {false};
+//
+//        root = db.getReference().child("admin_users");
+//        root.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                EncoderDecoder encoderDecoder = new EncoderDecoder();
+//
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                    String model = dataSnapshot.getKey();
+//
+//                    if (model.equals(encoderDecoder.encodeUserEmail(str_emailId))) {
+//                        checkStatusRoot = db.getReference().child("admin_users").child(encoderDecoder.encodeUserEmail(str_emailId)).child("status");
+//                        checkStatusRoot.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                String strStatus = snapshot.getValue(String.class);
+//                                if (strStatus.equals("active")) {
+//                                    isOldDeviceLoggedIn = true;
+//                                    invalidDisplay.setText("* You already logged in, you need to logout from old device");
+//                                    return;
+//                                } else {
+//                                    return;
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                            }
+//                        });
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
+//    }
 }

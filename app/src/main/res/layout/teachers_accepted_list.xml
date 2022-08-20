@@ -12,7 +12,6 @@
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="15dp"
         android:gravity="center_vertical"
-        android:drawableTint="@color/app_default"
         android:paddingLeft="20dp"
         android:paddingRight="10dp"
         android:paddingTop="20dp"
