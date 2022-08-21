@@ -177,10 +177,10 @@ public class AttendanceGiver_Activity extends AppCompatActivity {
                                     stud_endrollment_no.setText("");
                                     stud_branch.setText("");
                                     stud_phone.setText("");
-                                    root.child(student_emailId).setValue(userMap); // student details in student_name child
+                                    root.child(decoder.encodeUserEmail(student_emailId)).setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Attendance is Submitted", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    root.child(student_emailId).setValue(userMap); // student details in student_name child
+                                    root.child(decoder.encodeUserEmail(student_emailId)).setValue(userMap); // student details in student_name child
                                     Toast.makeText(AttendanceGiver_Activity.this, "Your Details are Updated", Toast.LENGTH_SHORT).show();
                                 }
                             }
