@@ -1,15 +1,20 @@
 package com.example.attendancecall;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +28,7 @@ import java.util.Locale;
 public class AttendanceViewer_Activity extends AppCompatActivity {
 
     // For back button
-    ImageView back_img;
+    ImageView back_img, active_img;
 
     //For refresher
 //    SwipeRefreshLayout refreshLayout;
@@ -52,6 +57,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
         // For back button
         back_img = findViewById(R.id.viewer_back_img);
 
+        active_img = findViewById(R.id.viewer_activate_img);
+
         //For refresher id
 //        refreshLayout = findViewById(R.id.refresher);
 
@@ -63,6 +70,68 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
 
         subject_title.setText(subject_name.substring(0, 1).toUpperCase() + subject_name.substring(1));
         date_title.setText(subject_date.replace("-"," / "));
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // For activating attendance
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_name).child(subject_date).child("status");
+        root.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String isActive = snapshot.getValue(String.class);
+                if (isActive.equals("active")){
+                    root.setValue("inactive");
+                    active_img.setImageResource(R.drawable.allow_to_add_attendance);
+                    active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.allow_img));
+                    Toast.makeText(AttendanceViewer_Activity.this, "Inactivate, Student allow to give attendance", Toast.LENGTH_SHORT).show();
+                }else {
+                    root.setValue("active");
+                    active_img.setImageResource(R.drawable.disallow_to_add_attendance);
+                    active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.disallow_img));
+                    Toast.makeText(AttendanceViewer_Activity.this, "Activate, Student  disallow to give attendance", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+            active_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_name).child(subject_date).child("status");
+                    root.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String isActive = snapshot.getValue(String.class);
+                            if (isActive.equals("active")){
+                                root.setValue("inactive");
+                                active_img.setImageResource(R.drawable.allow_to_add_attendance);
+                                active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.allow_img));
+                                Toast.makeText(AttendanceViewer_Activity.this, "Inactivated, Student allow to give attendance", Toast.LENGTH_SHORT).show();
+                            }else {
+                                root.setValue("active");
+                                active_img.setImageResource(R.drawable.disallow_to_add_attendance);
+                                active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.disallow_img));
+                                Toast.makeText(AttendanceViewer_Activity.this, "Activated, Student  disallow to give attendance", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            });
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_name).child(subject_date);
 
@@ -82,8 +151,10 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
 
                 list.clear(); // this work to clear old item
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    User model = dataSnapshot.getValue(User.class);
-                    list.add(model);
+                    if (!dataSnapshot.getKey().equals("status")){
+                        User model = dataSnapshot.getValue(User.class);
+                        list.add(model);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }

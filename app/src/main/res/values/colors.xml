@@ -12,6 +12,9 @@
     <color name="app_input">#EAEAEA</color>
     <color name="input_text_error">#fc5722</color>
 
+    <color name="disallow_img">#fc5722</color>
+    <color name="allow_img">#4CAF50</color>
+
     <color name="app_default">#003990</color>
     <color name="gradient_start">#006790</color>
     <color name="gradient_end">#000a90</color>

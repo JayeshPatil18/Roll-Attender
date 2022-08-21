@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/allow_to_add_attendance.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/app_bg_no_round.xml" value="0.1" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/app_bg_not_round.xml" value="0.1" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/app_bg_without_round.xml" value="0.1" />
@@ -10,10 +11,12 @@
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/dashboard_card_bg.xml" value="0.2375" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/dialogbox_bg_2.xml" value="0.2375" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/dilogbox_bg.xml" value="0.2385" />
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/disallow_to_add_attendance.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_admin_panel_settings_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_call_received_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2385" />
+        <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_remove_circle_outline_24.xml" value="0.236" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_subject_24.xml" value="0.2385" />
         <entry key="..\:/Users/jp747/Downloads/Attendance-Call-Android-App-master (2)/Attendance-Call-Android-App-master/app/src/main/res/drawable/login_bg.xml" value="0.1" />

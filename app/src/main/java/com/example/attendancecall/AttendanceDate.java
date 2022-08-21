@@ -188,7 +188,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
                                         if(!isDateExist){
                                             date.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
-                                            root.child(dateToAdd[0].toString()).setValue("date");
+                                            root.child(dateToAdd[0].toString()).child("status").setValue("active");
                                             Toast.makeText(AttendanceDate.this, "Date Added Successfully", Toast.LENGTH_SHORT).show();
 
                                             alertDialog.dismiss();
@@ -236,7 +236,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
                 }
 
                 if(!isDateExist){
-                    root.child(str2.toString()).setValue("date");
+                    root.child(str2.toString()).child("status").setValue("active");
                     dateRefresh.setRefreshing(false);
                 }else{
                     dateRefresh.setRefreshing(false);
@@ -270,7 +270,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
                             }
 
                             if(!isDateExist){
-                                root.child(str2.toString()).setValue("date");
+                                root.child(str2.toString()).child("status").setValue("active");
                                 dateRefresh.setRefreshing(false);
                             }else{
                                 dateRefresh.setRefreshing(false);
