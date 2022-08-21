@@ -344,7 +344,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
                 database.getReference("admin_users").child(userEmail).child("subjects").child(subject_for_date).child(itemText).removeValue();
 
-                Toast.makeText(activity, "Subject removed successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Date removed successfully", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
             }
