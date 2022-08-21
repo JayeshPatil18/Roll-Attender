@@ -132,7 +132,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
                 String model = null;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     model = dataSnapshot.getKey();
-                    list.add(model);
+                    list.add(model.substring(0, 1).toUpperCase() + model.substring(1));
                 }
                 adapter.notifyDataSetChanged();
                 if (isAdd) {
