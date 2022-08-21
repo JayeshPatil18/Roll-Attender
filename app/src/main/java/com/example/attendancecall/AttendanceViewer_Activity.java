@@ -83,15 +83,11 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String isActive = snapshot.getValue(String.class);
                 if (isActive.equals("active")){
-                    root.setValue("inactive");
-                    active_img.setImageResource(R.drawable.allow_to_add_attendance);
-                    active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.allow_img));
-                    Toast.makeText(AttendanceViewer_Activity.this, "Inactivate, Student allow to give attendance", Toast.LENGTH_SHORT).show();
-                }else {
-                    root.setValue("active");
                     active_img.setImageResource(R.drawable.disallow_to_add_attendance);
-                    active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.disallow_img));
-                    Toast.makeText(AttendanceViewer_Activity.this, "Activate, Student  disallow to give attendance", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AttendanceViewer_Activity.this, "Activate, Student allow to give attendance", Toast.LENGTH_SHORT).show();
+                }else {
+                    active_img.setImageResource(R.drawable.allow_to_add_attendance);
+                    Toast.makeText(AttendanceViewer_Activity.this, "Inactivate, Student  disallow to give attendance", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -112,13 +108,11 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
                             if (isActive.equals("active")){
                                 root.setValue("inactive");
                                 active_img.setImageResource(R.drawable.allow_to_add_attendance);
-                                active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.allow_img));
-                                Toast.makeText(AttendanceViewer_Activity.this, "Inactivated, Student allow to give attendance", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AttendanceViewer_Activity.this, "Inactivated, Student disallow to give attendance", Toast.LENGTH_SHORT).show();
                             }else {
                                 root.setValue("active");
                                 active_img.setImageResource(R.drawable.disallow_to_add_attendance);
-                                active_img.setColorFilter(ContextCompat.getColor(AttendanceViewer_Activity.this, R.color.disallow_img));
-                                Toast.makeText(AttendanceViewer_Activity.this, "Activated, Student  disallow to give attendance", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AttendanceViewer_Activity.this, "Activated, Student allow to give attendance", Toast.LENGTH_SHORT).show();
                             }
                         }
 
