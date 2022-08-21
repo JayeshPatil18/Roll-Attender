@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,7 +39,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AttendanceDate extends AppCompatActivity implements RecyclerViewInterface{
+public class AttendanceDate extends AppCompatActivity implements RecyclerViewInterfaceTeacher{
 
     // For manually adding date with fab button
     FloatingActionButton dateAddFab;
@@ -49,7 +52,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
-    AvailableDataAdapter adapter;
+    AdapterForDate adapter;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
@@ -94,7 +97,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new AvailableDataAdapter(this ,list, this);
+        adapter = new AdapterForDate(this ,list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -293,10 +296,66 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClickTeacher(int position) {
         Intent intent = new Intent(AttendanceDate.this, AttendanceViewer_Activity.class);
         intent.putExtra("subject_for_date",subject_for_date);
         intent.putExtra("date_of_subject",list.get(position));
         startActivity(intent);
     }
+
+    @Override
+    public void onItemClick(int position) {
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        String itemText = list.get(position).toString().replace(" / ","-");
+        String userEmail = decoder.encodeUserEmail(emailId);
+
+        removeDatePopUpDialogBox(AttendanceDate.this, database, itemText, userEmail);
+
+    }
+
+
+    private void removeDatePopUpDialogBox(AttendanceDate activity, FirebaseDatabase database, String itemText, String userEmail) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.plain_logout_dilogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.plainLogoutErrorText);
+        textView.setText("All attendance history of " + itemText + " will be delete, Are you sure want to remove Date?");
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.plainLogout_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.plainLogout_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                database.getReference("admin_users").child(userEmail).child("subjects").child(subject_for_date).child(itemText).removeValue();
+
+                Toast.makeText(activity, "Subject removed successfully", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
 }
