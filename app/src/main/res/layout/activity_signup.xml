@@ -45,7 +45,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             app:srcCompat="@drawable/icon"
             app:tint="@color/app_background" />
 
@@ -96,13 +96,13 @@
                 android:id="@+id/signup_fullnameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:boxBackgroundMode="outline"
-                app:startIconDrawable="@drawable/ic_baseline_person_24"
                 app:endIconMode="clear_text"
-                app:startIconTint="#878787"
                 app:endIconTint="#878787"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                app:startIconTint="#878787">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_fullname"
@@ -120,13 +120,13 @@
                 android:id="@+id/signup_email_idLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:boxBackgroundMode="outline"
-                app:startIconDrawable="@drawable/ic_baseline_verified_user_24"
                 app:endIconMode="clear_text"
-                app:startIconTint="#878787"
                 app:endIconTint="#878787"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_baseline_verified_user_24"
+                app:startIconTint="#878787">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_email_id"
@@ -144,13 +144,13 @@
                 android:id="@+id/signup_passwordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:boxBackgroundMode="outline"
-                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
                 app:endIconMode="password_toggle"
-                app:startIconTint="#878787"
                 app:endIconTint="#878787"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+                app:startIconTint="#878787">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_password"
@@ -160,8 +160,8 @@
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:password="true"
                     android:padding="20dp"
+                    android:password="true"
                     android:textColorHint="#878787" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,13 +169,13 @@
                 android:id="@+id/signup_RepasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:boxBackgroundMode="outline"
-                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
                 app:endIconMode="password_toggle"
-                app:startIconTint="#878787"
                 app:endIconTint="#878787"
-                app:hintEnabled="false">
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+                app:startIconTint="#878787">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_Repassword"
@@ -185,8 +185,8 @@
                     android:ems="10"
                     android:hint="Renter password"
                     android:inputType="textPassword"
-                    android:password="true"
                     android:padding="20dp"
+                    android:password="true"
                     android:textColorHint="#878787" />
             </com.google.android.material.textfield.TextInputLayout>
 

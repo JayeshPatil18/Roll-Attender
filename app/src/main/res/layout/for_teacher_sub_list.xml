@@ -16,9 +16,9 @@
         android:paddingRight="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="Assembly language programming"
-        android:textColor="@color/app_default"
+        android:text=""
         android:textSize="18dp"
+        android:textColor="@color/app_default"
         android:layout_weight="1"
         />
 

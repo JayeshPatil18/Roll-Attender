@@ -40,15 +40,8 @@
                 android:layout_marginRight="-10dp"
                 android:background="@drawable/login_bg"
                 android:orientation="vertical"
-                android:paddingTop="50dp"
+                android:paddingTop="70dp"
                 android:paddingBottom="120dp">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    app:srcCompat="@drawable/icon"
-                    app:tint="@color/app_background" />
 
                 <TextView
                     android:id="@+id/available_sub_name"
@@ -82,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="-100dp"
+                android:layout_marginTop="-80dp"
                 android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 android:outlineSpotShadowColor="#000000"
@@ -112,13 +105,13 @@
                         android:id="@+id/stud_nameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:boxBackgroundMode="outline"
-                        app:startIconDrawable="@drawable/ic_baseline_person_24"
                         app:endIconMode="clear_text"
-                        app:startIconTint="#878787"
                         app:endIconTint="#878787"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"
+                        app:startIconDrawable="@drawable/ic_baseline_person_24"
+                        app:startIconTint="#878787">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/stud_name"
@@ -137,13 +130,13 @@
                         android:id="@+id/stud_endrollment_noLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:boxBackgroundMode="outline"
-                        app:startIconDrawable="@drawable/ic_baseline_verified_user_24"
                         app:endIconMode="clear_text"
-                        app:startIconTint="#878787"
                         app:endIconTint="#878787"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"
+                        app:startIconDrawable="@drawable/ic_baseline_verified_user_24"
+                        app:startIconTint="#878787">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/stud_endrollment_no"
@@ -161,13 +154,13 @@
                         android:id="@+id/stud_branchLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:boxBackgroundMode="outline"
-                        app:startIconDrawable="@drawable/ic_baseline_local_library_24"
                         app:endIconMode="clear_text"
-                        app:startIconTint="#878787"
                         app:endIconTint="#878787"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"
+                        app:startIconDrawable="@drawable/ic_baseline_local_library_24"
+                        app:startIconTint="#878787">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/stud_branch"
@@ -185,13 +178,13 @@
                         android:id="@+id/stud_phoneLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:boxBackgroundMode="outline"
-                        app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
                         app:endIconMode="clear_text"
-                        app:startIconTint="#878787"
                         app:endIconTint="#878787"
-                        app:hintEnabled="false">
+                        app:hintEnabled="false"
+                        app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
+                        app:startIconTint="#878787">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/stud_phone"

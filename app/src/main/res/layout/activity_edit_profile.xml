@@ -99,7 +99,7 @@
                         android:id="@+id/editProfile_fullnameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         app:boxBackgroundMode="outline"
                         app:startIconDrawable="@drawable/ic_baseline_person_24"
                         app:endIconMode="clear_text"
