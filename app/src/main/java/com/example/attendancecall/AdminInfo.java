@@ -3,6 +3,7 @@ package com.example.attendancecall;
 public class AdminInfo {
 
     String email;
+    String name;
 
     public String getEmail() {
         return email;
@@ -12,10 +13,4 @@ public class AdminInfo {
         return name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    String name;
-    String password;
 }

@@ -132,7 +132,6 @@ public class SignupActivity extends AppCompatActivity{
                                     HashMap<String, String> userMap = new HashMap<>();
                                     userMap.put("email", str_emailId);
                                     userMap.put("name", str_name);
-                                    userMap.put("password", str_password);
 
                                     root = db.getReference().child("admin_users");
                                     root.child(encoder.encodeUserEmail(str_emailId)).child("details").setValue(userMap);

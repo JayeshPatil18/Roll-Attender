@@ -1,9 +1,7 @@
 package com.example.attendancecall;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -12,16 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 public class EditProfile extends AppCompatActivity {
@@ -83,7 +77,7 @@ public class EditProfile extends AppCompatActivity {
                 str_emailId = sharedPreferences_emailId.getString("email_id","null");
 
                 if ((!str_name.isEmpty()) && (!str_password.isEmpty())){
-                    validationOfEditProfile.updateName_Password(str_name, str_password, str_rEnterPassword, nameLayout, passwordLayout, rEnterPasswordLayout, str_emailId, fAuth, firebaseUser, root, EditProfile.this);
+                    validationOfEditProfile.updateName_Password(str_name, str_password, str_rEnterPassword, nameLayout, passwordLayout, rEnterPasswordLayout, str_emailId, firebaseUser, root, EditProfile.this);
                 }else if ((!str_name.isEmpty()) && str_rEnterPassword.isEmpty()){
                     validationOfEditProfile.updateName(str_name, nameLayout, str_emailId, fAuth, firebaseUser, root, EditProfile.this);
                 }else if ((!str_password.isEmpty())){

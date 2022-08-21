@@ -92,7 +92,6 @@ public class verifyingDialogBox extends Activity{
 
                                 editor_isLogin.putBoolean("hasLoggedIn",true);
                                 editor_loginDetails.putString("email_id",emailStr);
-                                editor_loginDetails.putString("password",passwordStr);
                                 editor_isLogin.commit();
                                 editor_loginDetails.commit();
 
