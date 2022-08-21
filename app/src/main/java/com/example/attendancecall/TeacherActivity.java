@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +36,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class TeacherActivity extends AppCompatActivity implements RecyclerViewInterface {
+public class TeacherActivity extends AppCompatActivity implements RecyclerViewInterfaceTeacher {
 
     // For manually adding date with fab button
     FloatingActionButton subAddFab;
@@ -48,13 +51,15 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
-    SubjectsAdapter adapter;
+    AdapterForTeacher adapter;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference root;
 
     TextView sectionName;
 
     ImageView menu_icon;
+
+    EncoderDecoder decoder = new EncoderDecoder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,22 +96,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
 
         // For retrieving admin user name
         SharedPreferences sharedPreferences_emailId = getSharedPreferences("login_details", MODE_PRIVATE);
-        EncoderDecoder decoder = new EncoderDecoder();
 
-//        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(sharedPreferences_emailId.getString("email_id","null"))).child("details");
-//
-//        root.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                AdminDetails str = snapshot.getValue(AdminDetails.class);
-//                adminName.setText(decoder.getFirstCharCapital(str.getName()));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
         // For manually adding date with fab button
         subAddFab = findViewById(R.id.add_sub_fab);
@@ -127,7 +117,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new SubjectsAdapter(this, list, this);
+        adapter = new AdapterForTeacher(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -247,9 +237,65 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClickTeacher(int position) {
         Intent intent = new Intent(TeacherActivity.this, AttendanceDate.class);
         intent.putExtra("subject", list.get(position).toString());
         startActivity(intent);
     }
+
+    @Override
+    public void onItemClick(int position) {
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        String itemText = list.get(position).toString().toLowerCase(Locale.ROOT);
+        String userEmail = decoder.encodeUserEmail(emailId);
+
+        removeSubjectPopUpDialogBox(TeacherActivity.this, database, itemText, userEmail);
+
+    }
+
+
+    private void removeSubjectPopUpDialogBox(TeacherActivity activity, FirebaseDatabase database, String itemText, String userEmail) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.plain_logout_dilogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.plainLogoutErrorText);
+        textView.setText("All attendance history of " + itemText + " will be delete, Are you sure want to remove Subject?");
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.plainLogout_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.plainLogout_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                database.getReference("admin_users").child(userEmail).child("subjects").child(itemText).removeValue();
+
+                Toast.makeText(activity, "Subject removed successfully", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
 }

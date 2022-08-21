@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AvailableSubjects_Activity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -126,7 +127,7 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
     public void onItemClick(int position) {
         Intent intent = new Intent(AvailableSubjects_Activity.this, AvailableDate_Activity.class);
         intent.putExtra("available_teacher",emailId);
-        intent.putExtra("available_subject",list.get(position).toString());
+        intent.putExtra("available_subject",list.get(position).toString().toLowerCase(Locale.ROOT));
         startActivity(intent);
     }
 }
