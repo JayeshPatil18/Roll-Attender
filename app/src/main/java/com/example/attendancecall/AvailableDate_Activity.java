@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AvailableDate_Activity extends AppCompatActivity implements RecyclerViewInterface{
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     // For back button
     ImageView back_img;
@@ -45,6 +48,9 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_date);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_plain_available_date);
+        shimmerFrameLayout.startShimmer();
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
@@ -81,6 +87,11 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
                     String model = dataSnapshot.getKey();
                     list.add(0,model.replace("-"," / "));
                 }
+
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
                 adapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(0);
             }

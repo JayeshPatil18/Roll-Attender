@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class StudentActivity extends AppCompatActivity implements RecyclerViewInterface, RecyclerViewInterfaceTeacher{
+
+    ShimmerFrameLayout shimmerFrameLayout;
+
     private RecyclerView recyclerView;
     ArrayList<String> list;
     StudentAdapter adapter;
@@ -56,6 +60,9 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_student);
+        shimmerFrameLayout.startShimmer();
 
         FirebaseAuth isLoginfAuth = FirebaseAuth.getInstance();
         FirebaseUser isLoginfUser = isLoginfAuth.getCurrentUser();
@@ -125,9 +132,14 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
                     String model = dataSnapshot.getKey();
                     String modelStatus = dataSnapshot.getValue(String.class);
                     if (modelStatus.equals("true")){
+
+
                         list.add(decoder.decodeUserEmail(model));
                     }
                 }
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
 

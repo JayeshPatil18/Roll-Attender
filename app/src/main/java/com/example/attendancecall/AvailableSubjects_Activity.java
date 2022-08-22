@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AvailableSubjects_Activity extends AppCompatActivity implements RecyclerViewInterface{
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
@@ -42,6 +45,9 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_subjects);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_available_sub);
+        shimmerFrameLayout.startShimmer();
 
         backIcon = findViewById(R.id.available_subject_back_img);
 
@@ -107,6 +113,11 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
                     String model = dataSnapshot.getKey();
                     list.add(model);
                 }
+
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
                 adapter.notifyDataSetChanged();
             }
 

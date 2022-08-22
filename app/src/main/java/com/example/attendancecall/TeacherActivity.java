@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class TeacherActivity extends AppCompatActivity implements RecyclerViewInterfaceTeacher {
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     // For manually adding date with fab button
     FloatingActionButton subAddFab;
@@ -66,6 +69,9 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_teacher);
+        shimmerFrameLayout.startShimmer();
 
         FirebaseAuth isLoginfAuth = FirebaseAuth.getInstance();
         FirebaseUser isLoginfUser = isLoginfAuth.getCurrentUser();
@@ -142,8 +148,12 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
                 String model = null;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     model = dataSnapshot.getKey();
+
                     list.add(model.substring(0, 1).toUpperCase() + model.substring(1));
                 }
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
                 if (isAdd) {
                     recyclerView.scrollToPosition(list.indexOf(subNameToAdd));

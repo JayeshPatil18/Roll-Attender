@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AttendanceDate extends AppCompatActivity implements RecyclerViewInterfaceTeacher{
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     // For manually adding date with fab button
     FloatingActionButton dateAddFab;
@@ -66,6 +69,9 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_date);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_date);
+        shimmerFrameLayout.startShimmer();
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
@@ -111,8 +117,15 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
                 list.clear(); // this work to clear old item
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     String model = dataSnapshot.getKey();
+
+
                     list.add(0,model.replace("-"," / "));
+
                 }
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+
                 adapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(0);
             }

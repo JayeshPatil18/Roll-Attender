@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AttendanceViewer_Activity extends AppCompatActivity {
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     // For back button
     ImageView back_img, active_img;
@@ -47,6 +50,9 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_viewer);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_viewer);
+        shimmerFrameLayout.startShimmer();
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
@@ -147,9 +153,14 @@ public class AttendanceViewer_Activity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     if (!dataSnapshot.getKey().equals("status")){
                         User model = dataSnapshot.getValue(User.class);
+
+
                         list.add(model);
                     }
                 }
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                 adapter.notifyDataSetChanged();
             }
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RequestReceived extends AppCompatActivity implements RecyclerViewInterface {
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
@@ -37,6 +40,9 @@ public class RequestReceived extends AppCompatActivity implements RecyclerViewIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_received);
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_list_received);
+        shimmerFrameLayout.startShimmer();
 
         backImg = findViewById(R.id.requestReceived_back_img);
 
@@ -84,6 +90,11 @@ public class RequestReceived extends AppCompatActivity implements RecyclerViewIn
                                     }
                                 }
                             }
+
+                            shimmerFrameLayout.stopShimmer();
+                            shimmerFrameLayout.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+
                         }
 
                         @Override
