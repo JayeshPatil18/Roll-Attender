@@ -5,15 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="@color/app_default"
+    android:background="@color/white"
     android:gravity="center">
 
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/icon"
-        app:tint="@color/app_background" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="125dp"-->
+<!--        android:layout_weight="1"-->
+<!--        app:srcCompat="@drawable/icon"-->
+<!--        app:tint="@color/app_background" />-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/welcome_plants" />
 </LinearLayout>
