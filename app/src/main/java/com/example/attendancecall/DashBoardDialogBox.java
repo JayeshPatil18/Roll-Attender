@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +41,9 @@ public class DashBoardDialogBox {
         window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+        ShimmerFrameLayout shimmerFrameLayout = (ShimmerFrameLayout) dialog.findViewById(R.id.dashBoardText_shimmer);
+        shimmerFrameLayout.startShimmer();
 
         TextView textMsg = (TextView) dialog.findViewById(R.id.dialog_box_msg);
 
@@ -78,6 +82,11 @@ public class DashBoardDialogBox {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 AdminInfo adminInfo = snapshot.getValue(AdminInfo.class);
                 strAdminName[0] = adminInfo.getName();
+
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                AdminName.setVisibility(View.VISIBLE);
+
                 AdminName.setText(strAdminName[0].substring(0, 1).toUpperCase() + (strAdminName[0].substring(1)));
             }
 

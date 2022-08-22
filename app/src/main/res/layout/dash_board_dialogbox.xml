@@ -95,7 +95,16 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/dashBoardText_shimmer">
+
+                                <include layout="@layout/text_dashboard_shimmer"/>
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/dashBoard_Name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
