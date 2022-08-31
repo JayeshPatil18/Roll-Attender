@@ -89,14 +89,14 @@
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent">
+                    android:layout_width="match_parent"
+                    android:background="@color/white">
 
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/tabs"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        app:tabBackground="@drawable/selected_tab"
-                        app:tabSelectedTextColor="@color/white"
+                        app:tabSelectedTextColor="@color/app_default"
                         app:tabIndicatorColor="@color/app_default"/>
                 </com.google.android.material.appbar.AppBarLayout>
 
