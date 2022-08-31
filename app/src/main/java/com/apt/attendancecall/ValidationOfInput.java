@@ -500,4 +500,27 @@ public class ValidationOfInput {
         }
         return true;
     }
+
+    public boolean validatedRollNo(String student_enrollment_no, TextView invalidDisplay) {
+
+        boolean isValid = true;
+        for (int i = 0; i < student_enrollment_no.length(); i++) {
+            char ch = student_enrollment_no.charAt(i);
+            if(ch == ' '){
+                continue;
+            }else if (!Character.isDigit(ch)) {
+                isValid = false;
+            }
+        }
+
+        if(!isValid){
+            invalidDisplay.setText("* Roll no is invalid");
+            return false;
+        }else if (student_enrollment_no.contains(" ")){
+            invalidDisplay.setText("* Remove all space from Roll no");
+            return false;
+        }
+
+        return true;
+    }
 }
