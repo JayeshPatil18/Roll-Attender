@@ -308,7 +308,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
 
     @Override
     public void onItemClickTeacher(int position) {
-        Intent intent = new Intent(AttendanceDate.this, AttendanceViewer_Activity.class);
+        Intent intent = new Intent(AttendanceDate.this, AttendanceViewTab.class);
         intent.putExtra("subject_for_date",subject_for_date);
         intent.putExtra("date_of_subject",list.get(position));
         startActivity(intent);

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Student Roll Call</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_attendance_view_tab">AttendanceViewTab</string>
+    <string name="tab_text_1">Present</string>
+    <string name="tab_text_2">Absent</string>
 </resources>

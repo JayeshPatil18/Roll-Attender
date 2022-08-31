@@ -131,11 +131,8 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String model = dataSnapshot.getKey();
                     String modelStatus = dataSnapshot.getValue(String.class);
-                    if (modelStatus.equals("true")){
-
 
                         list.add(decoder.decodeUserEmail(model));
-                    }
                 }
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
@@ -228,16 +225,16 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
 
                                                             if(!isRequestSent){
                                                                 if (decoder.decodeUserEmail(finalEmailRequest).equals(sharedPreferences_loginDetails.getString("email_id","null"))){
-                                                                    invalidDisplay.setText("* You should not send request to your self!");
+                                                                    invalidDisplay.setText("* You should not add to your self!");
                                                                 }else {
                                                                     email.setText("");
                                                                     root.child(finalEmailRequest.toString()).setValue("null");
-                                                                    Toast.makeText(StudentActivity.this, "Request sent Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(StudentActivity.this, "Teacher added Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
 
                                                                     alertDialog.dismiss();
                                                                 }
                                                             }else{
-                                                                invalidDisplay.setText("* Request already sent");
+                                                                invalidDisplay.setText("* Teacher already added");
                                                             }
                                                         }else{
                                                             invalidDisplay.setText("* User not exist or User not created account using this email");

@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/selected_tab.xml" value="0.1" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_date.xml" value="0.264" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_view_tab.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_viewer.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_teacher.xml" value="0.1" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/dash_board_dialogbox.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/for_teacher_sub_list.xml" value="0.1" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/forgot_password_dialogbox.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/fragment_absent.xml" value="0.2" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/fragment_attendance_view_tab.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/fragment_present.xml" value="0.536" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/request_dialogbox.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/shimmer_layout_viewer.xml" value="0.1671195652173913" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/shimmer_of_list.xml" value="0.176" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

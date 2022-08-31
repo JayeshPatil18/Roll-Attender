@@ -112,26 +112,26 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
 
     @Override
     public void onItemClick(int position) {
-        root = db.getReference().child("admin_users").child(emailId).child("subjects").child(available_subject).child(list.get(position).toString().replace(" / ", "-")).child("status");
-        root.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.getValue(String.class).equals("active")){
-                    Intent intent = new Intent(AvailableDate_Activity.this, AttendanceGiver_Activity.class);
-                    intent.putExtra("available_emailId",emailId);
-                    intent.putExtra("available_subject_for_date",available_subject);
-                    intent.putExtra("available_date_of_subject",list.get(position).toString());
-                    startActivity(intent);
-                }else {
-                    Toast.makeText(AvailableDate_Activity.this, "Teacher do not allow to give attendance, Contact to your teacher", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        root = db.getReference().child("admin_users").child(emailId).child("subjects").child(available_subject).child(list.get(position).toString().replace(" / ", "-")).child("status");
+//        root.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.getValue(String.class).equals("active")){
+//                    Intent intent = new Intent(AvailableDate_Activity.this, AttendanceGiver_Activity.class);
+//                    intent.putExtra("available_emailId",emailId);
+//                    intent.putExtra("available_subject_for_date",available_subject);
+//                    intent.putExtra("available_date_of_subject",list.get(position).toString());
+//                    startActivity(intent);
+//                }else {
+//                    Toast.makeText(AvailableDate_Activity.this, "Teacher do not allow to give attendance, Contact to your teacher", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 }
