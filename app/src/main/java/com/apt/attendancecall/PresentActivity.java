@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PresentActivity extends Fragment implements RecyclerViewInterfaceTeacher{
     ShimmerFrameLayout shimmerFrameLayout;
@@ -41,6 +42,9 @@ public class PresentActivity extends Fragment implements RecyclerViewInterfaceTe
     ArrayList<String> list;
     AdapterForTeacher adapter;
 
+    String strSub;
+    String strDate;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,8 +54,8 @@ public class PresentActivity extends Fragment implements RecyclerViewInterfaceTe
         ShimmerFrameLayout shimmerFrameLayout = (ShimmerFrameLayout) view.findViewById(R.id.shimmer_viewerP);
         shimmerFrameLayout.startShimmer();
 
-       String strSub = getStrSubject();
-       String strDate = getStrDate();
+       strSub = getStrSubject();
+       strDate = getStrDate();
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
@@ -82,7 +86,9 @@ public class PresentActivity extends Fragment implements RecyclerViewInterfaceTe
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     model = dataSnapshot.getKey();
 
-                    list.add(model);
+                    if (dataSnapshot.getValue(String.class).equals("a")) {
+                        list.add(model);
+                    }
                 }
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
@@ -106,6 +112,15 @@ public class PresentActivity extends Fragment implements RecyclerViewInterfaceTe
 
     @Override
     public void onItemClick(int position) {
+// For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getContext().getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        String itemText = list.get(position).toString().toLowerCase(Locale.ROOT);
+        String userEmail = decoder.encodeUserEmail(emailId);
+
+        database.getReference("admin_users").child(userEmail).child("subjects").child(strSub).child(strDate).child(itemText).removeValue();
     }
 }

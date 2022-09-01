@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AttendanceCall"
         tools:targetApi="31" >
         <activity
+            android:name=".AttendanceVIewStudent"
+            android:exported="false" />
+        <activity
             android:name=".AttendanceViewTab"
             android:exported="false"
             android:label="@string/title_activity_attendance_view_tab"

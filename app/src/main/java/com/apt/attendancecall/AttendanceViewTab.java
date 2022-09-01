@@ -73,6 +73,12 @@ public class AttendanceViewTab extends AppCompatActivity {
         TextView addPresent = (TextView) findViewById(R.id.addPresentRoll);
         TextView addAbsent = (TextView) findViewById(R.id.addAbsentRoll);
 
+        subject_name = findViewById(R.id.subject_title);
+        subject_date = findViewById(R.id.date_title);
+
+        subject_name.setText(strSubject.substring(0, 1).toUpperCase() + strSubject.substring(1));
+        subject_date.setText(strDate);
+
         addPresent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +142,8 @@ public class AttendanceViewTab extends AppCompatActivity {
                         });
                     }
                 });
+
+
                 btn_cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

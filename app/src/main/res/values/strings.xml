@@ -5,4 +5,5 @@
     <string name="title_activity_attendance_view_tab">AttendanceViewTab</string>
     <string name="tab_text_1">Present</string>
     <string name="tab_text_2">Absent</string>
+    <string name="title_activity_viewer_for_student">ViewerForStudent</string>
 </resources>

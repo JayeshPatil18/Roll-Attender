@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AvailableDate_Activity extends AppCompatActivity implements RecyclerViewInterface{
+public class AvailableDate_Activity extends AppCompatActivity implements RecyclerViewInterface {
 
     ShimmerFrameLayout shimmerFrameLayout;
 
@@ -70,21 +70,21 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new AvailableDataAdapter(this ,list, this);
+        adapter = new AvailableDataAdapter(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
         // For item divider
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 list.clear(); // this work to clear old item
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String model = dataSnapshot.getKey();
-                    list.add(0,model.replace("-"," / "));
+                    list.add(0, model.replace("-", " / "));
                 }
 
                 shimmerFrameLayout.stopShimmer();
@@ -112,26 +112,10 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
 
     @Override
     public void onItemClick(int position) {
-//        root = db.getReference().child("admin_users").child(emailId).child("subjects").child(available_subject).child(list.get(position).toString().replace(" / ", "-")).child("status");
-//        root.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.getValue(String.class).equals("active")){
-//                    Intent intent = new Intent(AvailableDate_Activity.this, AttendanceGiver_Activity.class);
-//                    intent.putExtra("available_emailId",emailId);
-//                    intent.putExtra("available_subject_for_date",available_subject);
-//                    intent.putExtra("available_date_of_subject",list.get(position).toString());
-//                    startActivity(intent);
-//                }else {
-//                    Toast.makeText(AvailableDate_Activity.this, "Teacher do not allow to give attendance, Contact to your teacher", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
+        Intent intent = new Intent(AvailableDate_Activity.this, AttendanceVIewStudent.class);
+        intent.putExtra("available_emailId", emailId);
+        intent.putExtra("available_subject_for_date", available_subject);
+        intent.putExtra("available_date_of_subject", list.get(position).toString());
+        startActivity(intent);
     }
 }
