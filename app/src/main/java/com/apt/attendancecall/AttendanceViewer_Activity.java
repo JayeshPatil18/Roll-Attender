@@ -10,14 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AttendanceViewer_Activity extends AppCompatActivity implements RecyclerViewInterfaceTeacher{
+public class AttendanceViewer_Activity extends AppCompatActivity implements RecyclerViewInterfaceTeacher {
 
     String flag;
 
@@ -46,6 +50,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
     // For back button
     ImageView back_img;
+    ImageView deleteAllImg;
+    ImageView rangeImg;
 
     //For refresher
 //    SwipeRefreshLayout refreshLayout;
@@ -58,11 +64,13 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
     String strSubject;
     String strDate;
+    String emailId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_viewer);
+
 
         flag = "present";
 
@@ -74,14 +82,20 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         tabP = findViewById(R.id.TFaketabP);
         tabA = findViewById(R.id.TFaketabA);
 
+        deleteAllImg = findViewById(R.id.deleteAllRollNo);
+        rangeImg = findViewById(R.id.resetRangeImg);
+
         strSubject = getIntent().getStringExtra("subject_for_date").toLowerCase(Locale.ROOT);
-        strDate = getIntent().getStringExtra("date_of_subject").replace(" / ","-");
+        strDate = getIntent().getStringExtra("date_of_subject").replace(" / ", "-");
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         // For retrieving admin user name
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
-        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+        emailId = sharedPreferences_loginDetails.getString("email_id", "null");
         /////////////////////////////////////////////////////////////////////////////////////////////
+
+        rangeDialogBox();
+
 
         // For back button
         back_img = findViewById(R.id.viewer_back_img);
@@ -101,7 +115,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new AdapterForTeacher(this ,list, this);
+        adapter = new AdapterForTeacher(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -119,16 +133,13 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     model = dataSnapshot.getKey();
 
-                    if (flag.equals("present")){
-                        if (dataSnapshot.getValue(String.class).equals("p"))
-                        {
+                    if (flag.equals("present")) {
+                        if (dataSnapshot.getValue(String.class).equals("p")) {
                             list.add(model);
 
                         }
-                    }
-                    else if (flag.equals("absent")){
-                        if (dataSnapshot.getValue(String.class).equals("a"))
-                        {
+                    } else if (flag.equals("absent")) {
+                        if (dataSnapshot.getValue(String.class).equals("a")) {
                             list.add(model);
 
                         }
@@ -137,10 +148,10 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
 
-                if (list.isEmpty()){
+                if (list.isEmpty()) {
                     recyclerView.setVisibility(View.GONE);
                     emptyMsg.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     emptyMsg.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
@@ -171,8 +182,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             model = dataSnapshot.getKey();
 
-                            if (dataSnapshot.getValue(String.class).equals("p"))
-                            {
+                            if (dataSnapshot.getValue(String.class).equals("p")) {
                                 list.add(model);
 
                             }
@@ -181,10 +191,10 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
 
-                        if (list.isEmpty()){
+                        if (list.isEmpty()) {
                             recyclerView.setVisibility(View.GONE);
                             emptyMsg.setVisibility(View.VISIBLE);
-                        }else{
+                        } else {
                             emptyMsg.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
                         }
@@ -214,8 +224,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             model = dataSnapshot.getKey();
 
-                            if (dataSnapshot.getValue(String.class).equals("a"))
-                            {
+                            if (dataSnapshot.getValue(String.class).equals("a")) {
                                 list.add(model);
 
                             }
@@ -224,10 +233,10 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
 
-                        if (list.isEmpty()){
+                        if (list.isEmpty()) {
                             recyclerView.setVisibility(View.GONE);
                             emptyMsg.setVisibility(View.VISIBLE);
-                        }else{
+                        } else {
                             emptyMsg.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
                         }
@@ -259,7 +268,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 adder.setView(view1);
 
                 final AlertDialog alertDialog = adder.create();
-                alertDialog.setCanceledOnTouchOutside(true); // For dismiss if user click outside dialog box
+                alertDialog.setCanceledOnTouchOutside(false); // For dismiss if user click outside dialog box
 
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -279,7 +288,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
 
                                 if (strRoll_no.isEmpty()) {
-                                    invalidDisplay.setText("* Roll No field is empty");
+                                    invalidDisplay.setText("* Roll no. field is empty");
                                 } else {
                                     ValidationOfInput validation = new ValidationOfInput();
                                     boolean validSubName = validation.validatedRollNo(strRoll_no, invalidDisplay);
@@ -289,7 +298,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                                         rollNo.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
                                         root.child(strRoll_no.toString()).setValue("p");
-                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll No Added Successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
 
                                         alertDialog.dismiss();
 
@@ -335,7 +344,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 adder.setView(view1);
 
                 final AlertDialog alertDialog = adder.create();
-                alertDialog.setCanceledOnTouchOutside(true); // For dismiss if user click outside dialog box
+                alertDialog.setCanceledOnTouchOutside(false); // For dismiss if user click outside dialog box
 
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -355,7 +364,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
 
                                 if (strRoll_no.isEmpty()) {
-                                    invalidDisplay.setText("* Roll No field is empty");
+                                    invalidDisplay.setText("* Roll no. field is empty");
                                 } else {
                                     ValidationOfInput validation = new ValidationOfInput();
                                     boolean validSubName = validation.validatedRollNo(strRoll_no, invalidDisplay);
@@ -365,7 +374,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                                         rollNo.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
                                         root.child(strRoll_no.toString()).setValue("a");
-                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll No Added Successfully", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
 
                                         alertDialog.dismiss();
 
@@ -392,6 +401,20 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
             }
         });
 
+        deleteAllImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                removeAllRolNoPopUpDialogBox();
+            }
+        });
+
+        rangeImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rangeDialogBox();
+            }
+        });
 
         // For back button
         back_img.setOnClickListener(new View.OnClickListener() {
@@ -400,7 +423,6 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 finish();
             }
         });
-
     }
 
     @Override
@@ -420,6 +442,119 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         String userEmail = decoder.encodeUserEmail(emailId);
 
         database.getReference("admin_users").child(userEmail).child("subjects").child(strSubject).child(strDate).child(itemText).removeValue();
-        Toast.makeText(AttendanceViewer_Activity.this, "Roll No removed successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. removed successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    public void rangeDialogBox() {
+        final Dialog dialog = new Dialog(AttendanceViewer_Activity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.range_of_roll_no);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        dialog.show();
+
+        Button submitRange = (Button) dialog.findViewById(R.id.setRangeBtn);
+        ImageView cancelRange = (ImageView) dialog.findViewById(R.id.cancelRangeBtn);
+
+        NumberPicker startRange = (NumberPicker) dialog.findViewById(R.id.rangeS);
+        NumberPicker endRange = (NumberPicker) dialog.findViewById(R.id.rangeE);
+
+        startRange.setMinValue(1);
+        startRange.setMaxValue(1000);
+
+        endRange.setMinValue(1);
+        endRange.setMaxValue(1000);
+
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        int sRangeNum = sharedPreferences_loginDetails.getInt("s_range", 1);
+        int eRangeNum = sharedPreferences_loginDetails.getInt("e_range", 50);
+
+        startRange.setValue(sRangeNum);
+        endRange.setValue(eRangeNum);
+
+        final boolean[] cancelAllow = {true};
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(strSubject).child(strDate);
+
+        submitRange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelAllow[0] = false;
+
+                int sNum = startRange.getValue();
+                int eNum = endRange.getValue();
+
+                /////
+                SharedPreferences sharedPreferences_loginDetails = dialog.getContext().getSharedPreferences("login_details",MODE_PRIVATE);
+                SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+                editor_loginDetails.putInt("s_range",sNum);
+                editor_loginDetails.putInt("e_range",eNum);
+                editor_loginDetails.commit();
+                /////
+
+                for (int i = sNum; i <= eNum; i++) {
+                    root.child(String.valueOf(i)).setValue("p");
+                }
+                dialog.dismiss();
+            }
+        });
+
+        cancelRange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cancelAllow[0]) {
+                    dialog.dismiss();
+                }
+            }
+        });
+    }
+
+    private void removeAllRolNoPopUpDialogBox() {
+
+        final Dialog dialog = new Dialog(AttendanceViewer_Activity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.plain_logout_dilogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.plainLogoutErrorText);
+        textView.setText("All Roll No Attendance will be delete!, Are you sure want to Delete Attendance?");
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.plainLogout_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.plainLogout_cancel);
+
+        dialog.show();
+
+        // For retrieving admin user name
+        SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+        String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
+
+        root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(strSubject).child(strDate);
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                root.setValue("null");
+                Toast.makeText(AttendanceViewer_Activity.this, "All Roll no. removed successfully", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 }

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/delete_btn_bg.xml" value="0.1925" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/fake_tab_textview.xml" value="0.1925" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1285" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.1925" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/selected_tab.xml" value="0.1" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/stub.xml" value="0.1925" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/absent.xml" value="0.2" />
@@ -11,7 +14,7 @@
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_of_student.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_view_student.xml" value="0.2766990291262136" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_view_tab.xml" value="0.264" />
-        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_viewer.xml" value="0.3" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_attendance_viewer.xml" value="0.31166912850812406" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_available_date.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_available_subjects.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/activity_edit_profile.xml" value="0.23229166666666667" />
@@ -37,6 +40,7 @@
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/manually_addsub_dilogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/plain_logout_dilogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/present.xml" value="0.152" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/range_of_roll_no.xml" value="0.136" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/remove_node_dialogobox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/request_dialogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/request_received_list.xml" value="0.23229166666666667" />

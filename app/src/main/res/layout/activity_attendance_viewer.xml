@@ -13,9 +13,39 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24"
         android:elevation="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
         android:background="@drawable/back_background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        android:gravity="end">
+
+        <ImageView
+            android:id="@+id/deleteAllRollNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_delete_outline_24"
+            android:elevation="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:background="@drawable/back_background" />
+
+        <ImageView
+            android:id="@+id/resetRangeImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_format_list_numbered_rtl_24"
+            android:elevation="20dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:background="@drawable/back_background" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -177,7 +207,7 @@
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:visibility="gone"
-                        android:text="No Roll No Added" />
+                        android:text="No Roll no. Added" />
                 </LinearLayout>
 
             </LinearLayout>

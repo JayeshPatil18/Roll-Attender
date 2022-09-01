@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:gravity="center"
+    tools:context=".AttendanceViewer_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dilogbox_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialog_box_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Set Roll no. Range"
+                android:textColor="@color/app_default"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Starting"
+                    android:padding="10dp"/>
+
+                <NumberPicker
+                    android:id="@+id/rangeS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    />
+
+                <NumberPicker
+                    android:id="@+id/rangeE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ending"
+                    android:padding="10dp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="80dp"
+                android:paddingTop="20dp"
+                android:paddingRight="80dp"
+                android:paddingBottom="40dp">
+
+                <Button
+                    android:id="@+id/setRangeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dialogbox_btn"
+                    android:padding="15dp"
+                    android:text="Set Range"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cancelRangeBtn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_baseline_cancel_24" />
+
+    </LinearLayout>
+</RelativeLayout>

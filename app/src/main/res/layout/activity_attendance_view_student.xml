@@ -167,7 +167,7 @@
                                 android:gravity="center"
                                 android:layout_gravity="center"
                                 android:visibility="gone"
-                                android:text="No Roll No Added" />
+                                android:text="No Roll no. Added" />
                         </LinearLayout>
 
                     </LinearLayout>
