@@ -92,7 +92,7 @@
                             android:layout_gravity="center"
                             android:orientation="horizontal"
                             android:layout_marginBottom="10dp"
-                            android:padding="2dp">
+                            android:padding="4dp">
 
                             <TextView
                                 android:id="@+id/FaketabP"
@@ -105,7 +105,8 @@
                                 android:gravity="center"
                                 android:layout_weight="1"
                                 android:background="@drawable/fake_tab_textview"
-                                android:textColor="@color/app_default"/>
+                                android:textColor="@color/white"
+                                android:layout_marginRight="2dp"/>
 
                             <TextView
                                 android:id="@+id/FaketabA"
@@ -118,7 +119,8 @@
                                 android:gravity="center"
                                 android:layout_weight="1"
                                 android:background="@drawable/stub"
-                                android:textColor="@color/app_default">
+                                android:textColor="@color/app_default"
+                                android:layout_marginLeft="2dp">
 
                             </TextView>
 

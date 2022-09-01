@@ -94,6 +94,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                tabP.setTextColor(getResources().getColor(R.color.white));
+                tabA.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.stub));
                 tabP.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.fake_tab_textview));
 
@@ -132,6 +134,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
             @Override
             public void onClick(View view) {
 
+                tabP.setTextColor(getResources().getColor(R.color.white));
+                tabA.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.stub));
                 tabP.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.fake_tab_textview));
 
@@ -175,6 +179,9 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
         tabA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                tabA.setTextColor(getResources().getColor(R.color.white));
+                tabP.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.fake_tab_textview));
                 tabP.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.stub));
 

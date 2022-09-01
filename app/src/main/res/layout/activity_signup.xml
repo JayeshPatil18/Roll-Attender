@@ -40,13 +40,7 @@
         android:layout_marginRight="-10dp"
         android:background="@drawable/login_bg"
         android:orientation="vertical"
-        android:paddingTop="50dp">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:srcCompat="@drawable/icon" />
+        android:paddingTop="60dp">
 
         <TextView
             android:id="@+id/textView"

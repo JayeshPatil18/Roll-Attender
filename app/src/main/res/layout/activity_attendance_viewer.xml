@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeacherActivity"
+    tools:context=".AttendanceViewer_Activity"
     android:orientation="vertical">
 
     <ImageView
@@ -122,7 +122,7 @@
                     android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:layout_marginBottom="10dp"
-                    android:padding="2dp">
+                    android:padding="4dp">
 
                     <TextView
                         android:id="@+id/TFaketabP"
@@ -134,8 +134,9 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:background="@drawable/fake_tab_textview"
-                        android:textColor="@color/app_default"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="2dp"/>
 
                     <TextView
                         android:id="@+id/TFaketabA"
@@ -147,8 +148,9 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_weight="1"
+                        android:background="@drawable/stub"
                         android:textColor="@color/app_default"
-                        android:background="@drawable/stub">
+                        android:layout_marginLeft="2dp">
 
                     </TextView>
 

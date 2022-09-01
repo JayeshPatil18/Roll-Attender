@@ -170,6 +170,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                 flag = "present";
 
+                tabP.setTextColor(getResources().getColor(R.color.white));
+                tabA.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceViewer_Activity.this, R.drawable.stub));
                 tabP.setBackground(ContextCompat.getDrawable(AttendanceViewer_Activity.this, R.drawable.fake_tab_textview));
 
@@ -213,6 +215,9 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
             @Override
             public void onClick(View view) {
                 flag = "absent";
+
+                tabA.setTextColor(getResources().getColor(R.color.white));
+                tabP.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceViewer_Activity.this, R.drawable.fake_tab_textview));
                 tabP.setBackground(ContextCompat.getDrawable(AttendanceViewer_Activity.this, R.drawable.stub));
                 root.addValueEventListener(new ValueEventListener() {
