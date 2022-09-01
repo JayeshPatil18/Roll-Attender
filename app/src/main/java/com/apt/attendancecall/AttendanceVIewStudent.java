@@ -54,6 +54,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_view_student);
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         emailId = getIntent().getStringExtra("available_emailId");
         availableSubject = getIntent().getStringExtra("available_subject_for_date").toLowerCase(Locale.ROOT);
         availableDate = getIntent().getStringExtra("available_date_of_subject").replace(" / ","-");
@@ -109,7 +111,14 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
                 }
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
                 adapter.notifyDataSetChanged();
             }
 
@@ -144,7 +153,14 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
                         }
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+
+                        if (list.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                            emptyMsg.setVisibility(View.VISIBLE);
+                        }else{
+                            emptyMsg.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                         adapter.notifyDataSetChanged();
                     }
 
@@ -180,7 +196,14 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
                         }
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+
+                        if (list.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                            emptyMsg.setVisibility(View.VISIBLE);
+                        }else{
+                            emptyMsg.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                         adapter.notifyDataSetChanged();
                     }
 
@@ -192,6 +215,13 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
             }
         });
 
+        // For back button
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override

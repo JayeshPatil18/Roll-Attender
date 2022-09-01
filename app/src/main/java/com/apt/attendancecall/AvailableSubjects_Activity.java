@@ -46,6 +46,8 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_subjects);
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         shimmerFrameLayout = findViewById(R.id.shimmer_list_available_sub);
         shimmerFrameLayout.startShimmer();
 
@@ -116,7 +118,14 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
 
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
 
                 adapter.notifyDataSetChanged();
             }

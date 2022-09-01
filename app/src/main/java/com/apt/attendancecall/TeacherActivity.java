@@ -67,6 +67,8 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         shimmerFrameLayout = findViewById(R.id.shimmer_list_teacher);
         shimmerFrameLayout.startShimmer();
 
@@ -148,9 +150,16 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
 
                     list.add(model.substring(0, 1).toUpperCase() + model.substring(1));
                 }
-                    shimmerFrameLayout.stopShimmer();
-                    shimmerFrameLayout.setVisibility(View.GONE);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
+                }
                 adapter.notifyDataSetChanged();
                 if (isAdd) {
                     recyclerView.scrollToPosition(list.indexOf(subNameToAdd));

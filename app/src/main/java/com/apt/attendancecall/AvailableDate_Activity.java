@@ -48,6 +48,8 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_date);
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         shimmerFrameLayout = findViewById(R.id.shimmer_list_plain_available_date);
         shimmerFrameLayout.startShimmer();
 
@@ -89,7 +91,14 @@ public class AvailableDate_Activity extends AppCompatActivity implements Recycle
 
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
 
                 adapter.notifyDataSetChanged();
                 recyclerView.scrollToPosition(0);

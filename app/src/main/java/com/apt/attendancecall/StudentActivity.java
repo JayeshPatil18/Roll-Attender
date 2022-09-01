@@ -61,6 +61,8 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         shimmerFrameLayout = findViewById(R.id.shimmer_list_student);
         shimmerFrameLayout.startShimmer();
 
@@ -134,9 +136,16 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
 
                         list.add(decoder.decodeUserEmail(model));
                 }
-                        shimmerFrameLayout.stopShimmer();
-                        shimmerFrameLayout.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
                 adapter.notifyDataSetChanged();
             }
 

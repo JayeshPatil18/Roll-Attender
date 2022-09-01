@@ -19,14 +19,6 @@
             android:name=".AttendanceVIewStudent"
             android:exported="false" />
         <activity
-            android:name=".AttendanceViewTab"
-            android:exported="false"
-            android:label="@string/title_activity_attendance_view_tab"
-            android:theme="@style/Theme.AttendanceCall.NoActionBar" />
-        <activity
-            android:name=".YourStudents"
-            android:exported="false" />
-        <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity

@@ -66,6 +66,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
         flag = "present";
 
+        TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
         ShimmerFrameLayout shimmerFrameLayout = (ShimmerFrameLayout) findViewById(R.id.shimmer_viewer);
         shimmerFrameLayout.startShimmer();
 
@@ -134,7 +136,14 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 }
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
+
+                if (list.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyMsg.setVisibility(View.VISIBLE);
+                }else{
+                    emptyMsg.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
                 adapter.notifyDataSetChanged();
             }
 
@@ -171,7 +180,14 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         }
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+
+                        if (list.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                            emptyMsg.setVisibility(View.VISIBLE);
+                        }else{
+                            emptyMsg.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                         adapter.notifyDataSetChanged();
                     }
 
@@ -207,7 +223,14 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                         }
                         shimmerFrameLayout.stopShimmer();
                         shimmerFrameLayout.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+
+                        if (list.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                            emptyMsg.setVisibility(View.VISIBLE);
+                        }else{
+                            emptyMsg.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
                         adapter.notifyDataSetChanged();
                     }
 
