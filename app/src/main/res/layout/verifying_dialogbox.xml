@@ -78,6 +78,12 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Also check spam email box"
+                android:fontFamily="@font/f6"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

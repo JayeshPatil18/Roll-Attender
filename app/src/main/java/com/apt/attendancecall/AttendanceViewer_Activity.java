@@ -303,6 +303,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                                         boolean isValidRollNo = validation.isRollNoFormatValid(strRoll_no, invalidDisplay);
 
                                         if (isValidRollNo) {
+                                            boolean isSuccess = false;
                                             rollNo.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
                                             if (strRoll_no.contains(",")) {
@@ -312,14 +313,16 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                                                     if (!arr.get(i).isEmpty()) {
                                                         root.child(arr.get(i).toString()).setValue("p");
-                                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                                        isSuccess = true;
                                                     }
                                                 }
                                             } else {
                                                 root.child(strRoll_no.toString()).setValue("p");
+                                                isSuccess = true;
+                                            }
+                                            if (isSuccess) {
                                                 Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
                                             }
-
                                         }
 
                                     }
@@ -393,6 +396,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                                         boolean isValidRollNo = validation.isRollNoFormatValid(strRoll_no, invalidDisplay);
 
                                         if (isValidRollNo) {
+                                            boolean isSuccess = false;
                                             rollNo.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
                                             if (strRoll_no.contains(",")) {
@@ -402,14 +406,16 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                                                     if (!arr.get(i).isEmpty()) {
                                                         root.child(arr.get(i).toString()).setValue("a");
-                                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                                        isSuccess = true;
                                                     }
                                                 }
                                             } else {
                                                 root.child(strRoll_no.toString()).setValue("a");
+                                                isSuccess = true;
+                                            }
+                                            if (isSuccess) {
                                                 Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
                                             }
-
                                         }
                                     }
                                 }
