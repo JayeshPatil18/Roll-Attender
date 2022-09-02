@@ -26,10 +26,11 @@
                 android:id="@+id/dialog_box_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/f6"
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:layout_marginTop="10dp"
                 android:text="Set Roll no. Range"
                 android:textColor="@color/app_default"
                 android:textSize="20dp"
@@ -46,8 +47,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Starting"
-                    android:padding="10dp"/>
+                    android:fontFamily="@font/f6"
+                    android:padding="10dp"
+                    android:text="Starting" />
 
                 <NumberPicker
                     android:id="@+id/rangeS"
@@ -65,8 +67,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ending"
-                    android:padding="10dp"/>
+                    android:fontFamily="@font/f6"
+                    android:padding="10dp"
+                    android:text="Ending" />
 
             </LinearLayout>
 
@@ -85,6 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/dialogbox_btn"
+                    android:fontFamily="@font/f6"
                     android:padding="15dp"
                     android:text="Set Range"
                     android:textAllCaps="false"

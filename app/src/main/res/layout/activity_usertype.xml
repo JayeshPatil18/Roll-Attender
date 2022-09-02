@@ -35,10 +35,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="80dp"
+                    android:fontFamily="@font/f6"
                     android:gravity="center"
                     android:text="Your Role ?"
                     android:textColor="@color/app_default"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/teacher"
@@ -46,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:background="@drawable/login_btn"
+                    android:fontFamily="@font/f6"
                     android:padding="18dp"
                     android:text="Teacher"
                     android:textAllCaps="false"
@@ -58,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:background="@drawable/login_btn"
+                    android:fontFamily="@font/f6"
                     android:padding="18dp"
                     android:text="Student"
                     android:textAllCaps="false"

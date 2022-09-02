@@ -58,27 +58,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/f6"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text=""
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:visibility="gone"/>
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/availableTeacherId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/app_background"
+            android:fontFamily="@font/f6"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/app_default"
-            android:background="@color/app_background"
             android:text=""
-            android:textSize="16dp" />
+            android:textColor="@color/app_default"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -110,12 +114,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:textColor="@color/app_default"
-                    android:text="Subjects available for attendance"
                     android:layout_gravity="center"
-                    android:gravity="center">
+                    android:fontFamily="@font/f6"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Subjects available for attendance"
+                    android:textColor="@color/app_default"
+                    android:textSize="18dp">
 
                 </TextView>
 
@@ -161,10 +166,11 @@
                     android:id="@+id/empty_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:text="No Subject Added" />
+                    android:fontFamily="@font/f6"
+                    android:gravity="center"
+                    android:text="No Subject Added"
+                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>

@@ -22,11 +22,12 @@
             android:id="@+id/dateAdder_error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/f6"
             android:gravity="center"
-            android:textColor="@color/input_text_error"/>
+            android:text=""
+            android:textColor="@color/input_text_error" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -37,18 +38,19 @@
             app:endIconTint="#878787"
             app:hintEnabled="false">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/date_name_dlbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/login_input"
-            android:gravity="left"
-            android:hint="Enter date : YYYY/MM/DD"
-            android:textCursorDrawable="@drawable/cursor_drawable"
-            android:padding="15dp"
-            android:inputType="date"
-            android:textSize="20dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date_name_dlbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/login_input"
+                android:fontFamily="@font/f6"
+                android:gravity="left"
+                android:hint="Enter date : YYYY/MM/DD"
+                android:inputType="date"
+                android:padding="15dp"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,27 +68,29 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginRight="7dp"
+                android:layout_weight="1"
                 android:background="@drawable/dialogbox_btn"
+                android:fontFamily="@font/f6"
                 android:padding="15dp"
                 android:text="Add"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_weight="1"/>
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/date_cancel_btn_dlbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
                 android:background="@drawable/dialogbox_btn"
+                android:fontFamily="@font/f6"
                 android:padding="15dp"
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20dp"
-                android:layout_marginLeft="7dp"
-                android:layout_weight="1"/>
+                android:textSize="20dp" />
 
         </LinearLayout>
     </LinearLayout>

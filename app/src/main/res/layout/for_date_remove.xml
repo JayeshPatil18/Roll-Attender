@@ -21,7 +21,7 @@
         android:textSize="18dp"
         android:layout_weight="1"
         android:drawableTint="@color/items_drawable_tint"
-        />
+        android:fontFamily="@font/f6" />
 
     <ImageView
         android:id="@+id/forDateListRemoveIcon"

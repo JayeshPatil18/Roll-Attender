@@ -56,11 +56,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingTop="10dp"
+                    android:fontFamily="@font/f6"
                     android:gravity="center"
+                    android:paddingTop="10dp"
                     android:text="Edit profile"
                     android:textColor="@color/white"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -90,10 +92,11 @@
                         android:id="@+id/editProfile_error"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="* All field are not mandatory"
-                        android:layout_marginTop="20dp"
                         android:layout_gravity="center"
-                        android:textColor="@color/input_text_error"/>
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/f6"
+                        android:text="* All field are not mandatory"
+                        android:textColor="@color/input_text_error" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/editProfile_fullnameLayout"
@@ -113,6 +116,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_input"
                             android:ems="10"
+                            android:fontFamily="@font/f6"
                             android:hint="Full Name"
                             android:inputType="textPersonName"
                             android:padding="20dp"
@@ -139,6 +143,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_input"
                             android:ems="10"
+                            android:fontFamily="@font/f6"
                             android:hint="Password"
                             android:inputType="textPassword"
                             android:padding="20dp"
@@ -165,6 +170,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/login_input"
                             android:ems="10"
+                            android:fontFamily="@font/f6"
                             android:hint="Renter password"
                             android:inputType="textPassword"
                             android:padding="20dp"
@@ -192,13 +198,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/login_btn"
+                    android:fontFamily="@font/f6"
                     android:gravity="center"
                     android:padding="18dp"
                     android:text="Save changes"
                     android:textAllCaps="false"
-                    android:textSize="20dp"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="20dp" />
 
             </androidx.cardview.widget.CardView>
 

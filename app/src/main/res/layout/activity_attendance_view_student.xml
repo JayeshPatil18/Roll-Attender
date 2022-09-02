@@ -50,7 +50,9 @@
                         android:paddingRight="20dp"
                         android:text=""
                         android:textColor="@color/white"
-                        android:textSize="30dp" />
+                        android:textSize="30dp"
+                        android:fontFamily="@font/f6"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/available_date_title"
@@ -59,12 +61,14 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:background="@color/app_background"
+                        android:fontFamily="@font/f6"
                         android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text=""
                         android:textColor="@color/app_default"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -98,29 +102,31 @@
                                 android:id="@+id/FaketabP"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:padding="15dp"
-                                android:text="Present"
                                 android:layout_gravity="center"
-                                android:gravity="center"
+                                android:layout_marginRight="2dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/fake_tab_textview"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:text="Present"
                                 android:textColor="@color/white"
-                                android:layout_marginRight="2dp"/>
+                                android:textSize="18dp" />
 
                             <TextView
                                 android:id="@+id/FaketabA"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="18dp"
-                                android:padding="15dp"
-                                android:text="Absent"
                                 android:layout_gravity="center"
-                                android:gravity="center"
+                                android:layout_marginLeft="2dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/stub"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:text="Absent"
                                 android:textColor="@color/app_default"
-                                android:layout_marginLeft="2dp">
+                                android:textSize="18dp">
 
                             </TextView>
 
@@ -169,7 +175,8 @@
                                 android:gravity="center"
                                 android:layout_gravity="center"
                                 android:visibility="gone"
-                                android:text="No Roll no. Added" />
+                                android:text="No Roll no. Added"
+                                android:fontFamily="@font/f6"/>
                         </LinearLayout>
 
                     </LinearLayout>

@@ -44,7 +44,9 @@
             android:paddingRight="20dp"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:fontFamily="@font/f6"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -81,7 +83,8 @@
                     android:textColor="@color/app_default"
                     android:text="Dates for attendance"
                     android:layout_gravity="center"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:fontFamily="@font/f6">
 
                 </TextView>
 
@@ -144,7 +147,8 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:visibility="gone"
-                    android:text="No Date Added" />
+                    android:text="No Date Added"
+                    android:fontFamily="@font/f6"/>
 
             </LinearLayout>
 
@@ -168,14 +172,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Add Date"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:layout_gravity="center"
+                android:fontFamily="@font/f6"
                 android:gravity="center"
                 android:padding="10dp"
-                android:textSize="15dp"
-                android:textColor="@color/white"/>
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Add Date"
+                android:textColor="@color/white"
+                android:textSize="15dp"/>
 
         </LinearLayout>
 

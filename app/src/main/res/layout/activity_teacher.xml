@@ -38,12 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/f6"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:text="Teacher"
             android:textColor="@color/white"
             android:textSize="30dp"
-            android:text="Teacher"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -75,12 +77,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:padding="10dp"
-                        android:textColor="@color/app_default"
-                        android:text="Subjects for attendance"
                         android:layout_gravity="center"
-                        android:gravity="center">
+                        android:fontFamily="@font/f6"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Subjects for attendance"
+                        android:textColor="@color/app_default"
+                        android:textSize="18dp">
 
                     </TextView>
 
@@ -171,10 +174,11 @@
                         android:id="@+id/empty_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:layout_gravity="center"
-                        android:visibility="gone"
-                        android:text="No Subject Added" />
+                        android:fontFamily="@font/f6"
+                        android:gravity="center"
+                        android:text="No Subject Added"
+                        android:visibility="gone" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -197,14 +201,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Add Date"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:layout_gravity="center"
+                android:fontFamily="@font/f6"
                 android:gravity="center"
                 android:padding="10dp"
-                android:textSize="15dp"
-                android:textColor="@color/white"/>
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Add Date"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -38,10 +38,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/f6"
             android:gravity="center"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -73,12 +75,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:textColor="@color/app_default"
-                    android:text="Dates available for attendance"
                     android:layout_gravity="center"
-                    android:gravity="center">
+                    android:fontFamily="@font/f6"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Dates available for attendance"
+                    android:textColor="@color/app_default"
+                    android:textSize="18dp">
 
                 </TextView>
 
@@ -125,10 +128,11 @@
                     android:id="@+id/empty_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="No Date Added"
                     android:visibility="gone"
-                    android:text="No Date Added" />
+                    android:fontFamily="@font/f6" />
             </LinearLayout>
 
         </LinearLayout>

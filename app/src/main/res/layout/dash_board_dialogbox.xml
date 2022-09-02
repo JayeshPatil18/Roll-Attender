@@ -44,6 +44,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
+                            android:fontFamily="@font/f6"
                             android:gravity="start"
                             android:paddingLeft="20dp"
                             android:paddingTop="20dp"
@@ -102,31 +103,34 @@
                                 <include layout="@layout/text_dashboard_shimmer"/>
                             </com.facebook.shimmer.ShimmerFrameLayout>
 
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/dashBoard_Name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="start"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="10dp"
-                            android:text=""
-                            android:textSize="20dp"
-                            android:textColor="@color/app_default"/>
+                            <TextView
+                                android:id="@+id/dashBoard_Name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/f6"
+                                android:gravity="start"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="10dp"
+                                android:paddingRight="10dp"
+                                android:text=""
+                                android:textColor="@color/app_default"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:visibility="gone" />
 
-                        <TextView
-                            android:id="@+id/dashBoard_EmailId"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="20dp"
-                            android:gravity="start"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:text=""
-                            android:textSize="15dp" />
+                            <TextView
+                                android:id="@+id/dashBoard_EmailId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:fontFamily="@font/f6"
+                                android:gravity="start"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text=""
+                                android:textSize="15dp" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -184,6 +188,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="bottom"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="10dp"
                                                 android:text="You as Teacher"
@@ -224,6 +229,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="bottom"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="10dp"
                                                 android:text="You as Student"
@@ -271,6 +277,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_gravity="center"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="15dp"
                                                 android:text="Edit profile"
@@ -303,6 +310,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_gravity="center"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="15dp"
                                                 android:text="Add new user"
@@ -353,6 +361,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_gravity="center"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="15dp"
                                                 android:text="Switch account"
@@ -385,6 +394,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_gravity="center"
+                                                android:fontFamily="@font/f6"
                                                 android:gravity="center"
                                                 android:padding="15dp"
                                                 android:text="Logout"

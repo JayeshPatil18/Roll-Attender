@@ -21,7 +21,7 @@
         android:textColor="@color/items_text"
         android:textSize="18dp"
         android:layout_weight="1"
-        />
+        android:fontFamily="@font/f6" />
 
     <ImageView
         android:id="@+id/teacherListRemoveIcon"
