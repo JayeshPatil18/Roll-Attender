@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 
 public class ValidationOfInput {
 
-    char[] specificChar_withNum = {'0', '1', '2','3','4','5','6','7','8','9','`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','{','}','[',']',';',':','|','"','<',',','>','.','?','/','\\','\''};
-    char[] specificChar_withoutNum = {'`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','{','}','[',']',';',':','|','"','<',',','>','.','?','/','\\','\''};
-    char[] specificChar_forDate = {'`','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+','{','}','[',']',';',':','|','"','<',',','>','.','?','\\','\''}; // This array not contain character '/'
-    char[] specificChar_forEmailId = {'`','~','!','#','$','%','^','&','*','(',')','-','_','=','+','{','}','[',']',';',':','|','"','<',',','>','?','/','\\','\''}; // This array not contain characters '@', '.'
+    char[] specificChar_withNum = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', ';', ':', '|', '"', '<', ',', '>', '.', '?', '/', '\\', '\''};
+    char[] specificChar_withoutNum = {'`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', ';', ':', '|', '"', '<', ',', '>', '.', '?', '/', '\\', '\''};
+    char[] specificChar_forDate = {'`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', ';', ':', '|', '"', '<', ',', '>', '.', '?', '\\', '\''}; // This array not contain character '/'
+    char[] specificChar_forEmailId = {'`', '~', '!', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '{', '}', '[', ']', ';', ':', '|', '"', '<', ',', '>', '?', '/', '\\', '\''}; // This array not contain characters '@', '.'
 
     public static boolean containsEmoji(String source) {
         int len = source.length();
@@ -30,6 +30,7 @@ public class ValidationOfInput {
         }
         return false;
     }
+
     public static boolean isEmojiCharacter(char codePoint) {
         return (codePoint == 0x0) || (codePoint == 0x9) || (codePoint == 0xA) ||
                 (codePoint == 0xD) || ((codePoint >= 0x20) && (codePoint <= 0xD7FF)) ||
@@ -37,7 +38,7 @@ public class ValidationOfInput {
                 && (codePoint <= 0x10FFFF));
     }
 
-    private static boolean isEmoji(String message){
+    private static boolean isEmoji(String message) {
         return message.matches("(?:[\uD83C\uDF00-\uD83D\uDDFF]|[\uD83E\uDD00-\uD83E\uDDFF]|" +
                 "[\uD83D\uDE00-\uD83D\uDE4F]|[\uD83D\uDE80-\uD83D\uDEFF]|" +
                 "[\u2600-\u26FF]\uFE0F?|[\u2700-\u27BF]\uFE0F?|\u24C2\uFE0F?|" +
@@ -63,9 +64,9 @@ public class ValidationOfInput {
     }
 
 
-    public boolean isValidPasswordForLogin(String password, TextInputLayout invalidDisplay){
+    public boolean isValidPasswordForLogin(String password, TextInputLayout invalidDisplay) {
         // to check emoji
-        if (containsEmoji(password)){
+        if (containsEmoji(password)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password should not contain any emoji");
             return false;
@@ -90,10 +91,9 @@ public class ValidationOfInput {
     }
 
     // whether a password is valid or not
-    public boolean isValidCreation(String password, TextInputLayout invalidDisplay)
-    {
+    public boolean isValidCreation(String password, TextInputLayout invalidDisplay) {
         // to check emoji  // code by me
-        if (containsEmoji(password)){
+        if (containsEmoji(password)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password should not contain any emoji");
             return false;
@@ -159,7 +159,7 @@ public class ValidationOfInput {
             for (int i = 65; i <= 90; i++) {
 
                 // type casting
-                char c = (char)i;
+                char c = (char) i;
 
                 String str1 = Character.toString(c);
                 if (password.contains(str1)) {
@@ -180,7 +180,7 @@ public class ValidationOfInput {
             for (int i = 97; i <= 122; i++) {
 
                 // type casting
-                char c = (char)i;
+                char c = (char) i;
                 String str1 = Character.toString(c);
 
                 if (password.contains(str1)) {
@@ -199,15 +199,15 @@ public class ValidationOfInput {
     }
 
     public boolean validatedPassword(String str_password, TextInputLayout invalidDisplay) {
-        if(containsEmoji(str_password)){
+        if (containsEmoji(str_password)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password should not contain emoji");
             return false;
-        }else if (str_password.contains(" ")){
+        } else if (str_password.contains(" ")) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password should not contain space");
             return false;
-        }else if(!isValidPassword(str_password)){
+        } else if (!isValidPassword(str_password)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Try another password");
 //            invalidDisplay.setError("* Try another password\n* Password should contain at least one digit(0-9).\n* Password must be at least 8 characters.\n* Password should contain at least one lowercase letter(a-z).\n* Password should contain at least one uppercase letter(A-Z).\n* Password should contain at least one special character ( @, #, %, &, !, $, etc…).");
@@ -221,26 +221,27 @@ public class ValidationOfInput {
         boolean isValid = true;
         for (int i = 0; i < str_phoneNo.length(); i++) {
             char ch = str_phoneNo.charAt(i);
-            if(ch == ' '){
+            if (ch == ' ') {
                 continue;
-            }else if (!Character.isDigit(ch)) {
+            } else if (!Character.isDigit(ch)) {
                 isValid = false;
             }
         }
 
-        if(!isValid){
+        if (!isValid) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Phone no is invalid");
             return false;
-        }if (str_phoneNo.contains(" ")){
+        }
+        if (str_phoneNo.contains(" ")) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Remove all space from phone no");
             return false;
-        }else if (str_phoneNo.length() > 10){
+        } else if (str_phoneNo.length() > 10) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Do not add country code with phone no");
             return false;
-        }else if (str_phoneNo.length() < 10){
+        } else if (str_phoneNo.length() < 10) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Phone no must contain 10 digit");
             return false;
@@ -261,19 +262,19 @@ public class ValidationOfInput {
             }
         }
 
-        if(specificChar){
+        if (specificChar) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Email id should not contain symbols except '@' , '.'");
             return false;
-        }else if(containsEmoji(str_emailId)){
+        } else if (containsEmoji(str_emailId)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Email id should not contain emoji");
             return false;
-        }else if (str_emailId.contains(" ")){
+        } else if (str_emailId.contains(" ")) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Remove all space from email id");
             return false;
-        }else if(str_emailId.length() < 3){
+        } else if (str_emailId.length() < 3) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Email id must be at least 3 characters");
             return false;
@@ -293,11 +294,11 @@ public class ValidationOfInput {
             }
         }
 
-        if(specificChar){
+        if (specificChar) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Name should not contain digits or symbols");
             return false;
-        }else if(containsEmoji(str_name)){
+        } else if (containsEmoji(str_name)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Name should not contain emoji");
             return false;
@@ -311,18 +312,18 @@ public class ValidationOfInput {
         boolean isValid = true;
         for (int i = 0; i < student_enrollment_no.length(); i++) {
             char ch = student_enrollment_no.charAt(i);
-            if(ch == ' '){
+            if (ch == ' ') {
                 continue;
-            }else if (!Character.isDigit(ch)) {
+            } else if (!Character.isDigit(ch)) {
                 isValid = false;
             }
         }
 
-        if(!isValid){
+        if (!isValid) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Enrollment no is invalid");
             return false;
-        }else if (student_enrollment_no.contains(" ")){
+        } else if (student_enrollment_no.contains(" ")) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Remove all space from enrollment no");
             return false;
@@ -343,11 +344,11 @@ public class ValidationOfInput {
             }
         }
 
-        if(specificChar){
+        if (specificChar) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Branch name should not contain symbols");
             return false;
-        }else if(containsEmoji(student_branch)){
+        } else if (containsEmoji(student_branch)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Branch name should not contain emoji");
             return false;
@@ -367,10 +368,10 @@ public class ValidationOfInput {
             }
         }
 
-        if(specificChar){
+        if (specificChar) {
             invalidDisplay.setText("* Subject name should not contain symbols");
             return false;
-        }else if(containsEmoji(subject)){
+        } else if (containsEmoji(subject)) {
             invalidDisplay.setText("* Subject name should not contain emoji");
             return false;
         }
@@ -385,7 +386,7 @@ public class ValidationOfInput {
         String egDate = dtf.format(localDate);
 
         boolean isInvalid = false;
-        String str = dateToAdd.replace(" ","").replace("/","");
+        String str = dateToAdd.replace(" ", "").replace("/", "");
 
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
@@ -394,29 +395,29 @@ public class ValidationOfInput {
             }
         }
 
-        if(isInvalid){
+        if (isInvalid) {
             invalidDisplay.setText("* Date must contain only digit except '/'");
             return false;
-        }else if(containsEmoji(dateToAdd)){
+        } else if (containsEmoji(dateToAdd)) {
             invalidDisplay.setText("* Date should not contain emoji");
             return false;
-        }else if (dateToAdd.contains(" ")){
+        } else if (dateToAdd.contains(" ")) {
             invalidDisplay.setText("* Remove all space from date");
             return false;
-        }else if (!(slashCount(dateToAdd) == 2)){
+        } else if (!(slashCount(dateToAdd) == 2)) {
             invalidDisplay.setText("* Correct your format eg. " + egDate);
             return false;
         }
 
         ArrayList<Integer> arrayList = dateDigitCount(dateToAdd);
 
-        if (arrayList.get(0) != 4){
+        if (arrayList.get(0) != 4) {
             invalidDisplay.setText("* Year in date must contain 4 digit");
             return false;
-        }else if (arrayList.get(1) != 2){
+        } else if (arrayList.get(1) != 2) {
             invalidDisplay.setText("* Month in date must contain 2 digit");
             return false;
-        }else if (arrayList.get(2) != 2){
+        } else if (arrayList.get(2) != 2) {
             invalidDisplay.setText("* Day in date must contain 2 digit");
             return false;
         }
@@ -428,7 +429,7 @@ public class ValidationOfInput {
         int count = 0;
         for (int i = 0; i < dateToAdd.length(); i++) {
             char ch = dateToAdd.charAt(i);
-            if (ch == '/'){
+            if (ch == '/') {
                 count++;
             }
         }
@@ -448,7 +449,7 @@ public class ValidationOfInput {
             if (slashCountNum <= 2) {
                 if (ch == '/') {
                     slashCountNum++;
-                }else if (slashCountNum == 0) {
+                } else if (slashCountNum == 0) {
                     yearDigitCount++;
                 } else if (slashCountNum == 1) {
                     monthDigitCount++;
@@ -457,9 +458,9 @@ public class ValidationOfInput {
                 }
             }
         }
-        arrayList.add(0,yearDigitCount);
-        arrayList.add(1,monthDigitCount);
-        arrayList.add(2,dayDigitCount);
+        arrayList.add(0, yearDigitCount);
+        arrayList.add(1, monthDigitCount);
+        arrayList.add(2, dayDigitCount);
 
         return arrayList;
     }
@@ -476,16 +477,16 @@ public class ValidationOfInput {
             }
         }
 
-        if(specificChar){
+        if (specificChar) {
             invalidDisplay.setText("* Email id should not contain symbols except '@' , '.'");
             return false;
-        }else if(containsEmoji(str_emailId)){
+        } else if (containsEmoji(str_emailId)) {
             invalidDisplay.setText("* Email id should not contain emoji");
             return false;
-        }else if (str_emailId.contains(" ")){
+        } else if (str_emailId.contains(" ")) {
             invalidDisplay.setText("* Remove all space from email id");
             return false;
-        }else if(str_emailId.length() < 3){
+        } else if (str_emailId.length() < 3) {
             invalidDisplay.setText("* Email id must be at least 3 characters");
             return false;
         }
@@ -493,7 +494,7 @@ public class ValidationOfInput {
     }
 
     public boolean isPasswordMatched(String str_password, String str_rEnterPassword, TextInputLayout invalidDisplay) {
-        if (!str_password.equals(str_rEnterPassword)){
+        if (!str_password.equals(str_rEnterPassword)) {
             invalidDisplay.setErrorEnabled(true);
             invalidDisplay.setError("* Password do not match with above password");
             return false;
@@ -506,21 +507,66 @@ public class ValidationOfInput {
         boolean isValid = true;
         for (int i = 0; i < student_enrollment_no.length(); i++) {
             char ch = student_enrollment_no.charAt(i);
-            if(ch == ' '){
+            if (ch == ' ' || ch == ',') {
                 continue;
-            }else if (!Character.isDigit(ch)) {
+            } else if (!Character.isDigit(ch)) {
                 isValid = false;
             }
         }
 
-        if(!isValid){
+        if (!isValid) {
             invalidDisplay.setText("* Roll no is invalid");
             return false;
-        }else if (student_enrollment_no.contains(" ")){
+        } else if (student_enrollment_no.contains(" ")) {
             invalidDisplay.setText("* Remove all space from Roll no");
             return false;
         }
 
+        return true;
+    }
+
+    public ArrayList<String> findRollFromString(String strRoll_no) {
+        ArrayList<String> arr = new ArrayList<>();
+        String stub = "";
+
+        if (strRoll_no.length() >= 2) {
+            if (strRoll_no.charAt(0) == ',') {
+                strRoll_no = strRoll_no.substring(1);//////////////////
+            }
+            if (strRoll_no.charAt(strRoll_no.length() - 1) == ',') {
+                strRoll_no = strRoll_no.substring(0, strRoll_no.length() - 1);////////////////
+            }
+        }
+
+        for (int i = 0; i < strRoll_no.length(); i++) {
+            if (i != strRoll_no.length() - 1) {
+                if (strRoll_no.charAt(i) == ',' && strRoll_no.charAt(i + 1) == ',') {
+                    continue;//////////////
+                }
+            }
+
+            if (strRoll_no.charAt(i) == ',') {
+                arr.add(stub);
+                stub = "";
+            } else {
+                stub = stub + strRoll_no.charAt(i);
+            }
+        }
+        arr.add(stub);
+        return arr;
+    }
+
+    public boolean isRollNoFormatValid(String strRoll_no, TextView invalidDisplay) {
+        ArrayList<String> arr = new ArrayList<>();
+
+        for (int i = 0; i < strRoll_no.length(); i++) {
+            if (i != strRoll_no.length() - 1) {
+                if (strRoll_no.charAt(i) == ',' && strRoll_no.charAt(i + 1) == ',') {
+                    invalidDisplay.setText("remove extra ','");
+                    return false;
+                }
+            }
+        }
         return true;
     }
 }

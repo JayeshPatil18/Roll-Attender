@@ -46,7 +46,7 @@
                 android:gravity="left"
                 android:hint="Enter Roll No"
                 android:padding="15dp"
-                android:inputType="number"
+                android:inputType="text"
                 android:textSize="20dp"
                 />
 

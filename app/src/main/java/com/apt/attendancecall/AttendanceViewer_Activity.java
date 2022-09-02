@@ -300,12 +300,27 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                                     if (validSubName) {
 
-                                        rollNo.setText("");
-//                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
-                                        root.child(strRoll_no.toString()).setValue("p");
-                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                        boolean isValidRollNo = validation.isRollNoFormatValid(strRoll_no, invalidDisplay);
 
-                                        alertDialog.dismiss();
+                                        if (isValidRollNo) {
+                                            rollNo.setText("");
+//                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
+                                            if (strRoll_no.contains(",")) {
+
+                                                ArrayList<String> arr = validation.findRollFromString(strRoll_no);
+                                                for (int i = 0; i < arr.size(); i++) {
+
+                                                    if (!arr.get(i).isEmpty()) {
+                                                        root.child(arr.get(i).toString()).setValue("p");
+                                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            } else {
+                                                root.child(strRoll_no.toString()).setValue("p");
+                                                Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
 
                                     }
                                 }
@@ -367,7 +382,6 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
                                 if (strRoll_no.isEmpty()) {
                                     invalidDisplay.setText("* Roll no. field is empty");
                                 } else {
@@ -376,13 +390,27 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                                     if (validSubName) {
 
-                                        rollNo.setText("");
+                                        boolean isValidRollNo = validation.isRollNoFormatValid(strRoll_no, invalidDisplay);
+
+                                        if (isValidRollNo) {
+                                            rollNo.setText("");
 //                                            root = db.getReference().child("admin_users").child(decoder.encodeUserEmail(emailId)).child("subjects").child(subject_for_date);
-                                        root.child(strRoll_no.toString()).setValue("a");
-                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                            if (strRoll_no.contains(",")) {
 
-                                        alertDialog.dismiss();
+                                                ArrayList<String> arr = validation.findRollFromString(strRoll_no);
+                                                for (int i = 0; i < arr.size(); i++) {
 
+                                                    if (!arr.get(i).isEmpty()) {
+                                                        root.child(arr.get(i).toString()).setValue("a");
+                                                        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            } else {
+                                                root.child(strRoll_no.toString()).setValue("a");
+                                                Toast.makeText(AttendanceViewer_Activity.this, "Roll no. Added Successfully", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
                                     }
                                 }
 
@@ -494,11 +522,11 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 int eNum = endRange.getValue();
 
                 /////
-                SharedPreferences sharedPreferences_loginDetails = dialog.getContext().getSharedPreferences("login_details",MODE_PRIVATE);
+                SharedPreferences sharedPreferences_loginDetails = dialog.getContext().getSharedPreferences("login_details", MODE_PRIVATE);
                 SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
 
-                editor_loginDetails.putInt("s_range",sNum);
-                editor_loginDetails.putInt("e_range",eNum);
+                editor_loginDetails.putInt("s_range", sNum);
+                editor_loginDetails.putInt("e_range", eNum);
                 editor_loginDetails.commit();
                 /////
 
