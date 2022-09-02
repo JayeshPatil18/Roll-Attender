@@ -26,5 +26,5 @@
     <color name="items_drawable_tint">#0061C3</color>
     <color name="items_image_tint">#002549</color>
 
-    <color name="shimmer_color">#B8B8B8</color>
+    <color name="shimmer_color">#D5D5D5</color>
 </resources>
