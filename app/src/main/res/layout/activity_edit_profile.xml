@@ -116,7 +116,8 @@
                             android:hint="Full Name"
                             android:inputType="textPersonName"
                             android:padding="20dp"
-                            android:textColorHint="#878787" />
+                            android:textColorHint="#878787"
+                            android:textCursorDrawable="@drawable/cursor_drawable" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -140,9 +141,10 @@
                             android:ems="10"
                             android:hint="Password"
                             android:inputType="textPassword"
-                            android:password="true"
                             android:padding="20dp"
-                            android:textColorHint="#878787" />
+                            android:password="true"
+                            android:textColorHint="#878787"
+                            android:textCursorDrawable="@drawable/cursor_drawable" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -165,9 +167,10 @@
                             android:ems="10"
                             android:hint="Renter password"
                             android:inputType="textPassword"
-                            android:password="true"
                             android:padding="20dp"
-                            android:textColorHint="#878787" />
+                            android:password="true"
+                            android:textColorHint="#878787"
+                            android:textCursorDrawable="@drawable/cursor_drawable" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 

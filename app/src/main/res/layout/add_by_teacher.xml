@@ -45,6 +45,7 @@
                 android:background="@drawable/login_input"
                 android:gravity="left"
                 android:hint="Enter Roll No"
+                android:textCursorDrawable="@drawable/cursor_drawable"
                 android:padding="15dp"
                 android:inputType="text"
                 android:textSize="20dp"

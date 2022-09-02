@@ -45,6 +45,7 @@
             android:background="@drawable/login_input"
             android:gravity="left"
             android:hint="Enter date : YYYY/MM/DD"
+            android:textCursorDrawable="@drawable/cursor_drawable"
             android:padding="15dp"
             android:inputType="date"
             android:textSize="20dp" />

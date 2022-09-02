@@ -98,7 +98,8 @@
                     android:hint="Email id"
                     android:inputType="textEmailAddress"
                     android:padding="20dp"
-                    android:textColorHint="#878787" />
+                    android:textColorHint="#878787"
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -123,17 +124,18 @@
                     android:inputType="textPassword"
                     android:padding="20dp"
                     android:password="true"
-                    android:textColorHint="#878787" />
+                    android:textColorHint="#878787"
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/forgotPasswordLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Forgot Password ?"
                 android:layout_margin="15dp"
                 android:padding="5dp"
-                />
+                android:text="Forgot Password ?"
+                android:textColor="@color/app_default" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawableTint="@color/items_drawable_tint"
         android:drawablePadding="15dp"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
@@ -17,7 +18,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text=""
-        android:textColor="@color/app_default"
+        android:textColor="@color/items_text"
         android:textSize="18dp"
         android:layout_weight="1"
         />
@@ -28,7 +29,7 @@
         android:layout_height="46dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_baseline_remove_circle_outline_24"
-        app:tint="@color/app_default"
+        app:tint="@color/items_image_tint"
         android:paddingRight="20dp"/>
 
 </LinearLayout>
