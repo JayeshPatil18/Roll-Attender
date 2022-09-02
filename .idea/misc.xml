@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/delete_btn_bg.xml" value="0.1925" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/fake_tab_textview.xml" value="0.1925" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.193" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1285" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.1925" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/drawable/login_bg.xml" value="0.1925" />
@@ -56,6 +57,7 @@
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/verifying_dialogbox.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/layout/your_student_list.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />
+        <entry key="..\:/Users/jp747/Android Apps/Attendance-Call-Android-App-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1925" />
       </map>
     </option>
   </component>

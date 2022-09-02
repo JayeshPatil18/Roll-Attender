@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TeacherActivity"
+    tools:context=".AvailableSubjects_Activity"
     android:orientation="vertical">
 
     <ImageView
@@ -35,6 +35,24 @@
         android:paddingTop="50dp"
         android:paddingBottom="120dp">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:id="@+id/shimmerTeacherName">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/shimmer_bg"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <TextView
             android:id="@+id/availableTeacherName"
             android:layout_width="match_parent"
@@ -45,7 +63,8 @@
             android:paddingRight="20dp"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/availableTeacherId"

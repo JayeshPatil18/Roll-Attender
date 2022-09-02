@@ -19,6 +19,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ public class TeacherActivity extends AppCompatActivity implements RecyclerViewIn
     ShimmerFrameLayout shimmerFrameLayout;
 
     // For manually adding date with fab button
-    FloatingActionButton subAddFab;
+    LinearLayout subAddFab;
 
     // For not scroll no creation of activity
     boolean isAdd = false;

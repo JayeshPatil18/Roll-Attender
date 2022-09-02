@@ -27,6 +27,7 @@ import java.util.Locale;
 public class AvailableSubjects_Activity extends AppCompatActivity implements RecyclerViewInterface{
 
     ShimmerFrameLayout shimmerFrameLayout;
+    ShimmerFrameLayout shimmerTeacherName;
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
@@ -50,6 +51,8 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
 
         shimmerFrameLayout = findViewById(R.id.shimmer_list_available_sub);
         shimmerFrameLayout.startShimmer();
+        shimmerTeacherName = findViewById(R.id.shimmerTeacherName);
+        shimmerTeacherName.startShimmer();
 
         backIcon = findViewById(R.id.available_subject_back_img);
 
@@ -72,6 +75,10 @@ public class AvailableSubjects_Activity extends AppCompatActivity implements Rec
                 AdminInfo adminInfo = snapshot.getValue(AdminInfo.class);
                 name = adminInfo.getName();
                 availableTeacherName.setText(name.substring(0, 1).toUpperCase() + name.substring(1));
+
+                shimmerTeacherName.stopShimmer();
+                shimmerTeacherName.setVisibility(View.GONE);
+                availableTeacherName.setVisibility(View.VISIBLE);
             }
 
             @Override

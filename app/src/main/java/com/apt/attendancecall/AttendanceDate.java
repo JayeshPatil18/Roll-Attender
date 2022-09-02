@@ -22,6 +22,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +44,7 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
     ShimmerFrameLayout shimmerFrameLayout;
 
     // For manually adding date with fab button
-    FloatingActionButton dateAddFab;
+    LinearLayout dateAddFab;
 
     // For back button
     ImageView back_img;
