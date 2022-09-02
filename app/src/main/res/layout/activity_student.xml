@@ -82,7 +82,7 @@
                         android:fontFamily="@font/f6"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Your teacher's classrooms"
+                        android:text="Your teachers"
                         android:textColor="@color/app_default"
                         android:textSize="18dp">
 
@@ -207,7 +207,7 @@
                     android:padding="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Add Date"
+                    android:text="Add Teacher To View Attendance"
                     android:textColor="@color/white"
                     android:textSize="15dp" />
 

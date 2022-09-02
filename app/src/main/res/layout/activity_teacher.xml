@@ -207,7 +207,7 @@
                 android:padding="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Add Date"
+                android:text="Add Subject"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 

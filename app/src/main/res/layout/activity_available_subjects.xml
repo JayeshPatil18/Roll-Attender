@@ -118,7 +118,7 @@
                     android:fontFamily="@font/f6"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Subjects available for attendance"
+                    android:text="Subjects for attendance"
                     android:textColor="@color/app_default"
                     android:textSize="18dp">
 
@@ -142,6 +142,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                        <include layout="@layout/shimmer_list_plain"/>
+                        <include layout="@layout/shimmer_list_plain"/>
+                        <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>

@@ -79,7 +79,7 @@
                     android:fontFamily="@font/f6"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Dates available for attendance"
+                    android:text="Dates for attendance"
                     android:textColor="@color/app_default"
                     android:textSize="18dp">
 
@@ -103,6 +103,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                        <include layout="@layout/shimmer_list_plain"/>
+                        <include layout="@layout/shimmer_list_plain"/>
+                        <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>
                         <include layout="@layout/shimmer_list_plain"/>

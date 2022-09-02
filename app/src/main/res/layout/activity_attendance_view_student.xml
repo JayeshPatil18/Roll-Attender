@@ -154,6 +154,8 @@
                                     <include layout="@layout/shimmer_list_plain"/>
                                     <include layout="@layout/shimmer_list_plain"/>
                                     <include layout="@layout/shimmer_list_plain"/>
+                                    <include layout="@layout/shimmer_list_plain"/>
+                                    <include layout="@layout/shimmer_list_plain"/>
 
                                 </LinearLayout>
                             </com.facebook.shimmer.ShimmerFrameLayout>
