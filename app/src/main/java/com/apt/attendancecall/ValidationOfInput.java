@@ -515,10 +515,10 @@ public class ValidationOfInput {
         }
 
         if (!isValid) {
-            invalidDisplay.setText("* Roll no is invalid");
+            invalidDisplay.setText("* Roll no. is invalid");
             return false;
         } else if (student_enrollment_no.contains(" ")) {
-            invalidDisplay.setText("* Remove all space from Roll no");
+            invalidDisplay.setText("* Remove all space from Roll no.");
             return false;
         }
 
@@ -562,7 +562,7 @@ public class ValidationOfInput {
         for (int i = 0; i < strRoll_no.length(); i++) {
             if (i != strRoll_no.length() - 1) {
                 if (strRoll_no.charAt(i) == ',' && strRoll_no.charAt(i + 1) == ',') {
-                    invalidDisplay.setText("remove extra ','");
+                    invalidDisplay.setText("* Remove extra ','");
                     return false;
                 }
             }

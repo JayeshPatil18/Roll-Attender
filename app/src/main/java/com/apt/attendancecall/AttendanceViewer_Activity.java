@@ -481,7 +481,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
     public void rangeDialogBox() {
         final Dialog dialog = new Dialog(AttendanceViewer_Activity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.range_of_roll_no);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
