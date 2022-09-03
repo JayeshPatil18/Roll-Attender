@@ -25,6 +25,8 @@ import java.util.Locale;
 
 public class SignupActivity extends AppCompatActivity{
 
+    boolean isLoading = false;
+
     ImageView backIcon;
 
     LinearLayout AlreadyAccount;
@@ -72,92 +74,108 @@ public class SignupActivity extends AppCompatActivity{
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                invalidDisplay.setText("");
+                if (!isLoading) {
+                    invalidDisplay.setText("");
 
-                TextInputLayout nameLayout = (TextInputLayout)findViewById(R.id.signup_fullnameLayout);
-                TextInputLayout emailIdLayout = (TextInputLayout)findViewById(R.id.signup_email_idLayout);
-                TextInputLayout passwordLayout = (TextInputLayout)findViewById(R.id.signup_passwordLayout);
-                TextInputLayout rEnterPasswordLayout = (TextInputLayout)findViewById(R.id.signup_RepasswordLayout);
+                    signup_btn.setText("Loading....");
+                    isLoading = true;
 
-                nameLayout.setErrorEnabled(false);
-                emailIdLayout.setErrorEnabled(false);
-                passwordLayout.setErrorEnabled(false);
-                rEnterPasswordLayout.setErrorEnabled(false);
+                    TextInputLayout nameLayout = (TextInputLayout) findViewById(R.id.signup_fullnameLayout);
+                    TextInputLayout emailIdLayout = (TextInputLayout) findViewById(R.id.signup_email_idLayout);
+                    TextInputLayout passwordLayout = (TextInputLayout) findViewById(R.id.signup_passwordLayout);
+                    TextInputLayout rEnterPasswordLayout = (TextInputLayout) findViewById(R.id.signup_RepasswordLayout);
 
-                String str_name, str_emailId, str_rEnterPassword, str_password;
-                str_name = name.getText().toString().toLowerCase(Locale.ROOT).trim();
-                str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
-                str_password = password.getText().toString().trim();
-                str_rEnterPassword = rEnterdPassword.getText().toString().trim();
+                    nameLayout.setErrorEnabled(false);
+                    emailIdLayout.setErrorEnabled(false);
+                    passwordLayout.setErrorEnabled(false);
+                    rEnterPasswordLayout.setErrorEnabled(false);
 
-                boolean allFieldFilled = true;
+                    String str_name, str_emailId, str_rEnterPassword, str_password;
+                    str_name = name.getText().toString().toLowerCase(Locale.ROOT).trim();
+                    str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
+                    str_password = password.getText().toString().trim();
+                    str_rEnterPassword = rEnterdPassword.getText().toString().trim();
 
-                if(str_name.isEmpty()){
-                    nameLayout.setErrorEnabled(true);
-                    nameLayout.setError("* Name field is empty");
-                    allFieldFilled = false;
-                }
-                if(str_emailId.isEmpty()){
-                    emailIdLayout.setErrorEnabled(true);
-                    emailIdLayout.setError("* Email id field is empty");
-                    allFieldFilled = false;
-                }
-                if (str_password.isEmpty()){
-                    passwordLayout.setErrorEnabled(true);
-                    passwordLayout.setError("* Password field is empty");
-                    allFieldFilled = false;
-                }
-                if (str_rEnterPassword.isEmpty()){
-                    rEnterPasswordLayout.setErrorEnabled(true);
-                    rEnterPasswordLayout.setError("* Field is empty");
-                    allFieldFilled = false;
-                }
-                if (allFieldFilled){
-                    ValidationOfInput validation = new ValidationOfInput();
-                    boolean validName = validation.validatedName(str_name, nameLayout);
-                    boolean validEmailId = validation.validatedEmailId(str_emailId, emailIdLayout);
-                    boolean validPassword = validation.isValidCreation(str_password, passwordLayout);
-                    boolean validRePassword = validation.isPasswordMatched(str_password, str_rEnterPassword, rEnterPasswordLayout);
+                    boolean allFieldFilled = true;
 
-                    if (validName && validEmailId && validPassword && validRePassword){
+                    if (str_name.isEmpty()) {
+                        signup_btn.setText("Sign Up");
+                        isLoading = false;
+                        nameLayout.setErrorEnabled(true);
+                        nameLayout.setError("* Name field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (str_emailId.isEmpty()) {
+                        signup_btn.setText("Sign Up");
+                        isLoading = false;
+                        emailIdLayout.setErrorEnabled(true);
+                        emailIdLayout.setError("* Email id field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (str_password.isEmpty()) {
+                        signup_btn.setText("Sign Up");
+                        isLoading = false;
+                        passwordLayout.setErrorEnabled(true);
+                        passwordLayout.setError("* Password field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (str_rEnterPassword.isEmpty()) {
+                        signup_btn.setText("Sign Up");
+                        isLoading = false;
+                        rEnterPasswordLayout.setErrorEnabled(true);
+                        rEnterPasswordLayout.setError("* Field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (allFieldFilled) {
+                        ValidationOfInput validation = new ValidationOfInput();
+                        boolean validName = validation.validatedName(str_name, nameLayout);
+                        boolean validEmailId = validation.validatedEmailId(str_emailId, emailIdLayout);
+                        boolean validPassword = validation.isValidCreation(str_password, passwordLayout);
+                        boolean validRePassword = validation.isPasswordMatched(str_password, str_rEnterPassword, rEnterPasswordLayout);
+
+                        if (validName && validEmailId && validPassword && validRePassword) {
 
 
-                        // For authentication with email and password
-                        mAuth.createUserWithEmailAndPassword(str_emailId,str_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    EncoderDecoder encoder = new EncoderDecoder();
+                            // For authentication with email and password
+                            mAuth.createUserWithEmailAndPassword(str_emailId, str_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        EncoderDecoder encoder = new EncoderDecoder();
 
-                                    HashMap<String, String> userMap = new HashMap<>();
-                                    userMap.put("email", str_emailId);
-                                    userMap.put("name", str_name);
+                                        HashMap<String, String> userMap = new HashMap<>();
+                                        userMap.put("email", str_emailId);
+                                        userMap.put("name", str_name);
 
-                                    root = db.getReference().child("admin_users");
-                                    root.child(encoder.encodeUserEmail(str_emailId)).child("details").setValue(userMap);
+                                        root = db.getReference().child("admin_users");
+                                        root.child(encoder.encodeUserEmail(str_emailId)).child("details").setValue(userMap);
 
-                                    root = db.getReference().child("admin_users").child(encoder.encodeUserEmail(str_emailId));
-                                    root.child("request_to").setValue("users");
+                                        root = db.getReference().child("admin_users").child(encoder.encodeUserEmail(str_emailId));
+                                        root.child("request_to").setValue("users");
 
-                                    name.setText("");
-                                    emailId.setText("");
-                                    rEnterdPassword.setText("");
-                                    password.setText("");
+                                        name.setText("");
+                                        emailId.setText("");
+                                        rEnterdPassword.setText("");
+                                        password.setText("");
 
-                                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
 
-                                }else{
-                                    int index = task.getException().toString().indexOf(":");
+                                    } else {
+                                        signup_btn.setText("Sign Up");
+                                        isLoading = false;
+                                        int index = task.getException().toString().indexOf(":");
 //                                    String exception = task.getException().toString().toLowerCase(Locale.ROOT).trim().replace(" ","").substring(index + 1);
-                                    invalidDisplay.setText(task.getException().toString().trim().substring(index + 1));
+                                        invalidDisplay.setText(task.getException().toString().trim().substring(index + 1));
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
+                        signup_btn.setText("Sign Up");
+                        isLoading = false;
                     }
                 }
-
             }
         });
 

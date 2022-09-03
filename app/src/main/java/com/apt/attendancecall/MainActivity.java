@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean isLoading = false;
 
     boolean isOldDeviceLoggedIn = false;
 
@@ -63,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         DoNotAccount = findViewById(R.id.signup);
         login_btn = findViewById(R.id.login_btn);
+        login_btn.setText("Login");
+        isLoading = false;
 
         // For firebase authentication
         mAuth = FirebaseAuth.getInstance();
@@ -70,38 +75,46 @@ public class MainActivity extends AppCompatActivity {
         login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!isLoading) {
 
-                invalidDisplay.setText("");
+                    invalidDisplay.setText("");
 
-
-                TextInputLayout emailLayout = (TextInputLayout) findViewById(R.id.login_emailIdLayout);
-                TextInputLayout passwordLayout = (TextInputLayout) findViewById(R.id.login_passwordLayout);
-
-                emailLayout.setErrorEnabled(false);
-                passwordLayout.setErrorEnabled(false);
-
-                str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
-                str_password = password.getText().toString().trim();
-
-                ////////////////////////////////////////////////////////////////////////////////////////
-
-                //////////////////////////////////////////////////////////////////////////////////////////////
+                    login_btn.setText("Loading....");
+                    isLoading = true;
 
 
-                boolean allFieldFilled = true;
+                    TextInputLayout emailLayout = (TextInputLayout) findViewById(R.id.login_emailIdLayout);
+                    TextInputLayout passwordLayout = (TextInputLayout) findViewById(R.id.login_passwordLayout);
+
+                    emailLayout.setErrorEnabled(false);
+                    passwordLayout.setErrorEnabled(false);
+
+                    str_emailId = emailId.getText().toString().toLowerCase(Locale.ROOT).trim();
+                    str_password = password.getText().toString().trim();
+
+                    ////////////////////////////////////////////////////////////////////////////////////////
+
+                    //////////////////////////////////////////////////////////////////////////////////////////////
 
 
-                if (str_emailId.isEmpty()) {
-                    emailLayout.setErrorEnabled(true);
-                    emailLayout.setError("* Email id field is empty");
-                    allFieldFilled = false;
-                }
-                if (str_password.isEmpty()) {
-                    passwordLayout.setErrorEnabled(true);
-                    passwordLayout.setError("* Password field is empty");
-                    allFieldFilled = false;
-                }
-                if (allFieldFilled) {
+                    boolean allFieldFilled = true;
+
+
+                    if (str_emailId.isEmpty()) {
+                        login_btn.setText("Login");
+                        isLoading = false;
+                        emailLayout.setErrorEnabled(true);
+                        emailLayout.setError("* Email id field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (str_password.isEmpty()) {
+                        login_btn.setText("Login");
+                        isLoading = false;
+                        passwordLayout.setErrorEnabled(true);
+                        passwordLayout.setError("* Password field is empty");
+                        allFieldFilled = false;
+                    }
+                    if (allFieldFilled) {
 
 //                    ValidationOfInput validation = new ValidationOfInput();
 //                    boolean validUsername = validation.validatedEmailId(str_emailId, emailLayout);
@@ -116,12 +129,25 @@ public class MainActivity extends AppCompatActivity {
                                     emailId.setText("");
                                     password.setText("");
 
-                                    verifyingDialogBox dialogBox = new verifyingDialogBox();
-                                    dialogBox.showDialog(MainActivity.this, "Link has been sent to your mail, please click on that link and then click verify email button", str_emailId, str_password);
+                                    SharedPreferences sharedPreferences_isLogin = getSharedPreferences("MyPrefsLogin", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor_isLogin = sharedPreferences_isLogin.edit();
 
-                                    // If user click cancel in dialog box
-                                    invalidDisplay.setText("* Please try again!");
+                                    SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor_loginDetails = sharedPreferences_loginDetails.edit();
+
+                                    editor_isLogin.putBoolean("hasLoggedIn", true);
+                                    editor_loginDetails.putString("email_id", str_emailId);
+                                    editor_isLogin.commit();
+                                    editor_loginDetails.commit();
+
+                                    Toast.makeText(MainActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, UsertypeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+
                                 } else {
+                                    login_btn.setText("Login");
+                                    isLoading = false;
                                     int index = task.getException().toString().indexOf(":");
                                     String exception = task.getException().toString().toLowerCase(Locale.ROOT).replace(" ", "").trim().substring(index + 1);
                                     if (exception.contains("passwordisinvalid")) {
@@ -137,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
-//                    }
+                    }
                 }
             }
         });
@@ -158,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showDialogBoxResetPassword(Activity activity){
+    public void showDialogBoxResetPassword(Activity activity) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -190,9 +216,9 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = fAuth.getCurrentUser();
 
-                if (strEmailId.isEmpty()){
+                if (strEmailId.isEmpty()) {
                     textMsg.setText("* Please fill email address");
-                }else {
+                } else {
                     fAuth.sendPasswordResetEmail(strEmailId).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
