@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -27,6 +30,7 @@ import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -93,8 +97,6 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
         emailId = sharedPreferences_loginDetails.getString("email_id", "null");
         /////////////////////////////////////////////////////////////////////////////////////////////
-
-        rangeDialogBox();
 
 
         // For back button
@@ -451,7 +453,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         rangeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rangeDialogBox();
+                previousAttendanceDeletePopUp(AttendanceViewer_Activity.this,"Recent Attendance will be delete!");
             }
         });
 
@@ -586,6 +588,41 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                 Toast.makeText(AttendanceViewer_Activity.this, "All Roll no. removed successfully", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+    private void previousAttendanceDeletePopUp(Activity activity, String s) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialogbox_of_logout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.logoutErrorText);
+        textView.setText(s);
+        Button btn_ok = (Button) dialog.findViewById(R.id.logout_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.logout_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.dismiss();
+               rangeDialogBox();
             }
         });
 
