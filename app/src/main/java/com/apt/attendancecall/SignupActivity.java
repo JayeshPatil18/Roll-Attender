@@ -57,6 +57,8 @@ public class SignupActivity extends AppCompatActivity{
 
         AlreadyAccount = findViewById(R.id.login);
         signup_btn = findViewById(R.id.submit_btn);
+        signup_btn.setText("Sign Up");
+        isLoading = false;
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
