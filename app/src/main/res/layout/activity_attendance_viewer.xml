@@ -4,47 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AttendanceViewer_Activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".AttendanceViewer_Activity">
 
     <ImageView
         android:id="@+id/viewer_back_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        android:background="@drawable/back_background"
         android:elevation="20dp"
-        android:paddingTop="15dp"
         android:paddingLeft="15dp"
-        android:background="@drawable/back_background" />
+        android:paddingTop="15dp"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:elevation="20dp"
-        android:gravity="end">
+        android:gravity="end"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/deleteAllRollNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_delete_outline_24"
+            android:background="@drawable/back_background"
             android:elevation="20dp"
+            android:paddingLeft="15dp"
             android:paddingTop="15dp"
             android:paddingRight="10dp"
-            android:paddingLeft="15dp"
-            android:background="@drawable/back_background" />
+            app:srcCompat="@drawable/ic_baseline_delete_outline_24" />
 
         <ImageView
             android:id="@+id/resetRangeImg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_format_list_numbered_rtl_24"
+            android:background="@drawable/back_background"
             android:elevation="20dp"
+            android:paddingLeft="15dp"
             android:paddingTop="15dp"
             android:paddingRight="15dp"
-            android:paddingLeft="15dp"
-            android:background="@drawable/back_background" />
+            app:srcCompat="@drawable/ic_baseline_format_list_numbered_rtl_24" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,218 +53,268 @@
         android:background="@color/app_background"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
         <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="-10dp"
-              android:layout_marginRight="-10dp"
-              android:background="@drawable/login_bg"
-              android:orientation="vertical"
-              android:paddingTop="50dp"
-              android:paddingBottom="120dp">
-
-            <TextView
-                android:id="@+id/subject_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/f6"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/date_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/app_background"
-                android:fontFamily="@font/f6"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text=""
-                android:textColor="@color/app_default"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="-80dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical"
-            android:outlineSpotShadowColor="#000000"
-            app:cardBackgroundColor="@color/app_background"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="10dp">
+            android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-10dp"
+                android:layout_marginRight="-10dp"
+                android:background="@drawable/login_bg"
+                android:orientation="vertical"
+                android:paddingTop="50dp"
+                android:paddingBottom="120dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/subject_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:padding="4dp">
+                    android:fontFamily="@font/f6"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/TFaketabP"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="2dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/fake_tab_textview"
-                        android:fontFamily="@font/f6"
-                        android:gravity="center"
-                        android:padding="15dp"
-                        android:text="Present"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/app_background"
+                    android:fontFamily="@font/f6"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text=""
+                    android:textColor="@color/app_default"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/TFaketabA"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="2dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/stub"
-                        android:fontFamily="@font/f6"
-                        android:gravity="center"
-                        android:padding="15dp"
-                        android:text="Absent"
-                        android:textColor="@color/app_default"
-                        android:textSize="18dp">
+            </LinearLayout>
 
-                    </TextView>
 
-                </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-80dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:outlineSpotShadowColor="#000000"
+                app:cardBackgroundColor="@color/app_background"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/subject_list_bg"
                     android:orientation="vertical">
 
-<!--                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--                        android:id="@+id/refresher"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent">-->
-
-                    <com.facebook.shimmer.ShimmerFrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/shimmer_viewer"
-                        android:layout_marginBottom="50dp">
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal"
+                            android:padding="4dp">
 
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
-                            <include layout="@layout/shimmer_of_list"/>
+                            <TextView
+                                android:id="@+id/TFaketabP"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/fake_tab_textview"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:text="Present"
+                                android:textColor="@color/white"
+                                android:textSize="18dp" />
 
+                            <TextView
+                                android:id="@+id/TFaketabA"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="2dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/stub"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:padding="15dp"
+                                android:text="Absent"
+                                android:textColor="@color/app_default"
+                                android:textSize="18dp">
+
+                            </TextView>
                         </LinearLayout>
-                    </com.facebook.shimmer.ShimmerFrameLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/numOfPresent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="2dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/app_default"
+                                android:textSize="15dp" />
+
+                            <TextView
+                                android:id="@+id/numOfAbsent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="2dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/f6"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/app_default"
+                                android:textSize="15dp">
+
+                            </TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/subject_list_bg"
+                        android:orientation="vertical">
+
+                        <!--                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+                        <!--                        android:id="@+id/refresher"-->
+                        <!--                        android:layout_width="match_parent"-->
+                        <!--                        android:layout_height="match_parent">-->
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_viewer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="50dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                                <include layout="@layout/shimmer_of_list" />
+
+                            </LinearLayout>
+                        </com.facebook.shimmer.ShimmerFrameLayout>
 
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/student_list"
-                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginBottom="50dp"
                             android:gravity="center_horizontal"
                             android:textAlignment="center"
-                            android:layout_marginBottom="50dp">
+                            android:visibility="gone">
 
                         </androidx.recyclerview.widget.RecyclerView>
-<!--                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+                        <!--                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+
+                        <TextView
+                            android:id="@+id/empty_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/f6"
+                            android:gravity="center"
+                            android:text="No Roll no. Added"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/empty_view"
+                        android:id="@+id/addPresentRoll"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/allow_img"
+                        android:drawableLeft="@drawable/ic_baseline_add_24"
+                        android:drawablePadding="10dp"
                         android:fontFamily="@font/f6"
-                        android:gravity="center"
-                        android:text="No Roll no. Added"
-                        android:visibility="gone" />
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Present Roll No"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/addAbsentRoll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@color/disallow_img"
+                        android:drawableLeft="@drawable/ic_baseline_add_24"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/f6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Absent Roll No"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
                 </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_gravity="bottom">
-
-                <TextView
-                    android:id="@+id/addPresentRoll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/allow_img"
-                    android:drawableLeft="@drawable/ic_baseline_add_24"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/f6"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="Present Roll No"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/addAbsentRoll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/disallow_img"
-                    android:drawableLeft="@drawable/ic_baseline_add_24"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/f6"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="Absent Roll No"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </RelativeLayout>

@@ -80,6 +80,9 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
         TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
 
+        TextView numOfP = (TextView) findViewById(R.id.numOfPresent);
+        TextView numOfA = (TextView) findViewById(R.id.numOfAbsent);
+
         ShimmerFrameLayout shimmerFrameLayout = (ShimmerFrameLayout) findViewById(R.id.shimmer_viewer);
         shimmerFrameLayout.startShimmer();
 
@@ -138,12 +141,14 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
                     if (flag.equals("present")) {
                         if (dataSnapshot.getValue(String.class).equals("p")) {
                             list.add(model);
-
+                            numOfP.setText(String.valueOf(list.size()));
+                            numOfA.setText("");
                         }
                     } else if (flag.equals("absent")) {
                         if (dataSnapshot.getValue(String.class).equals("a")) {
                             list.add(model);
-
+                            numOfA.setText(String.valueOf(list.size()));
+                            numOfP.setText("");
                         }
                     }
                 }
@@ -188,7 +193,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                             if (dataSnapshot.getValue(String.class).equals("p")) {
                                 list.add(model);
-
+                                numOfP.setText(String.valueOf(list.size()));
+                                numOfA.setText("");
                             }
 
                         }
@@ -233,7 +239,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
                             if (dataSnapshot.getValue(String.class).equals("a")) {
                                 list.add(model);
-
+                                numOfA.setText(String.valueOf(list.size()));
+                                numOfP.setText("");
                             }
 
                         }
