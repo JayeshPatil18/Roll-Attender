@@ -6,4 +6,8 @@
     <string name="tab_text_1">Present</string>
     <string name="tab_text_2">Absent</string>
     <string name="title_activity_viewer_for_student">ViewerForStudent</string>
+
+    <string name="ads_app_id">ca-app-pub-6829345224658071~7551451992</string>
+    <string name="ads_user_type_banner">ca-app-pub-6829345224658071/1398528064</string>
+    <string name="ads_editprofile_banner">ca-app-pub-6829345224658071/4571486313</string>
 </resources>

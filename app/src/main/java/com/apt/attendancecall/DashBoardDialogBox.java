@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Locale;
 
 public class DashBoardDialogBox {
+
+    private InterstitialAd mInterstitialAd;
 
     public void showDialog(Activity activity, TextView sectionName) {
 
@@ -58,6 +64,28 @@ public class DashBoardDialogBox {
         ImageView menuCancel = (ImageView) dialog.findViewById(R.id.dialogBox_menuCancel);
 
         dialog.show();
+
+        /////////////
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(activity, "ca-app-pub-6829345224658071/8632637361", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        mInterstitialAd = null;
+                    }
+                });
+
+
+        /////////
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         TextView AdminName = (TextView) dialog.findViewById(R.id.dashBoard_Name);
@@ -103,6 +131,7 @@ public class DashBoardDialogBox {
                     Intent intent = new Intent(activity, TeacherActivity.class);
                     activity.startActivity(intent);
                     activity.finish();
+                    show(view, activity);
                 }
 
             }
@@ -117,6 +146,7 @@ public class DashBoardDialogBox {
                     Intent intent = new Intent(activity, StudentActivity.class);
                     activity.startActivity(intent);
                     activity.finish();
+                    show(view, activity);
                 }
 
             }
@@ -321,5 +351,12 @@ public class DashBoardDialogBox {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void show(View view, Activity activity) {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(activity);
+        } else {
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".EditProfile"
     android:orientation="vertical">
 
     <ImageView
@@ -16,6 +16,16 @@
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/back_background" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView_editProfile"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ads_editprofile_banner"
+        android:elevation="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +59,8 @@
                     android:layout_gravity="center"
                     android:src="@drawable/teacher_icon"
                     app:civ_border_color="@color/app_background"
-                    app:civ_border_width="3dp"/>
+                    app:civ_border_width="3dp"
+                    android:layout_marginTop="20dp"/>
 
 
                 <TextView
@@ -61,7 +72,7 @@
                     android:paddingTop="10dp"
                     android:text="Edit profile"
                     android:textColor="@color/white"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
             </LinearLayout>

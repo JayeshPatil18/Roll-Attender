@@ -44,7 +44,7 @@
             android:paddingRight="20dp"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:fontFamily="@font/f6"
             android:textStyle="bold"/>
 

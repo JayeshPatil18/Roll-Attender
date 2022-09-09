@@ -18,6 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +32,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AttendanceVIewStudent extends AppCompatActivity implements RecyclerViewInterface{
+
+    InterstitialAd mInterstitialAd;
 
     TextView tabP, tabA;
 
@@ -53,6 +59,25 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_view_student);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this, "ca-app-pub-6829345224658071/6553268931", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        mInterstitialAd = null;
+                    }
+                });
+
 
         TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
 
@@ -234,5 +259,14 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(AttendanceVIewStudent.this);
+        } else {
+        }
     }
 }
