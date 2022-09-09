@@ -33,6 +33,8 @@ import java.util.Locale;
 
 public class AttendanceVIewStudent extends AppCompatActivity implements RecyclerViewInterface{
 
+    String flag;
+
     InterstitialAd mInterstitialAd;
 
     TextView tabP, tabA;
@@ -60,6 +62,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_view_student);
 
+        flag = "present";
+
         AdRequest adRequest = new AdRequest.Builder().build();
 
         InterstitialAd.load(this, "ca-app-pub-6829345224658071/6553268931", adRequest,
@@ -80,6 +84,9 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
 
 
         TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
+
+        TextView numOfP = (TextView) findViewById(R.id.numOfPresentView);
+        TextView numOfA = (TextView) findViewById(R.id.numOfAbsentView);
 
         emailId = getIntent().getStringExtra("available_emailId");
         availableSubject = getIntent().getStringExtra("available_subject_for_date").toLowerCase(Locale.ROOT);
@@ -119,22 +126,24 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                tabP.setTextColor(getResources().getColor(R.color.white));
-                tabA.setTextColor(getResources().getColor(R.color.app_default));
-                tabA.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.stub));
-                tabP.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.fake_tab_textview));
-
                 list.clear(); // this work to clear old item
                 String model = null;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     model = dataSnapshot.getKey();
 
-                    if (dataSnapshot.getValue(String.class).equals("p"))
-                    {
-                        list.add(model);
-
+                    if (flag.equals("present")) {
+                        if (dataSnapshot.getValue(String.class).equals("p")) {
+                            list.add(model);
+                            numOfP.setText(String.valueOf(list.size()));
+                            numOfA.setText("");
+                        }
+                    } else if (flag.equals("absent")) {
+                        if (dataSnapshot.getValue(String.class).equals("a")) {
+                            list.add(model);
+                            numOfA.setText(String.valueOf(list.size()));
+                            numOfP.setText("");
+                        }
                     }
-
                 }
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
@@ -159,6 +168,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
             @Override
             public void onClick(View view) {
 
+                flag = "present";
+
                 tabP.setTextColor(getResources().getColor(R.color.white));
                 tabA.setTextColor(getResources().getColor(R.color.app_default));
                 tabA.setBackground(ContextCompat.getDrawable(AttendanceVIewStudent.this, R.drawable.stub));
@@ -176,7 +187,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
                             if (dataSnapshot.getValue(String.class).equals("p"))
                             {
                                 list.add(model);
-
+                                numOfP.setText(String.valueOf(list.size()));
+                                numOfA.setText("");
                             }
 
                         }
@@ -204,6 +216,7 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
         tabA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag = "absent";
 
                 tabA.setTextColor(getResources().getColor(R.color.white));
                 tabP.setTextColor(getResources().getColor(R.color.app_default));
@@ -222,7 +235,8 @@ public class AttendanceVIewStudent extends AppCompatActivity implements Recycler
                             if (dataSnapshot.getValue(String.class).equals("a"))
                             {
                                 list.add(model);
-
+                                numOfA.setText(String.valueOf(list.size()));
+                                numOfP.setText("");
                             }
 
                         }
