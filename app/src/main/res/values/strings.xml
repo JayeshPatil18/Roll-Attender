@@ -10,4 +10,6 @@
     <string name="ads_app_id">ca-app-pub-6829345224658071~7551451992</string>
     <string name="ads_user_type_banner">ca-app-pub-6829345224658071/1398528064</string>
     <string name="ads_editprofile_banner">ca-app-pub-6829345224658071/4571486313</string>
+    <string name="ads_request_sent">ca-app-pub-6829345224658071/3828130722</string>
+    <string name="ads_request_received">ca-app-pub-6829345224658071/6357294987</string>
 </resources>

@@ -135,7 +135,9 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
                     String model = dataSnapshot.getKey();
                     String modelStatus = dataSnapshot.getValue(String.class);
 
+                    if (modelStatus.equals("true")){
                         list.add(decoder.decodeUserEmail(model));
+                    }
                 }
                 shimmerFrameLayout.stopShimmer();
                 shimmerFrameLayout.setVisibility(View.GONE);
@@ -239,7 +241,7 @@ public class StudentActivity extends AppCompatActivity implements RecyclerViewIn
                                                                 }else {
                                                                     email.setText("");
                                                                     root.child(finalEmailRequest.toString()).setValue("null");
-                                                                    Toast.makeText(StudentActivity.this, "Teacher added Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(StudentActivity.this, "Request Sent Successfully to " + emailRequest, Toast.LENGTH_SHORT).show();
 
                                                                     alertDialog.dismiss();
                                                                 }

@@ -177,7 +177,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/f6"
                         android:gravity="center"
-                        android:text="No Teacher Added"
+                        android:text="No Request Accepted"
                         android:visibility="gone" />
                 </LinearLayout>
 
@@ -207,7 +207,7 @@
                     android:padding="10dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="Add Teacher To View Attendance"
+                    android:text="Send Request To Teacher"
                     android:textColor="@color/white"
                     android:textSize="15dp" />
 
