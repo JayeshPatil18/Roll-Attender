@@ -79,7 +79,6 @@
                         android:text="Request sent"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:textStyle="bold"
                         android:fontFamily="@font/f6">
 
                     </TextView>
