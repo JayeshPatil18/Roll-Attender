@@ -40,7 +40,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AttendanceViewer_Activity extends AppCompatActivity implements RecyclerViewInterfaceTeacher {
+public class AttendanceViewer_Activity extends AppCompatActivity implements RecyclerViewRollList {
+
+    TextView numOfP;
+    TextView numOfA;
 
     String flag;
 
@@ -62,7 +65,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
     private RecyclerView recyclerView;
     ArrayList<String> list;
-    AdapterForTeacher adapter;
+    AdapterForRollList adapter;
 
     TextView subject_title, date_title;
 
@@ -80,8 +83,8 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
 
         TextView emptyMsg = (TextView) findViewById(R.id.empty_view);
 
-        TextView numOfP = (TextView) findViewById(R.id.numOfPresent);
-        TextView numOfA = (TextView) findViewById(R.id.numOfAbsent);
+        numOfP = findViewById(R.id.numOfPresent);
+        numOfA = findViewById(R.id.numOfAbsent);
 
         ShimmerFrameLayout shimmerFrameLayout = (ShimmerFrameLayout) findViewById(R.id.shimmer_viewer);
         shimmerFrameLayout.startShimmer();
@@ -120,7 +123,7 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new AdapterForTeacher(this, list, this);
+        adapter = new AdapterForRollList(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -474,23 +477,37 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
     }
 
     @Override
-    public void onItemClickTeacher(int position) {
+    public void onItemClickRemove(int position) {
+        // For retrieving admin user name
+            SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
+            String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
 
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+            String itemText = list.get(position).toString();
+            String userEmail = decoder.encodeUserEmail(emailId);
+
+            if (flag.equals("present")){
+                database.getReference("admin_users").child(userEmail).child("subjects").child(strSubject).child(strDate).child(itemText).setValue("a");
+                Toast.makeText(AttendanceViewer_Activity.this, "Roll no. removed successfully", Toast.LENGTH_SHORT).show();
+            }else if (flag.equals("absent")){
+                database.getReference("admin_users").child(userEmail).child("subjects").child(strSubject).child(strDate).child(itemText).setValue("p");
+                Toast.makeText(AttendanceViewer_Activity.this, "Roll no. removed successfully", Toast.LENGTH_SHORT).show();
+            }
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(String position) {
         // For retrieving admin user name
         SharedPreferences sharedPreferences_loginDetails = getSharedPreferences("login_details", MODE_PRIVATE);
         String emailId = sharedPreferences_loginDetails.getString("email_id", "null");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        String itemText = list.get(position).toString();
+        String itemText = position.toString();
         String userEmail = decoder.encodeUserEmail(emailId);
 
-        database.getReference("admin_users").child(userEmail).child("subjects").child(strSubject).child(strDate).child(itemText).removeValue();
-        Toast.makeText(AttendanceViewer_Activity.this, "Roll no. removed successfully", Toast.LENGTH_SHORT).show();
+        removeRollPopUpDialogBox(AttendanceViewer_Activity.this, database, itemText, userEmail, "Are you sure want to delete roll no." + itemText + " ?");
     }
 
     public void rangeDialogBox() {
@@ -591,6 +608,9 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
             @Override
             public void onClick(View view) {
 
+                numOfA.setText("");
+                numOfP.setText("");
+
                 root.setValue("null");
                 Toast.makeText(AttendanceViewer_Activity.this, "All Roll no. removed successfully", Toast.LENGTH_SHORT).show();
 
@@ -630,6 +650,45 @@ public class AttendanceViewer_Activity extends AppCompatActivity implements Recy
             public void onClick(View view) {
                dialog.dismiss();
                rangeDialogBox();
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void removeRollPopUpDialogBox(AttendanceViewer_Activity activity, FirebaseDatabase database, String itemText, String userEmail, String s) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.remove_node_dialogobox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        Window window = dialog.getWindow();
+        window.setLayout(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = (TextView) dialog.findViewById(R.id.removeErrorText);
+        textView.setText(s);
+
+        Button btn_ok = (Button) dialog.findViewById(R.id.remove_ok);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.remove_cancel);
+
+        dialog.show();
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                database.getReference("admin_users").child(userEmail).child("subjects").child(strSubject).child(strDate).child(itemText).removeValue();
+
+                Toast.makeText(AttendanceViewer_Activity.this, "Roll no. deleted successfully", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
             }
         });
 
