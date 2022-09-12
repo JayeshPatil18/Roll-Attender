@@ -17,6 +17,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -234,6 +236,29 @@ public class AttendanceDate extends AppCompatActivity implements RecyclerViewInt
                         alertDialog.dismiss();
                     }
                 });
+
+                date.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        String str = date.getText().toString();
+
+                        if (str.length() == 8 && !str.contains("/")){
+                            String strResultDate = str.substring(0, 4) + "/" + str.substring(4, 6) + "/" + str.substring(6, str.length());
+                            date.setText(strResultDate);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
                 alertDialog.show();
             }
         });
