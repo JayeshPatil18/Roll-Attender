@@ -1,5 +1,5 @@
 <div align="left">
-  <h1>Roll Attender 🙋 - Android App</h1>
+  <h1>Roll Attender🙋 - Android App</h1>
   <a href="https://play.google.com/store/apps/details?id=com.apt.attendancecall">
     <img alt="Play Store" src="https://img.shields.io/badge/Google_Play-34A853?style=for-the-badge&logo=google-play&logoColor=white" style="margin-left: 10px;">
   </a>
